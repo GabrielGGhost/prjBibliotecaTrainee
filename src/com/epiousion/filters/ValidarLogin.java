@@ -25,32 +25,24 @@ import com.epiousion.model.User;
 @WebFilter("/validarLogin")
 public class ValidarLogin implements Filter {
 
-    public ValidarLogin() {
-        // TODO Auto-generated constructor stub
-    }
+    public ValidarLogin() {}
 
-	/**
-	 * @see Filter#destroy()
-	 */
-	public void destroy() {
-		// TODO Auto-generated method stub
-	}
+	public void destroy() {}
 
-	/**
-	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
-	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		
-		UserDAO userDAO = new UserDB();
-		User user = null;
-		String mensagem = null;
-		String destino = ((HttpServletRequest)request).getContextPath()+"/login.jsp";
-		String username = request.getParameter("username");
-		String password = request.getParameter("password");
 		
 		HttpServletRequest hRequest = (HttpServletRequest) request;
 		HttpServletResponse hResponse= (HttpServletResponse) response;
+		hRequest.getSession().removeAttribute("mensagem");
 
+
+		UserDAO userDAO = new UserDB();
+		User user = null;
+		String destino = ("/jsp/login.jsp");
+		String username = request.getParameter("username");
+		String password = request.getParameter("password");
+		String mensagem = null;
+			
 		if(username == null || username.equals("")){
 			mensagem = "Informe o usuário!";
 		} else if(password == null || password.equals("")) {
@@ -61,33 +53,21 @@ public class ValidarLogin implements Filter {
 			} catch (Exception e) {
 				mensagem = "Problema de acesso ao banco de dados!";
 			}
-		}
-					
-
-		
-		if(user != null){	
-			if(user.isAdmin() == true){
-				hResponse.sendRedirect(hRequest.getContextPath() + "/admin");
+				
+			if(user != null){	
+				hRequest.getSession().setAttribute("user", user);
+				hResponse.sendRedirect(hRequest.getContextPath() + "/controleDeAcesso");
 			} else {
-				destino = hRequest.getContextPath()+"/jsp/bookList.jsp";
+				mensagem = "Usuário ou senha inválidos!";
 			}
-			hRequest.getSession().setAttribute("user", user);
-		} else {
-			mensagem = "Usuário ou senha inválidos!";
 		}
-		
+				
 		if(mensagem != null){
 			hRequest.getSession().setAttribute("mensagem", mensagem);
-			hResponse.sendRedirect(destino);
+			hRequest.getRequestDispatcher(destino).forward(hRequest, response);
 		}
-		
 	}
 
-	/**
-	 * @see Filter#init(FilterConfig)
-	 */
-	public void init(FilterConfig fConfig) throws ServletException {
-		// TODO Auto-generated method stub
-	}
+	public void init(FilterConfig fConfig) throws ServletException {}
 
 }

@@ -1,4 +1,9 @@
+body{
+	font-family: sans-serif;
+	margin: 0;
+}
 
+/*Tela de menu*/
 .container{
 	width: 100vw;
     height: 70vh; 
@@ -72,4 +77,193 @@
 
 .rodape{
 	justify-content: center;
+}
+
+
+
+/*Cabeçalho do site*/
+
+header{
+	margin: 0; 
+	width: 100%;
+	height: 90px;
+	border-bottom: 1px solid #ccc;
+}
+
+.menu{
+	list-style-type: none;
+	display: flex;
+	padding-left: 0px;
+	margin: 0;
+	justify-content: center;
+}
+
+.menu li{
+	padding: 0px 8px;
+	cursor: pointer;
+	transition: .5s linear; 
+}
+
+.menu li:HOVER{
+	border-bottom: 2px solid #ccc;
+}
+
+.sair{
+	font-size: 10px;
+	cursor:pointer;
+	transition: 0.5s linear;
+}
+
+.sair:HOVER{
+	color: red;
+}
+
+a:LINK{
+	color: black;
+	text-decoration: none;
+}
+
+a:VISITED{
+	color: black;
+}
+
+header .title{
+	text-align: center;
+	font-size: 30px;
+}
+
+.bookContainer{
+	display: flex;
+}
+
+.asideDetails{
+	width: 25%;
+	height: 100%;
+	position: fixed;
+	
+}
+
+.bookList{
+	width: 75%;
+	margin-left: 25%;
+}
+
+.book img{
+	margin-right: 10px;
+	border-radius: 10px;
+	width: 80px;
+}
+
+.book{
+	border: 1px solid #aaa;
+	border-left: 3px solid #aaa;
+	margin: 10px 40px;
+	padding: 5px;
+	display: flex;
+  	border-top-right-radius: 15px;
+	border-bottom-right-radius: 15px;
+  	background-color: #eee;
+}
+
+.bookDetails{
+	width: 100%;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	margin-bottom: 10px;
+}
+
+.buttons{
+	margin-top: 30px;
+}
+
+.btnBook{
+	cursor: pointer;
+	border: 1px solid black;
+	border-radius: 5px;
+	padding: 5px;
+	transition: 0.5s linear;
+}
+
+.btnBook:HOVER{
+	background-color: lightblue;
+}
+
+.viewBook{
+	width: 60%;
+	display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+
+.topViewRow{
+	display: grid;
+	margin-top: 35px;
+	margin-left: 30px;
+}
+
+.bottomViewRow{
+	margin-left: 30px;
+	margin-top: 10px;
+}
+
+.topViewRow span{
+	margin-bottom: 5px;
+}
+
+.viewButtons{
+	margin-left: 30px;
+}
+
+.userTable{
+	width: 100%;
+}
+
+.userTable thead tr td{
+	background-color: #ccc;
+}
+
+.userTable tr td{
+	padding: 6px 0;
+} 
+
+
+.btnDesactive{
+	border: 1px solid black;
+	border-radius: 5px;
+	padding: 3px;
+	transition: 0.5s linear;
+	cursor: pointer;
+	background-color: rgba(250,0,0, 0.5);
+}
+
+
+.btnActive{
+	border: 1px solid black;
+	border-radius: 5px;
+	padding: 3px;
+	transition: 0.5s linear;
+	cursor: pointer;
+	background-color: rgba(0,200,0, 0.5); 
+}
+.btnEmprestimo{
+	cursor: pointer;
+	border: 1px solid black;
+	border-radius: 5px;
+	padding: 3px;
+	transition: 0.5s linear;
+	background-color: lightblue;
+	
+}
+
+/* General css */
+
+.centerText{
+	text-align: center;
+}
+
+.btn{
+}
+
+.displayNone{
+	display: none;
 }

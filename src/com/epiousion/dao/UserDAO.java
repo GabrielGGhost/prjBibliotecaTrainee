@@ -12,4 +12,6 @@ public interface UserDAO {
     public void save(User p) throws EpiousionException;
 
     public User getUserByLogin(String username, String password) throws EpiousionException ;
+    
+    public List<User> getAllUsers() throws EpiousionException ;
 }

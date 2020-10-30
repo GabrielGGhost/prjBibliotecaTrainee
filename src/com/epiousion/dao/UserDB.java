@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Date;
 
 import com.epiousion.exception.EpiousionException;
 import com.epiousion.exception.LoginFailedException;
@@ -16,6 +17,7 @@ public class UserDB implements UserDAO {
 
     private final String INSERT_QUERY = "insert into produtos (nome,preco,marca) values (?,?,?)";
     private final String SELECT_BY_LOGIN = "select * from users where username = ? AND password = ?";
+    private final String SELECT_ALL_USERS= "select * from users";
 
     @Override
     public void save(User user) throws EpiousionException {
@@ -64,6 +66,40 @@ public class UserDB implements UserDAO {
             ConnectionManager.closeAll(conn, prepStmt, rs);
         }
         return user;
+    }
+    
+    public List<User> getAllUsers() throws EpiousionException{
+    	Connection conn = null;
+    	Statement stmt = null;
+    	ResultSet rs = null;
+    	List<User> listaUsuarios = new ArrayList<User>();
+    	
+    	try{
+    		conn = ConnectionManager.getConexao();
+    		stmt = conn.createStatement();
+    		rs = stmt.executeQuery(SELECT_ALL_USERS);
+    		while(rs.next()){
+    			int id = rs.getInt("idUser");
+    			String name = rs.getString("name");
+    			String username = rs.getString("username");
+    			String password = rs.getString("password");
+    			boolean admin = rs.getBoolean("admin");
+    			boolean active = rs.getBoolean("active");
+    			String phone = rs.getString("phone");
+    			String email = rs.getString("email");
+    			Date dataCadastro = rs.getDate("registrationDate");
+    			
+    			User u = new User(id, name, username, password, admin, email, phone,
+    					active, dataCadastro);
+    			listaUsuarios.add(u);
+    		}
+    	} catch (SQLException e) {
+            e.printStackTrace();
+            throw new EpiousionException("Erro ao criar a tabela de produtos", e);
+        } finally {
+            ConnectionManager.closeAll(conn, stmt);
+        }
+    	return listaUsuarios;
     }
    
 }
