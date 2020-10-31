@@ -214,16 +214,19 @@ header .title{
 	margin-left: 30px;
 }
 
-.userTable{
-	width: 100%;
+.userTable, .loansTable{
+	width:1300px; 
+	margin: 5px auto;
 }
 
-.userTable thead tr td{
+.userTable thead tr td, .loansTable thead tr td{
 	background-color: #ccc;
 }
 
-.userTable tr td{
-	padding: 6px 0;
+
+.userTable tr td, .loansTable tr td{
+	padding: 6px 12px;
+	border-radius: 8px;
 } 
 
 
@@ -234,8 +237,8 @@ header .title{
 	transition: 0.5s linear;
 	cursor: pointer;
 	background-color: rgba(250,0,0, 0.5);
+	float: left;
 }
-
 
 .btnActive{
 	border: 1px solid black;
@@ -243,7 +246,8 @@ header .title{
 	padding: 3px;
 	transition: 0.5s linear;
 	cursor: pointer;
-	background-color: rgba(0,200,0, 0.5); 
+	background-color: rgba(0,200,0, 0.5);
+	float: left;
 }
 .btnEmprestimo{
 	cursor: pointer;
@@ -252,7 +256,27 @@ header .title{
 	padding: 3px;
 	transition: 0.5s linear;
 	background-color: lightblue;
+	float: right;
+}
+
+.btnReceber{
+	cursor: pointer;
+	border: 1px solid black;
+	border-radius: 5px;
+	padding: 3px;
+	transition: 0.5s linear;
+	background-color: lightblue;
+	width: 100%;
+}
+
+.userTable tr:nth-child(even), .loansTable tr:nth-child(even){
 	
+	background-color: #eee;
+}
+
+.emprestimosScreen, .booksScreen{
+	margin-left: 30px;
+	margin-bottom: 10px;
 }
 
 /* General css */

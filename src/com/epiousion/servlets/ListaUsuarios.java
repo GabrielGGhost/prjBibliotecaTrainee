@@ -17,7 +17,7 @@ import com.epiousion.model.User;
 /**
  * Servlet implementation class ListaUsuarios
  */
-@WebServlet("/listaUsuarios")
+@WebServlet("/admin/listaUsuarios")
 public class ListaUsuarios extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

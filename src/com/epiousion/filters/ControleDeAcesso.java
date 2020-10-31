@@ -31,12 +31,12 @@ public class ControleDeAcesso implements Filter {
 		
 		if(user != null){
 			if(user.isAdmin()){
-				hRequest.getRequestDispatcher("/admin").forward(hRequest, response);
+				chain.doFilter(hRequest, hResponse);
 			} else {
-				hRequest.getRequestDispatcher("/listaLivros").forward(hRequest, response);
+				hRequest.getRequestDispatcher("/listaLivros").forward(hRequest, hResponse); 
 			}
 		} else {
-			hRequest.getRequestDispatcher("/jsp/bookList.jsp").forward(hRequest, hResponse); 
+			hRequest.getRequestDispatcher("/jsp/login.jsp").forward(hRequest, hResponse); 
 		}
 	}
 

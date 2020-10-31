@@ -54,9 +54,13 @@ public class ValidarLogin implements Filter {
 				mensagem = "Problema de acesso ao banco de dados!";
 			}
 				
-			if(user != null){	
+			if(user != null){
 				hRequest.getSession().setAttribute("user", user);
-				hResponse.sendRedirect(hRequest.getContextPath() + "/controleDeAcesso");
+				if(user.isAdmin()){
+					request.getRequestDispatcher("/admin").forward(hRequest, hResponse);
+				} else {
+					request.getRequestDispatcher("/listaLivros").forward(hRequest, hResponse);
+				}
 			} else {
 				mensagem = "Usuário ou senha inválidos!";
 			}

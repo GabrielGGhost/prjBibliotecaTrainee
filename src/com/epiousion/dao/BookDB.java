@@ -11,17 +11,17 @@ import java.util.Date;
 
 import com.epiousion.exception.EpiousionException;
 import com.epiousion.exception.LoginFailedException;
-import com.epiousion.model.User;
+import com.epiousion.model.Book;
 
-public class UserDB implements UserDAO {
+public class BookDB implements BookDAO {
 
-    private final String INSERT_QUERY = "insert into produtos (nome,preco,marca) values (?,?,?)";
+    private final String INSERT_QUERY = "insert into book (nome,preco,marca) values (?,?,?)";
     private final String SELECT_BY_LOGIN = "select * from users where username = ? AND password = ?";
-    private final String SELECT_ALL_USERS= "select * from users";
+    private final String SELECT_ALL_BOOKS= "select * from books";
     private final String DES_ACTIVE_USER= "update user set active = ? where id = ?";
 
     @Override
-    public void save(User user) throws EpiousionException {
+    public void save(Book book) throws EpiousionException {
         Connection conn = null;
         ResultSet rs = null;
         PreparedStatement prepStmt = null;
@@ -39,16 +39,15 @@ public class UserDB implements UserDAO {
     }
 
     @Override
-    public User getUserByLogin(String givenUsername, String givenPassword) throws EpiousionException {
+    public Book getBookByTombo(int tombo) throws EpiousionException {
         Connection conn = null;
         PreparedStatement prepStmt = null;
         ResultSet rs = null;
-        User user = null;
+        Book book = null;
         try {
             conn = ConnectionManager.getConexao();
             prepStmt = conn.prepareStatement(SELECT_BY_LOGIN);
-            prepStmt.setString(1, givenUsername);
-            prepStmt.setString(2, givenPassword);
+            prepStmt.setInt(1, tombo);
             
             rs = prepStmt.executeQuery();
             if (rs.next()) {
@@ -56,7 +55,7 @@ public class UserDB implements UserDAO {
                 String username = rs.getString("username");
                 String password = rs.getString("password");
                 boolean admin = rs.getBoolean("admin");
-                user = new User(id, username, password, admin);
+                //book = new Book(id, username, password, admin);
             }
 
         } catch (SQLException e) {
@@ -66,41 +65,39 @@ public class UserDB implements UserDAO {
         } finally {
             ConnectionManager.closeAll(conn, prepStmt, rs);
         }
-        return user;
+        return book;
     }
     
-    public List<User> getAllUsers() throws EpiousionException{
+    public List<Book> getAllBooks() throws EpiousionException{
     	Connection conn = null;
     	Statement stmt = null;
     	ResultSet rs = null;
-    	List<User> listaUsuarios = new ArrayList<User>();
+    	List<Book> bookList = new ArrayList<Book>();
     	
     	try{
     		conn = ConnectionManager.getConexao();
     		stmt = conn.createStatement();
-    		rs = stmt.executeQuery(SELECT_ALL_USERS);
+    		rs = stmt.executeQuery(SELECT_ALL_BOOKS);
     		while(rs.next()){
-    			int id = rs.getInt("idUser");
-    			String name = rs.getString("name");
-    			String username = rs.getString("username");
-    			String password = rs.getString("password");
-    			boolean admin = rs.getBoolean("admin");
-    			boolean active = rs.getBoolean("active");
-    			String phone = rs.getString("phone");
-    			String email = rs.getString("email");
-    			Date dataCadastro = rs.getDate("registrationDate");
+    			int id = rs.getInt("idBook");
+    			String title = rs.getString("title");
+    			int year = rs.getInt("year");
+    			String description = rs.getString("description");
+    			String picturepath = rs.getString("picturepath");
+    			int tombo = rs.getInt("tombo");
+    			String author = rs.getString("author");
+
     			
-    			User u = new User(id, name, username, password, admin, email, phone,
-    					active, dataCadastro);
-    			listaUsuarios.add(u);
+    			Book b = new Book(id, title, year, description, picturepath, tombo, author);
+    			bookList.add(b);
     		}
     	} catch (SQLException e) {
             e.printStackTrace();
-            throw new EpiousionException("Erro ao criar a tabela de produtos", e);
+            throw new EpiousionException("Erro ao buscar livros", e);
         } finally {
             ConnectionManager.closeAll(conn, stmt);
         }
-    	return listaUsuarios;
+    	return bookList;
     }
     
     public void des_active(int idUser, boolean status) throws EpiousionException{
@@ -121,6 +118,5 @@ public class UserDB implements UserDAO {
     	    EpiousionException ge = new EpiousionException(msg, e);
     	    throw ge;
     	}
-    	
     }
 }

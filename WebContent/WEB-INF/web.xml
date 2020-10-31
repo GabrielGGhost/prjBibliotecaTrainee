@@ -11,6 +11,14 @@
     <filter-name>ControleDeAcesso</filter-name>
     <filter-class>com.epiousion.filters.ControleDeAcesso</filter-class>
   </filter>
+  <filter-mapping>
+    <filter-name>ControleDeAcesso</filter-name>
+    <url-pattern>/admin</url-pattern>
+    <url-pattern>/admin/listaUsuarios</url-pattern>
+    <url-pattern>/admin/emprestimos</url-pattern>
+    <url-pattern>/admin/livrosAdmin</url-pattern>
+    <dispatcher>REQUEST</dispatcher>
+  </filter-mapping>
   <session-config>
     <session-timeout>30</session-timeout>
   </session-config>

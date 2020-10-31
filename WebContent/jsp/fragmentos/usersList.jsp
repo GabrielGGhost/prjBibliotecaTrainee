@@ -3,18 +3,18 @@
 <table class="userTable">
 	<thead>
 		<tr>
-			<td>#</td>
+			<td class="centerText">#</td>
 			<td>Nome</td>
 			<td>Email</td>
 			<td>Telefone</td>
 			<td>Username</td>
-			<td>Admin</td>
-			<td style="width:180px;"></td> 
+			<td class="centerText">Admin</td>
+			<td style="width:180px;" class="centerText">Ações</td> 
 		</tr>
 	</thead>
 	<c:forEach var="user" items="${userList}">
 		<tr>
-			<td>${user.id}</td>
+			<td class="centerText">${user.id}</td>
 			<td>${user.name}</td>
 			<td>${user.email}</td>
 			<td>${user.phone}</td>

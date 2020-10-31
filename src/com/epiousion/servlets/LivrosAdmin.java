@@ -14,20 +14,43 @@ import com.epiousion.dao.BookDB;
 import com.epiousion.exception.EpiousionException;
 import com.epiousion.model.Book;
 
-@WebServlet("/listaLivros")
-public class ListaLivros extends HttpServlet {
+/**
+ * Servlet implementation class LivrosAdmin
+ */
+@WebServlet("/admin/livrosAdmin")
+public class LivrosAdmin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public ListaLivros() {
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public LivrosAdmin() {
         super();
+        // TODO Auto-generated constructor stub
     }
 
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-			request.getRequestDispatcher("/jsp/corpo_listaLivros.jsp").forward(request, response);
-		
+
+		BookDAO bookDB = new BookDB();
+
+		try {
+			
+			List<Book> bookList = bookDB.getAllBooks();
+
+			request.getSession().setAttribute("bookList", bookList);
+		} catch (EpiousionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		request.getRequestDispatcher("/jsp/corpo_livrosAdm.jsp").forward(request, response);
 	}
 
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
