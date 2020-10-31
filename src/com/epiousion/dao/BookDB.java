@@ -86,9 +86,9 @@ public class BookDB implements BookDAO {
     			String picturepath = rs.getString("picturepath");
     			int tombo = rs.getInt("tombo");
     			String author = rs.getString("author");
-
+    			boolean active = rs.getBoolean("active");
     			
-    			Book b = new Book(id, title, year, description, picturepath, tombo, author);
+    			Book b = new Book(id, title, year, description, picturepath, tombo, author, active);
     			bookList.add(b);
     		}
     	} catch (SQLException e) {

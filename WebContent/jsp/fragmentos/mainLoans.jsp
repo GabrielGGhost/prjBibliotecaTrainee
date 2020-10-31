@@ -1,7 +1,8 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <div class="buttons emprestimosScreen">
-	<a class="btnBook">Empréstimos realizados</a>
+	<a class="btnBook" href="${pageContext.request.contextPath}/makeLoan">Realizar Empréstimo</a>
+	<a class="btnBook" href="${pageContext.request.contextPath}/pendingLoans">Empréstimos Pendentes</a>
 	<a class="btnBook">Agendamentos</a>
 </div>
 

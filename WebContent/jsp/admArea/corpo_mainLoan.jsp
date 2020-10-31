@@ -5,12 +5,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
-<link href='${pageContext.request.contextPath}/css/style.css' rel='stylesheet' type='text/css'>
 </head>
 <body>
-	<jsp:include page="/jsp/fragmentos/header.jsp">
-		<jsp:param value="${user}" name="user"/>
-	</jsp:include>
-	<jsp:include page="/jsp/fragmentos/loans.jsp"/>
+	
 </body>
 </html>

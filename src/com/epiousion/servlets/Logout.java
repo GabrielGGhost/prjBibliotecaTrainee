@@ -23,7 +23,7 @@ public class Logout extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		request.getSession().removeAttribute("user");
-		request.getRequestDispatcher("/jsp/login.jsp").forward(request, response);
+		request.getRequestDispatcher("/jsp/admArea/login.jsp").forward(request, response);
 	}
 
 

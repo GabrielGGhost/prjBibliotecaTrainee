@@ -11,21 +11,22 @@ public class Book {
 	private String picturePath;
 	private int tombo;
 	private String author;
+	private boolean active;
 	
-	
-	public Book(int id, String title, int year, String description, String picturePath, int tombo, String author) {
-		this(title, year, description, picturePath, tombo, author);
+	public Book(int id, String title, int year, String description, String picturePath, int tombo, String author, boolean active) {
+		this(title, year, description, picturePath, tombo, author, active);
 		this.id = id;
 
 	}
 	
-	public Book(String title, int year, String description, String picturePath, int tombo, String author) {
+	public Book(String title, int year, String description, String picturePath, int tombo, String author, boolean active) {
 		this.setTitle(title);
 		this.setYear(year);
 		this.setDescription(description);
 		this.setPicturePath(picturePath);
 		this.setTombo(tombo);
 		this.setAuthor(author);
+		this.setActive(active);
 	}
 	
 	public int getId() {
@@ -69,5 +70,11 @@ public class Book {
 	}
 	public void setAuthor(String author) {
 		this.author = author;
+	}
+	public boolean isActive() {
+		return this.active;
+	}
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 }

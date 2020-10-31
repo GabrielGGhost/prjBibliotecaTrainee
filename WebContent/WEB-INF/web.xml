@@ -13,11 +13,8 @@
   </filter>
   <filter-mapping>
     <filter-name>ControleDeAcesso</filter-name>
-    <url-pattern>/admin</url-pattern>
-    <url-pattern>/admin/listaUsuarios</url-pattern>
-    <url-pattern>/admin/emprestimos</url-pattern>
-    <url-pattern>/admin/livrosAdmin</url-pattern>
-    <dispatcher>REQUEST</dispatcher>
+    <url-pattern>/jsp/admArea/*</url-pattern>
+    <dispatcher>FORWARD</dispatcher>
   </filter-mapping>
   <session-config>
     <session-timeout>30</session-timeout>

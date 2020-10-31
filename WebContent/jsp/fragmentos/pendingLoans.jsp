@@ -8,10 +8,10 @@
 	<thead>
 		<tr>
 			<td class="centerText">#</td>
-			<td>Título</td>
-			<td class="centerText">Ano</td>
-			<td>Autor</td>
-			<td class="centerText">Tombo</td>
+			<td>Leitor</td>
+			<td >Livro</td>
+			<td>Data de Retirada</td>
+			<td>Data de Devolução</td>
 			<td class="centerText">Ações</td>
 		</tr>
 	</thead>

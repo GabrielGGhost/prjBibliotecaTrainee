@@ -27,7 +27,7 @@ public class Emprestimos extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.getRequestDispatcher("/jsp/corpo_emprestimos.jsp").forward(request, response);
+		request.getRequestDispatcher("/jsp/admArea/corpo_emprestimos.jsp").forward(request, response);
 	}
 
 	/**

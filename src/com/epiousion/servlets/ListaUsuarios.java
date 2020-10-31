@@ -34,7 +34,7 @@ public class ListaUsuarios extends HttpServlet {
 		}
 		
     	request.getSession().setAttribute("userList", userList);
-		request.getRequestDispatcher("/jsp/corpo_listaUsuarios.jsp").forward(request, response);
+		request.getRequestDispatcher("/jsp/admArea/corpo_listaUsuarios.jsp").forward(request, response);
 	}
 
 
