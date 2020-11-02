@@ -17,6 +17,7 @@ public class UserDB implements UserDAO {
 
     private final String INSERT_QUERY = "insert into produtos (nome,preco,marca) values (?,?,?)";
     private final String SELECT_BY_LOGIN = "select * from users where username = ? AND password = ?";
+    private final String SELECT_BY_ID = "select * from users where idUser = ? AND active = 1";
     private final String SELECT_ALL_USERS= "select * from users";
     private final String DES_ACTIVE_USER= "update user set active = ? where id = ?";
 
@@ -61,6 +62,36 @@ public class UserDB implements UserDAO {
 
         } catch (SQLException e) {
             String msg = "[ProdutosDB][getProdutoById()]: " + e.getMessage();
+            EpiousionException ge = new EpiousionException(msg, e);
+            throw ge;
+        } finally {
+            ConnectionManager.closeAll(conn, prepStmt, rs);
+        }
+        return user;
+    }
+    
+    public User getUserByID(int id) throws EpiousionException {
+        Connection conn = null;
+        PreparedStatement prepStmt = null;
+        ResultSet rs = null;
+        User user = null;
+        try {
+            conn = ConnectionManager.getConexao();
+            prepStmt = conn.prepareStatement(SELECT_BY_ID);
+            prepStmt.setInt(1, id);
+            
+            rs = prepStmt.executeQuery();
+            if (rs.next()) {
+            	int idUser = rs.getInt("idUser");
+                String name = rs.getString("name");
+                String email = rs.getString("email");
+                String phone = rs.getString("phone");
+                
+                user = new User(idUser, name, email, phone);
+            }
+
+        } catch (SQLException e) {
+            String msg = "[UserDB][getUserById()]: " + e.getMessage();
             EpiousionException ge = new EpiousionException(msg, e);
             throw ge;
         } finally {

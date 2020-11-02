@@ -279,6 +279,81 @@ header .title{
 	margin-bottom: 10px;
 }
 
+.makeLoanContainer{
+	display: flex;
+}
+
+.user2Loan{
+	width: 30%;
+	height: 300px;
+}
+
+.resultSearch{
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	margin-top: 20px;
+	padding-left: 30px;
+}
+
+.resultSearch span{
+	height: 40px;
+}
+
+#aloneSpan{
+	padding-left: 30px;
+
+}
+
+.searchDiv{
+	border: 1px solid black;
+	margin-top: 10px; 
+	margin-left: 20px;
+	padding: 10px;
+	border-radius: 30px;
+}
+
+.searchUser{
+	width: 100px;
+}
+
+.books2Loan{
+	width: 68%;
+	padding-left: 30px;
+	padding-right: 15px; 
+}
+
+.book2Loan{
+	border: 1px solid black;
+	margin-top: 10px;
+	width: 100%;
+	border-radius: 10px;
+}
+
+.bookData{
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	padding: 10px;
+}
+
+.bookData span{
+	height: 25px; 
+}
+
+.btnRemove{
+	background-color: rgba(250, 0, 0, .4);
+	padding: 5px;
+	cursor: pointer;
+	transition: .5s linear;
+}
+
+.btnRemove:HOVER{
+	background-color: rgba(250, 0, 0, .7);
+
+}
+
+.removeDivButton{
+	padding: 5px;
+}
 /* General css */
 
 .centerText{

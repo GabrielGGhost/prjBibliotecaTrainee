@@ -14,6 +14,8 @@ public class User {
 	private Boolean active;
 	private Date dataCadastro;
 	
+	public User(){}
+	
 	public User(String username, String password) {
 		this.setUsername(username);
 		this.setPassword(password);
@@ -37,6 +39,13 @@ public class User {
 		this.setEmail(email);
 		this.setPhone(phone);
 		this.setDataCadastro(dataCadastro);
+	}
+	
+	public User(int id, String name, String email, String phone) {
+		this.setId(id);
+		this.setName(name);
+		this.setEmail(email);
+		this.setPhone(phone);
 	}
 	
 	public String getName() {
