@@ -3,8 +3,8 @@
 	<section class="user2Loan">
 		<div class="searchDiv">
 			Escolher leitor por código:
-			<input type="text" id="codUser" name="codUser" class="inputText searchUser"/>
-			<input type="button" id="searchButton" value="Buscar" class="btn" onclick="sendRequest()"/>
+			<input type="number" id="codUser" name="codUser" class="inputText searchUser"/>
+			<input type="button" id="searchButton" value="Buscar" class="btn" onclick="sendRequest(1)"/>
 		</div>
 		<div class="resultSearch">
 			<span><b>ID: </b><label id="idUser"></label></span>
@@ -17,17 +17,17 @@
 		<div class="searchDiv">
 			<Label>
 				Adicionar livro por tombo:
-				<input type="text" class="inputText"/>
+				<input type="number" id="codBook" name="codBook" class="inputText"/>
 			</Label>
-			<input type="button" value="Adicionar livro" class="btn"/>
+			<input type="button" value="Adicionar livro" class="btn" onclick="sendRequest(2)"/>
 		</div>
 		<div id="preparingBooks">
-			<div class="book2Loan">
+			<div id="book2Loan" class="displayNone book2Loan">
 				<div class="bookData">
-					<span><b>Tombo: </b></span>
-					<span><b>Autor: </b></span>
-					<span><b>Título: </b></span>
-					<span><b>Ano: </b></span>
+					<span><b>Tombo: </b><label></label></span>
+					<span><b>Autor: </b><label></label></span>
+					<span><b>Título: </b><label></label></span>
+					<span><b>Ano: </b><label></label></span>
 				</div>
 				<div class="removeDivButton">
 					<input type="button" class="btnRemove" value="Remover"/>

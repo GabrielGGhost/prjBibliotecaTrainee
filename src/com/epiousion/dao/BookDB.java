@@ -16,7 +16,7 @@ import com.epiousion.model.Book;
 public class BookDB implements BookDAO {
 
     private final String INSERT_QUERY = "insert into book (nome,preco,marca) values (?,?,?)";
-    private final String SELECT_BY_LOGIN = "select * from users where username = ? AND password = ?";
+    private final String SELECT_BY_TOMBO = "select * from books where idBook = ?";
     private final String SELECT_ALL_BOOKS= "select * from books";
     private final String DES_ACTIVE_USER= "update user set active = ? where id = ?";
 
@@ -46,16 +46,16 @@ public class BookDB implements BookDAO {
         Book book = null;
         try {
             conn = ConnectionManager.getConexao();
-            prepStmt = conn.prepareStatement(SELECT_BY_LOGIN);
+            prepStmt = conn.prepareStatement(SELECT_BY_TOMBO);
             prepStmt.setInt(1, tombo);
             
             rs = prepStmt.executeQuery();
             if (rs.next()) {
-            	int id = rs.getInt("idUser");
-                String username = rs.getString("username");
-                String password = rs.getString("password");
-                boolean admin = rs.getBoolean("admin");
-                //book = new Book(id, username, password, admin);
+            	int vTombo = rs.getInt("tombo");
+                String title = rs.getString("title");
+                int year = rs.getInt("year");
+                String author = rs.getString("author");
+                book = new Book(vTombo, title, year, author);
             }
 
         } catch (SQLException e) {

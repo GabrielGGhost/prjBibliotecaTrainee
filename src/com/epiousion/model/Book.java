@@ -29,6 +29,13 @@ public class Book {
 		this.setActive(active);
 	}
 	
+	public Book(int vTombo, String title, int year, String author) {
+		this.setTombo(vTombo);
+		this.setTitle(title);
+		this.setYear(year);
+		this.setAuthor(author);
+	}
+
 	public int getId() {
 		return this.id;
 	}
