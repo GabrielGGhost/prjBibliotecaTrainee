@@ -24,7 +24,7 @@
 		<div id="preparingBooks">
 			<div id="book2Loan" class="displayNone book2Loan">
 				<div class="bookData">
-					<span><b>Tombo: </b><label></label></span>
+					<span><b>Tombo: </b><label class="tomboBook"></label></span>
 					<span><b>Autor: </b><label></label></span>
 					<span><b>Título: </b><label></label></span>
 					<span><b>Ano: </b><label></label></span>
