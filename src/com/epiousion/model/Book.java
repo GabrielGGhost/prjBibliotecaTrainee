@@ -4,7 +4,6 @@ import java.util.Date;
 
 public class Book {
 	
-	private int id;
 	private String title;
 	private int year;
 	private String description;
@@ -12,12 +11,6 @@ public class Book {
 	private int tombo;
 	private String author;
 	private boolean active;
-	
-	public Book(int id, String title, int year, String description, String picturePath, int tombo, String author, boolean active) {
-		this(title, year, description, picturePath, tombo, author, active);
-		this.id = id;
-
-	}
 	
 	public Book(String title, int year, String description, String picturePath, int tombo, String author, boolean active) {
 		this.setTitle(title);
@@ -36,12 +29,6 @@ public class Book {
 		this.setAuthor(author);
 	}
 
-	public int getId() {
-		return this.id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
 	public String getTitle() {
 		return this.title;
 	}

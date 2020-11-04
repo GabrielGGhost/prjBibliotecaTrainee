@@ -11,18 +11,16 @@
 			<td>Título</td>
 			<td class="centerText">Ano</td>
 			<td>Autor</td>
-			<td class="centerText">Tombo</td>
 			<td class="centerText">Ações</td>
 		</tr>
 	</thead>
 	<tbody>
 		<c:forEach var="book" items="${bookList}">
 			<tr>
-				<td class="centerText">${book.id}</td>
+				<td class="centerText">${book.tombo}</td>
 				<td>${book.title}</td>
 				<td class="centerText">${book.year}</td>
 				<td>${book.author}</td>
-				<td class="centerText">${book.tombo}</td>
 				<td>
 					<c:if test="${book.active}">
 						<a class="btnDesactive">Desativar</a>	

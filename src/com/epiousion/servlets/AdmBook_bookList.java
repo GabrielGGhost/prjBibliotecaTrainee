@@ -18,13 +18,13 @@ import com.epiousion.model.Book;
  * Servlet implementation class LivrosAdmin
  */
 @WebServlet("/admin/livrosAdmin")
-public class LivrosAdmin extends HttpServlet {
+public class AdmBook_bookList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LivrosAdmin() {
+    public AdmBook_bookList() {
         super();
         // TODO Auto-generated constructor stub
     }

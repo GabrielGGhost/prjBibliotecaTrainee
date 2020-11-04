@@ -79,16 +79,15 @@ public class BookDB implements BookDAO {
     		stmt = conn.createStatement();
     		rs = stmt.executeQuery(SELECT_ALL_BOOKS);
     		while(rs.next()){
-    			int id = rs.getInt("idBook");
+    			int tombo = rs.getInt("tombo");
     			String title = rs.getString("title");
     			int year = rs.getInt("year");
     			String description = rs.getString("description");
     			String picturepath = rs.getString("picturepath");
-    			int tombo = rs.getInt("tombo");
     			String author = rs.getString("author");
     			boolean active = rs.getBoolean("active");
     			
-    			Book b = new Book(id, title, year, description, picturepath, tombo, author, active);
+    			Book b = new Book(title, year, description, picturepath, tombo, author, active);
     			bookList.add(b);
     		}
     	} catch (SQLException e) {
