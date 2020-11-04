@@ -1,6 +1,8 @@
 var searchButton = document.getElementById("searchButton");
 var request;
+var btnMakeLoan = document.getElementById("makeLoan");
 
+btnMakeLoan.addEventListener('click', redirect);
 
 function loadRemoves(){
 	
@@ -100,6 +102,9 @@ function searchBook(){
 			
 			document.getElementById("preparingBooks").appendChild(clone);
 			loadRemoves();
+			
+			document.getElementById("codBook").value = "";
+			document.getElementById("codBook").focus();
 		} else {
 			alert("Livro já inserido na lista!");
 		}
@@ -121,4 +126,26 @@ function checkExistingBookOnList(tombo){
 		}
 	}
 	return false;
+}
+
+function redirect(){
+	
+	var idUser = document.getElementById("idUser").textContent;
+	var qttBooks = document.getElementsByClassName("tomboBook");
+	if(idUser == null || idUser == ""){
+		alert("É preciso selecionar um usuário!");
+		return;
+	} else if(qttBooks.length <= 1){
+		alert("É preciso selecionar ao mneos 1 livro para o empréstimo!");
+		return;
+	} else {
+		
+		url = "saveLoan?idUser=" + idUser;
+		
+		for (var i = 0; i < qttBooks.length - 1; i++) {
+			url += "&idBook_" + i + "=" + qttBooks[i].innerText;
+		}
+		location.href = url;
+	}
+	
 }

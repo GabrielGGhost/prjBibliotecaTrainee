@@ -1,11 +1,18 @@
 package com.epiousion.servlets;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.epiousion.dao.LoanDAO;
+import com.epiousion.dao.LoanDB;
+import com.epiousion.exception.EpiousionException;
+import com.epiousion.model.Loan;;
 
 /**
  * Servlet implementation class MakeLoan

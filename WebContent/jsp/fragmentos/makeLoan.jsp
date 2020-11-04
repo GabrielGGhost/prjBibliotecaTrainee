@@ -1,4 +1,3 @@
-
 <div class="makeLoanContainer">
 	<section class="user2Loan">
 		<div class="searchDiv">
@@ -7,7 +6,7 @@
 			<input type="button" id="searchButton" value="Buscar" class="btn" onclick="sendRequest(1)"/>
 		</div>
 		<div class="resultSearch">
-			<span><b>ID: </b><label id="idUser"></label></span>
+			<span><b>ID: </b><label id="idUser" name="idUser"></label></span>
 			<span><b>Nome: </b><label id="nameUser"></label></span>
 			<span><b>Telefone: </b><label id="phoneUser"></label></span>
 		</div>
@@ -20,6 +19,8 @@
 				<input type="number" id="codBook" name="codBook" class="inputText"/>
 			</Label>
 			<input type="button" value="Adicionar livro" class="btn" onclick="sendRequest(2)"/>
+			<input type="button" id="makeLoan" class="btn left" value="Realizar Empréstimo"/>
+			<span><b>Data de devolução: </b></span>
 		</div>
 		<div id="preparingBooks">
 			<div id="book2Loan" class="displayNone book2Loan">

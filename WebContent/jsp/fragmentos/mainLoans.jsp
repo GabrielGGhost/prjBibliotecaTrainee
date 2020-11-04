@@ -11,44 +11,18 @@
 		<tr>
 			<td class="centerText">#</td>
 			<td>Leitor</td>
-			<td>Livro</td>
 			<td class="centerText">Data de retirada</td>
-			<td class="centerText">Data de devolução</td>
 			<td style="width:110px;" class="centerText actionTd">Ações</td> 
 		</tr>
 	</thead>
 	<tbody>
-		<tr>
-			<td>1</td>
-			<td>Gabriel Santos</td>
-			<td>A chave preta</td>
-			<td class="centerText">30/10/2020</td>
-			<td class="centerText">8/11/2020</td>
-			<td><a class="btnReceber">Receber Livro</a></td>
-		</tr>
-		<tr>
-			<td>1</td>
-			<td>Gabriel Santos</td>
-			<td>A chave preta</td>
-			<td class="centerText">30/10/2020</td>
-			<td class="centerText">8/11/2020</td>
-			<td><a class="btnReceber">Receber Livro</a></td>
-		</tr>
-		<tr>
-			<td>1</td>
-			<td>Gabriel Santos</td>
-			<td>A chave preta</td>
-			<td class="centerText">30/10/2020</td>
-			<td class="centerText">8/11/2020</td>
-			<td><a class="btnReceber">Receber Livro</a></td>
-		</tr>
-		<tr>
-			<td>1</td>
-			<td>Gabriel Santos</td>
-			<td>A chave preta</td>
-			<td class="centerText">30/10/2020</td>
-			<td class="centerText">8/11/2020</td>
-			<td><a class="btnReceber">Receber Livro</a></td>
-		</tr>
+		<c:forEach var="loan" items="${loanList}">
+			<tr>
+				<td class="centerText">${loan.idLoan}</td>
+				<td>${loan.name}</td>
+				<td class="centerText">${loan.loanDate}</td>
+				<td><a class="btnReceber">Ver livros</a></td>
+			</tr>
+		</c:forEach>
 	</tbody>
 </table>

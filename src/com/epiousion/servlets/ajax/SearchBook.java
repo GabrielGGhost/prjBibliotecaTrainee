@@ -55,10 +55,10 @@ public class SearchBook extends HttpServlet {
 	
 	protected void searchBook(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, EpiousionException {
 		
-		BookDAO userdb = new BookDB();
+		BookDAO bookdb = new BookDB();
 		int id = Integer.parseInt(request.getParameter("tombo"));
 		
-		Book book = userdb.getBookByTombo(id);
+		Book book = bookdb.getBookByTombo(id);
 		PrintWriter out = response.getWriter();
 		out.write("<?xml version='1.0' encoding='UTF-8'?>");
 

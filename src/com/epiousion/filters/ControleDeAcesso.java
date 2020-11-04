@@ -33,7 +33,7 @@ public class ControleDeAcesso implements Filter {
 			if(user.isAdmin()){
 				chain.doFilter(hRequest, hResponse);
 			} else {
-				hRequest.getRequestDispatcher("/listaLivros").forward(hRequest, hResponse); 
+				hResponse.sendRedirect(hRequest.getContextPath() + "/listaLivros");
 			}
 		} else {
 			hRequest.getRequestDispatcher("/jsp/login.jsp").forward(hRequest, hResponse); 

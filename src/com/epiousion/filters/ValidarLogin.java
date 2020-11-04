@@ -57,9 +57,9 @@ public class ValidarLogin implements Filter {
 			if(user != null){
 				hRequest.getSession().setAttribute("user", user);
 				if(user.isAdmin()){
-					request.getRequestDispatcher("/admin").forward(hRequest, hResponse);
+					hResponse.sendRedirect(hRequest.getContextPath() + "/admin");
 				} else {
-					request.getRequestDispatcher("/listaLivros").forward(hRequest, hResponse);
+					hResponse.sendRedirect(hRequest.getContextPath() + "/listaLivros");
 				}
 			} else {
 				mensagem = "Usuário ou senha inválidos!";
