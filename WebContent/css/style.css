@@ -29,7 +29,7 @@ body{
 	margin-bottom: 20px;
 }
 
-.loginError{
+.loginError, .registerError{
 	background-color: rgba(255,0,0, 0.4);
 	border-radius: 5px;
 	padding: 6px;
@@ -37,9 +37,13 @@ body{
 	margin-bottom: 12px;
 }
 
+.registerError{
+}
+
 .inputText{
 	height: 20px;
 	border-radius: 15px;
+	cursor: text;
 }
 .btn{
 	height: 35px;
@@ -357,13 +361,45 @@ header .title{
 .removeDivButton{
 	padding: 5px;
 }
+
+.registerUser{
+	background-color: #eee;
+	margin: 20px 300px;
+	padding: 15px;
+	border-left: 6px solid #ccc;
+	border-top-right-radius: 50px;
+  	border-bottom-right-radius: 50px;
+}
+
+.registerUser h1{
+	text-align: center;
+	border-bottom: 2px solid #ccc;
+}
+
+.topInputsUser, .bottomInputsUser{
+	margin: 30px;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 20px;
+}
+
+.topInputsUser label,
+.bottomInputsUser label{
+	display: grid;
+	grid-template-columns: repeat(1, 1fr);
+}
+
+.checkBox{
+	border-radius: 10px;
+}
+
+
+
+
 /* General css */
 
 .centerText{
 	text-align: center;
-}
-
-.btn{
 }
 
 .displayNone{

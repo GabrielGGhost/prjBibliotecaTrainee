@@ -48,6 +48,15 @@ public class User {
 		this.setPhone(phone);
 	}
 	
+	public User(String name, String username, String password, boolean admin, String email, String phone){
+		this.setName(name);
+		this.setUsername(username);
+		this.setPassword(password);
+		this.setAdmin(admin);
+		this.setEmail(email);
+		this.setPhone(phone);
+	}
+
 	public String getName() {
 		return this.name;
 	}

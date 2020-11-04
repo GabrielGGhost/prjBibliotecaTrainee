@@ -15,7 +15,7 @@ import com.epiousion.model.User;
 
 public class UserDB implements UserDAO {
 
-    private final String INSERT_QUERY = "insert into produtos (nome,preco,marca) values (?,?,?)";
+    private final String INSERT_QUERY = "CALL sp_saveUser(?, ?, ?, ?, ?, ?)";
     private final String SELECT_BY_LOGIN = "select * from users where username = ? AND password = ?";
     private final String SELECT_BY_ID = "select * from users where idUser = ? AND active = 1";
     private final String SELECT_ALL_USERS= "select * from users";
@@ -29,9 +29,15 @@ public class UserDB implements UserDAO {
         try {
             conn = ConnectionManager.getConexao();
             prepStmt = conn.prepareStatement(INSERT_QUERY);
+            prepStmt.setString(1, user.getName());
+            prepStmt.setString(2, user.getUsername());
+            prepStmt.setString(3, user.getPassword());
+            prepStmt.setBoolean(4, user.isAdmin());
+            prepStmt.setString(5, user.getEmail());
+            prepStmt.setString(6, user.getPhone());
             prepStmt.execute();
         } catch (SQLException e) {
-            String msg = "[ProdutosDB][save(Produto p)]: " + e.getMessage();
+            String msg = "[UserDB][save(User u)]: " + e.getMessage();
             EpiousionException ge = new EpiousionException(msg, e);
             throw ge;
         } finally {
