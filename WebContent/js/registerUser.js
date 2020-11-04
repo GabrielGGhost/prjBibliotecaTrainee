@@ -65,6 +65,7 @@ function checkData(data){
 		errorMessage.textContent = msg;
 		
 		checkErroMessage();
+		checkDuplicatedData();
 		return false;
 	}
 	
@@ -75,6 +76,21 @@ function checkErroMessage(){
 	if(errorMessage.classList.length == 2){
 		errorMessage.classList.toggle("displayNone");
 	}
+}
+
+function checkDuplicatedData(){
+	
+	url = "saveUser?username=" + data[1]
+			+ "&email=" + data[5];
+
+
+	request = new XMLHttpRequest();
+	
+	request.onload = saveUser;
+	
+	request.open("GET", url, true);
+	
+	request.send();
 }
 
 function sendRequest(){
@@ -97,4 +113,5 @@ function sendRequest(){
 
 function saveUser(){
 	
+	location.href="listaUsuarios";
 }

@@ -14,7 +14,13 @@
   <filter-mapping>
     <filter-name>ControleDeAcesso</filter-name>
     <url-pattern>/jsp/admArea/*</url-pattern>
+    <url-pattern>/admin/saveUser</url-pattern>
+    <url-pattern>/buscaCliente</url-pattern>
+    <url-pattern>/searchBook</url-pattern>
+    
     <dispatcher>FORWARD</dispatcher>
+    <dispatcher>REQUEST</dispatcher>
+    
   </filter-mapping>
   <session-config>
     <session-timeout>30</session-timeout>
