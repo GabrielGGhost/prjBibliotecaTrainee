@@ -29,12 +29,7 @@
 			</c:if>
 
 			<td>
-				<c:if test="${user.active}">
-					<a class="btnDesactive">Desativar</a>
-				</c:if>
-				<c:if test="${!user.active}">
-					<a class="btnActive">Ativar</a>
-				</c:if>
+				<a class="btnActive" href="${pageContext.request.contextPath}/admin/viewUser?id="${user.id}">Detalhes</a>
 				<a class="btnEmprestimo">Empréstimos</a>
 			</td>
 		</tr>

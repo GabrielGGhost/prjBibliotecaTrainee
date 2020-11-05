@@ -362,7 +362,7 @@ header .title{
 	padding: 5px;
 }
 
-.registerUser{
+.registerUser, .centerViewUser{
 	background-color: #eee;
 	margin: 20px 300px;
 	padding: 15px;
@@ -393,8 +393,26 @@ header .title{
 	border-radius: 10px;
 }
 
+.ViewUserFirstRow span, 
+.ViewUserSecondtRow, .ViewUserSecondtRow span,
+.ViewUserThirdRow, .ViewUserThirdRow span,
+.ViewUserForthtRow, .ViewUserForthtRow span,
+.ViewUserFifthtRow, .ViewUserFifthtRow span{
+	display: grid;
+}
 
+.ViewUserSecondtRow,
+.ViewUserThirdRow,
+.ViewUserForthtRow,
+.ViewUserFifthtRow{
+	grid-template-columns: repeat(2, 1fr);
+	margin-top: 13px;	
+}
 
+.centerViewUser h1 {
+	height: 10px;
+	margin-top: 0;
+}
 
 /* General css */
 

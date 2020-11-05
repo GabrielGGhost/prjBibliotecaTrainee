@@ -18,7 +18,7 @@ public class UserDB implements UserDAO {
     private final String INSERT_QUERY = "CALL sp_saveUser(?, ?, ?, ?, ?, ?)";
     private final String SELECT_BY_LOGIN = "select * from users where username = ? AND password = ?";
     private final String SELECT_BY_ID = "select * from users where idUser = ? AND active = 1";
-    private final String SELECT_ALL_USERS= "select * from users";
+    private final String SELECT_ALL_USERS= "select * from users order by idUser desc";
     private final String DES_ACTIVE_USER= "update user set active = ? where id = ?";
 
     @Override
@@ -67,7 +67,7 @@ public class UserDB implements UserDAO {
             }
 
         } catch (SQLException e) {
-            String msg = "[ProdutosDB][getProdutoById()]: " + e.getMessage();
+            String msg = "[UserDB][getUserByLogin()]: " + e.getMessage();
             EpiousionException ge = new EpiousionException(msg, e);
             throw ge;
         } finally {
@@ -133,7 +133,7 @@ public class UserDB implements UserDAO {
     		}
     	} catch (SQLException e) {
             e.printStackTrace();
-            throw new EpiousionException("Erro ao criar a tabela de produtos", e);
+            throw new EpiousionException("[UserDB][getAllUsers()]", e);
         } finally {
             ConnectionManager.closeAll(conn, stmt);
         }
