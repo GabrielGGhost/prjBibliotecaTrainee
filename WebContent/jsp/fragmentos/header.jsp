@@ -8,7 +8,7 @@
 			<c:if test="${user.admin}">
 				<li><a href="${pageContext.request.contextPath}/admin/listaUsuarios">Usuários</a></li>
 				|
-				<li><a href="${pageContext.request.contextPath}/admin/livrosAdmin">Livros</a></li>
+				<li><a href="${pageContext.request.contextPath}/admin/livros">Livros</a></li>
 				|
 				<li><a href="${pageContext.request.contextPath}/admin/emprestimos">Empréstimos</a></li>
 				| 

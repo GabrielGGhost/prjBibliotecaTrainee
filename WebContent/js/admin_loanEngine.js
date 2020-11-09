@@ -45,7 +45,7 @@ function sendRequest(opc){
 		if(cod == "" || cod == null){
 			alert("Digite o tombo do livro");
 			return;
-		}
+		}		
 		
 		url = "searchBook?tombo=" + cod;
 		

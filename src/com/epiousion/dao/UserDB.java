@@ -35,6 +35,8 @@ public class UserDB implements UserDAO {
             prepStmt.setBoolean(4, user.isAdmin());
             prepStmt.setString(5, user.getEmail());
             prepStmt.setString(6, user.getPhone());
+            
+            prepStmt.executeQuery();
         } catch (SQLException e) {
             String msg = "[UserDB][save(User u)]: " + e.getMessage();
             EpiousionException ge = new EpiousionException(msg, e);

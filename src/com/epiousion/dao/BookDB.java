@@ -17,7 +17,7 @@ public class BookDB implements BookDAO {
 
     private final String INSERT_QUERY = "insert into book (nome,preco,marca) values (?,?,?)";
     private final String SELECT_BY_TOMBO = "select * from books where tombo = ?";
-    private final String SELECT_ALL_BOOKS= "select * from books";
+    private final String SELECT_ALL_BOOKS= "select * from books order by tombo desc";
     private final String DES_ACTIVE_USER= "update user set active = ? where id = ?";
 
     @Override
