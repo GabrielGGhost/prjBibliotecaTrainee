@@ -25,10 +25,10 @@ public class User_myLoans extends HttpServlet {
 		
 		LoanDAO loandb = new LoanDB();
 		User user = (User)request.getSession().getAttribute("user");
-		String select = (String) request.getSession().getAttribute("select");
-		if(select == null) select = "1";
+		String select = (String) request.getParameter("select");
+		if(select == null) select = "2";
 		int id = user.getId();
-		List<Loan> userLoans = null;
+		List userLoans = null;
 		try {
 			if(select.contentEquals("1")){
 				userLoans = loandb.getUserLoans(id);				

@@ -13,6 +13,7 @@ import com.epiousion.exception.EpiousionException;
 import com.epiousion.exception.LoginFailedException;
 import com.epiousion.model.Book;
 import com.epiousion.model.Loan;
+import com.epiousion.model.LoanBook;
 import com.epiousion.model.User;
 
 public class LoanDB implements LoanDAO {
@@ -21,6 +22,7 @@ public class LoanDB implements LoanDAO {
     private final String INSERT_LOAN_BOOK = "CALL sp_saveLoanBook(?,?)";
     private final String GET_ALL_LOANS = "CALL sp_getAllLoans";
     private final String GET_USER_LOANS = "CALL sp_getUserLoans(?)";
+    private final String GET_USER_LOAN_BOOKS = "CALL sp_getUserLoanBooks(?)";
 
     @Override
     public String saveLoan(String idUser) throws EpiousionException {
@@ -115,6 +117,39 @@ public class LoanDB implements LoanDAO {
     			
     			Loan loan = new Loan(idLoan, loanDate, quantity);
     			loanList.add(loan);
+    		}
+    	} catch (SQLException e) {
+            e.printStackTrace();
+            throw new EpiousionException("Erro ao buscar livros", e);
+        }
+    	System.out.println("Retornando livros...");
+    	return loanList;
+    }
+    
+    public List<LoanBook> getUserLoanBooks(int id) throws EpiousionException{
+    	Connection conn = null;
+    	PreparedStatement prepStmt = null;
+    	ResultSet rs = null;
+    	List<LoanBook> loanList = new ArrayList<LoanBook>();
+    	
+    	try{
+    		conn = DataSourceConnection.getConexao();
+    		prepStmt = conn.prepareStatement(GET_USER_LOAN_BOOKS);
+    		prepStmt.setInt(1, id);
+    		
+    		rs = prepStmt.executeQuery();
+    		while(rs.next()){
+    			
+    			int idLoanBook = rs.getInt("idLoanBooks");
+    			int idLoan = rs.getInt("idLoan");
+    			int idBook = rs.getInt("idBook");
+    			Date devolutionDate = rs.getDate("devolutionDate");
+    			Date returnedDate = rs.getDate("loanDate");
+    			Date loanDate = rs.getDate("loanDate");
+    			String title = rs.getString("title");
+    			
+    			LoanBook loanBook = new LoanBook(idLoanBook, idLoan, idBook, devolutionDate, returnedDate, loanDate, title);
+    			loanList.add(loanBook);
     		}
     	} catch (SQLException e) {
             e.printStackTrace();

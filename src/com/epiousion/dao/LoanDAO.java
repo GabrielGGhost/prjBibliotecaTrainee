@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.epiousion.exception.EpiousionException;
 import com.epiousion.model.Loan;
+import com.epiousion.model.LoanBook;
 
 
 public interface LoanDAO {
@@ -15,4 +16,6 @@ public interface LoanDAO {
     public List<Loan> getAllLoans() throws EpiousionException;
     
     public List<Loan> getUserLoans(int id) throws EpiousionException;
+    
+    public List<LoanBook> getUserLoanBooks(int id) throws EpiousionException;
 }

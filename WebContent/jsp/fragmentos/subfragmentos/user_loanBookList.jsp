@@ -3,7 +3,8 @@
 <table class="loansTable">
 	<thead>
 		<tr>
-			<td class="centerText">#</td>
+			<td class="centerText">#Empréstimo</td>
+			<td class="centerText">#Emp. Livro</td>
 			<td class="centerText">Data de retirada</td>
 			<td class="centerText">Quantidade de livros</td>
 			<td style="width:110px;" class="centerText actionTd">Ações</td> 
@@ -12,10 +13,7 @@
 	<tbody>
 		<c:forEach var="loan" items="${userLoans}">
 			<tr>
-				<td class="centerText">${loan.idLoan}</td>
-				<td class="centerText">${loan.loanDate}</td>
-				<td class="centerText">${loan.quantity}</td>
-				<td><a class="btnReceber">Ver livros</a></td>
+
 			</tr>
 		</c:forEach>
 	</tbody>
