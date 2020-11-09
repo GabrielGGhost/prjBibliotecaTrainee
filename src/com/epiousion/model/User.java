@@ -12,7 +12,7 @@ public class User {
 	private String email;
 	private String phone;
 	private Boolean active;
-	private Date dataCadastro;
+	private Date registrationDate;
 	
 	public User(){}
 	
@@ -31,14 +31,16 @@ public class User {
 		this.setId(id);
 	}
 	
-	public User(int id, String name, String username, String password, boolean admin, String email, String phone,
-			Boolean active, Date dataCadastro) {
-		this(id, username, password, admin);
-		this.setName(username);
-		this.setActive(active);
+	public User(int id, String name, String username, boolean admin, String email, String phone,
+			Boolean active, Date registrationDate) {
+		this.setId(id);
+		this.setName(name);
+		this.setUsername(username);
+		this.setAdmin(admin);
 		this.setEmail(email);
 		this.setPhone(phone);
-		this.setDataCadastro(dataCadastro);
+		this.setActive(active);
+		this.setRegistrationDate(registrationDate);
 	}
 	
 	public User(int id, String name, String email, String phone) {
@@ -89,12 +91,12 @@ public class User {
 		this.active = active;
 	}
 
-	public Date getDataCadastro() {
-		return this.dataCadastro;
+	public Date getRegistrationDate() {
+		return this.registrationDate;
 	}
 
-	public void setDataCadastro(Date dataCadastro) {
-		this.dataCadastro = dataCadastro;
+	public void setRegistrationDate(Date dataCadastro) {
+		this.registrationDate = dataCadastro;
 	}
 
 	public int getId() {

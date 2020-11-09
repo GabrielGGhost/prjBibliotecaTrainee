@@ -92,8 +92,12 @@ public class UserDB implements UserDAO {
                 String name = rs.getString("name");
                 String email = rs.getString("email");
                 String phone = rs.getString("phone");
+                String username = rs.getString("username");
+                Date registrationDate = rs.getDate("registrationDate");
+                boolean admin = rs.getBoolean("admin");
+                boolean active = rs.getBoolean("active");
                 
-                user = new User(idUser, name, email, phone);
+                user = new User(idUser, name, username, admin, email, phone, active, registrationDate);
             }
         } catch (SQLException e) {
             String msg = "[UserDB][getUserById()]: " + e.getMessage();
@@ -119,15 +123,14 @@ public class UserDB implements UserDAO {
     			int id = rs.getInt("idUser");
     			String name = rs.getString("name");
     			String username = rs.getString("username");
-    			String password = rs.getString("password");
     			boolean admin = rs.getBoolean("admin");
     			boolean active = rs.getBoolean("active");
     			String phone = rs.getString("phone");
     			String email = rs.getString("email");
     			Date dataCadastro = rs.getDate("registrationDate");
     			
-    			User u = new User(id, name, username, password, admin, email, phone,
-    					active, dataCadastro);
+    			User u = new User(id, name, username, admin, email, phone,
+    					active, dataCadastro); 
     			listaUsuarios.add(u);
     		}
 

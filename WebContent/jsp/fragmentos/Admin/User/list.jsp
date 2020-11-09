@@ -29,7 +29,7 @@
 			</c:if>
 
 			<td>
-				<a class="btnActive" href="${pageContext.request.contextPath}/admin/viewUser?id="${user.id}">Detalhes</a>
+				<a class="btnActive" href="${pageContext.request.contextPath}/admin/viewUser?id=${user.id}">Detalhes</a>
 				<a class="btnEmprestimo">Empréstimos</a>
 			</td>
 		</tr>

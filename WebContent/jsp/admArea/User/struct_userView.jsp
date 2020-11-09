@@ -12,5 +12,7 @@
 		<jsp:param value="${user}" name="user"/>
 	</jsp:include>
 	<jsp:include page="/jsp/fragmentos/Admin/User/viewUser.jsp"/>
+	
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/admin_desActive.js"></script>
 </body>
 </html>
