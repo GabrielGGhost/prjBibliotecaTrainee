@@ -26,7 +26,7 @@ public class User_myLoans extends HttpServlet {
 		LoanDAO loandb = new LoanDB();
 		User user = (User)request.getSession().getAttribute("user");
 		String select = (String) request.getParameter("select");
-		if(select == null) select = "2";
+		if(select == null) select = "1";
 		int id = user.getId();
 		List userLoans = null;
 		try {

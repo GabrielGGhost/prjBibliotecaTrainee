@@ -33,6 +33,8 @@ public class BookDB implements BookDAO {
             String msg = "[ProdutosDB][save(Produto p)]: " + e.getMessage();
             EpiousionException ge = new EpiousionException(msg, e);
             throw ge;
+        } finally {
+        	DataSourceConnection.closeAll(conn, prepStmt, rs);
         }
     }
 
@@ -55,11 +57,12 @@ public class BookDB implements BookDAO {
                 String author = rs.getString("author");
                 book = new Book(vTombo, title, year, author);
             }
-
         } catch (SQLException e) {
             String msg = "[ProdutosDB][getProdutoById()]: " + e.getMessage();
             EpiousionException ge = new EpiousionException(msg, e);
             throw ge;
+        } finally {
+        	DataSourceConnection.closeAll(conn, prepStmt, rs);
         }
         return book;
     }
@@ -89,6 +92,8 @@ public class BookDB implements BookDAO {
     	} catch (SQLException e) {
             e.printStackTrace();
             throw new EpiousionException("Erro ao buscar livros", e);
+        } finally {
+        	DataSourceConnection.closeAll(conn, stmt, rs);
         }
     	return bookList;
     }
@@ -110,6 +115,8 @@ public class BookDB implements BookDAO {
     	    String msg = "[UserDB][des(Produto p)]: " + e.getMessage();
     	    EpiousionException ge = new EpiousionException(msg, e);
     	    throw ge;
-    	}
+    	} finally {
+        	DataSourceConnection.closeAll(conn, prepStmt);
+        }
     }
 }

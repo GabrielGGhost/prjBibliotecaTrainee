@@ -11,12 +11,14 @@
 	</thead>
 	<tbody>
 		<c:forEach var="loan" items="${userLoans}">
-			<tr>
-				<td class="centerText">${loan.idLoan}</td>
-				<td class="centerText">${loan.loanDate}</td>
-				<td class="centerText">${loan.quantity}</td>
-				<td><a class="btnReceber">Ver livros</a></td>
-			</tr>
+			<c:if test="${loan.quantity > 0}">
+				<tr>
+					<td class="centerText">${loan.idLoan}</td>
+					<td class="centerText">${loan.loanDate}</td>
+					<td class="centerText">${loan.quantity}</td>
+					<td><a class="btnReceber" style="width:80px;">Ver Livros</a></td>
+				</tr>
+			</c:if>
 		</c:forEach>
 	</tbody>
 </table>

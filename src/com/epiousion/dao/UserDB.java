@@ -35,11 +35,12 @@ public class UserDB implements UserDAO {
             prepStmt.setBoolean(4, user.isAdmin());
             prepStmt.setString(5, user.getEmail());
             prepStmt.setString(6, user.getPhone());
-            prepStmt.execute();
         } catch (SQLException e) {
             String msg = "[UserDB][save(User u)]: " + e.getMessage();
             EpiousionException ge = new EpiousionException(msg, e);
             throw ge;
+        } finally{
+        	DataSourceConnection.closeAll(conn, prepStmt);
         }
     }
 
@@ -63,11 +64,12 @@ public class UserDB implements UserDAO {
                 boolean admin = rs.getBoolean("admin");
                 user = new User(id, username, password, admin);
             }
-
         } catch (SQLException e) {
             String msg = "[UserDB][getUserByLogin()]: " + e.getMessage();
             EpiousionException ge = new EpiousionException(msg, e);
             throw ge;
+        } finally{
+        	DataSourceConnection.closeAll(conn, prepStmt, rs);
         }
         return user;
     }
@@ -91,11 +93,12 @@ public class UserDB implements UserDAO {
                 
                 user = new User(idUser, name, email, phone);
             }
-
         } catch (SQLException e) {
             String msg = "[UserDB][getUserById()]: " + e.getMessage();
             EpiousionException ge = new EpiousionException(msg, e);
             throw ge;
+        }finally{
+        	DataSourceConnection.closeAll(conn, prepStmt, rs);
         }
         return user;
     }
@@ -125,9 +128,12 @@ public class UserDB implements UserDAO {
     					active, dataCadastro);
     			listaUsuarios.add(u);
     		}
+
     	} catch (SQLException e) {
             e.printStackTrace();
             throw new EpiousionException("[UserDB][getAllUsers()]", e);
+        } finally{
+        	DataSourceConnection.closeAll(conn, stmt, rs);
         }
     	return listaUsuarios;
     }
@@ -149,7 +155,9 @@ public class UserDB implements UserDAO {
     	    String msg = "[UserDB][des(Produto p)]: " + e.getMessage();
     	    EpiousionException ge = new EpiousionException(msg, e);
     	    throw ge;
-    	}
+    	} finally{
+        	DataSourceConnection.closeAll(conn, prepStmt);
+        }
     	
     }
 }

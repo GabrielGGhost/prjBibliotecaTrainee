@@ -39,20 +39,19 @@ public class LoanDB implements LoanDAO {
             while(rs.next()){
             	idLoan = rs.getString("idLoan");
             }
-            
         } catch (SQLException e) {
             String msg = "[ProdutosDB][save(Produto p)]: " + e.getMessage();
             EpiousionException ge = new EpiousionException(msg, e);
             throw ge;
+        } finally {
+        	DataSourceConnection.closeAll(conn, prepStmt, rs);
         }
-        
         return idLoan;
     }
     
     @Override
     public void saveBookLoan(String idLoan, String idBook) throws EpiousionException {
         Connection conn = null;
-        ResultSet rs = null;
         PreparedStatement prepStmt = null;
 
         try {
@@ -63,11 +62,12 @@ public class LoanDB implements LoanDAO {
 
             prepStmt.execute();
            
-            
         } catch (SQLException e) {
             String msg = "[ProdutosDB][save(Produto p)]: " + e.getMessage();
             EpiousionException ge = new EpiousionException(msg, e);
             throw ge;
+        } finally {
+        	DataSourceConnection.closeAll(conn, prepStmt);
         }
     }
     
@@ -93,6 +93,8 @@ public class LoanDB implements LoanDAO {
     	} catch (SQLException e) {
             e.printStackTrace();
             throw new EpiousionException("Erro ao buscar livros", e);
+        } finally {
+        	DataSourceConnection.closeAll(conn, stmt, rs);
         }
     	return loanList;
     }
@@ -118,6 +120,7 @@ public class LoanDB implements LoanDAO {
     			Loan loan = new Loan(idLoan, loanDate, quantity);
     			loanList.add(loan);
     		}
+    		
     	} catch (SQLException e) {
             e.printStackTrace();
             throw new EpiousionException("Erro ao buscar livros", e);
@@ -144,16 +147,19 @@ public class LoanDB implements LoanDAO {
     			int idLoan = rs.getInt("idLoan");
     			int idBook = rs.getInt("idBook");
     			Date devolutionDate = rs.getDate("devolutionDate");
-    			Date returnedDate = rs.getDate("loanDate");
+    			Date returnedDate = rs.getDate("returnedDate");
     			Date loanDate = rs.getDate("loanDate");
     			String title = rs.getString("title");
     			
     			LoanBook loanBook = new LoanBook(idLoanBook, idLoan, idBook, devolutionDate, returnedDate, loanDate, title);
     			loanList.add(loanBook);
     		}
+    		
     	} catch (SQLException e) {
             e.printStackTrace();
             throw new EpiousionException("Erro ao buscar livros", e);
+        } finally {
+        	DataSourceConnection.closeAll(conn, prepStmt, rs);
         }
     	System.out.println("Retornando livros...");
     	return loanList;

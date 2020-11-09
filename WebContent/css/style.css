@@ -414,6 +414,13 @@ header .title{
 	margin-top: 0;
 }
 
+.inputSelect{
+	height: 30px;
+	font-size: 15px;
+	border-radius: 10px;
+	cursor: pointer;
+}
+
 /* General css */
 
 .centerText{
