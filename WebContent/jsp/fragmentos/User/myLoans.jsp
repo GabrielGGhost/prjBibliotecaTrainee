@@ -19,10 +19,10 @@
 
 <c:choose>
 	<c:when test="${select == 1}">
-		<jsp:include page="/jsp/fragmentos/subfragmentos/user_loanList.jsp"/>
+		<jsp:include page="/jsp/fragmentos/Subfragmentos/User/loanList.jsp"/>
 	</c:when>
 	<c:otherwise>
-		<jsp:include page="/jsp/fragmentos/subfragmentos/user_loanBookList.jsp"/>
+		<jsp:include page="/jsp/fragmentos/Subfragmentos/User/loanBookList.jsp"/>
 	</c:otherwise>
 </c:choose>
 

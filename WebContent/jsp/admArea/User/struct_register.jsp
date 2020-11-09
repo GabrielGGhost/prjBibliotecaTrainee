@@ -11,7 +11,7 @@
 	<jsp:include page="/jsp/fragmentos/header.jsp">
 		<jsp:param value="${user}" name="user"/>
 	</jsp:include>
-	<jsp:include page="/jsp/fragmentos/adminUser_registerUser.jsp"/>
+	<jsp:include page="/jsp/fragmentos/Admin/User/register.jsp"/>
 	
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/registerUser.js"></script>
 	

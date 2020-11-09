@@ -16,41 +16,24 @@ import com.epiousion.dao.UserDB;
 import com.epiousion.exception.EpiousionException;
 import com.epiousion.model.User;
 
-/**
- * Servlet implementation class BuscaCliente
- */
-@WebServlet("/buscaCliente")
-public class BuscaCliente extends HttpServlet {
+@WebServlet("/searchUser")
+public class Admin_Loan_Engine extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public BuscaCliente() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+    public Admin_Loan_Engine() {}
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			findUser(request, response);
 		} catch (EpiousionException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}	
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			findUser(request, response);
 		} catch (EpiousionException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

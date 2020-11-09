@@ -30,11 +30,11 @@ function sendRequest(opc){
 			return;
 		}
 		
-		url = "buscaCliente?id=" + cod;
+		url = "searchUser?id=" + cod;
 		
 		request = new XMLHttpRequest();
 		
-		request.onload = buscaCliente;
+		request.onload = searchUser;
 		
 		request.open("GET", url, true);
 		
@@ -60,7 +60,7 @@ function sendRequest(opc){
 };
 
 
-function buscaCliente(){
+function searchUser(){
 	
 	var response = request.responseXML;
 		
