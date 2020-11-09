@@ -20,6 +20,7 @@ public class LoanDB implements LoanDAO {
     private final String INSERT_LOAN = "CALL sp_saveLoan(?)";
     private final String INSERT_LOAN_BOOK = "CALL sp_saveLoanBook(?,?)";
     private final String GET_ALL_LOANS = "CALL sp_getAllLoans";
+    private final String GET_USER_LOANS = "CALL sp_getUserLoans(?)";
 
     @Override
     public String saveLoan(String idUser) throws EpiousionException {
@@ -29,7 +30,7 @@ public class LoanDB implements LoanDAO {
         String idLoan = null;
 
         try {
-            conn = ConnectionManager.getConexao();
+        	conn = DataSourceConnection.getConexao();
             prepStmt = conn.prepareStatement(INSERT_LOAN);
             prepStmt.setString(1, idUser);
             rs = prepStmt.executeQuery();
@@ -37,13 +38,10 @@ public class LoanDB implements LoanDAO {
             	idLoan = rs.getString("idLoan");
             }
             
-            
         } catch (SQLException e) {
             String msg = "[ProdutosDB][save(Produto p)]: " + e.getMessage();
             EpiousionException ge = new EpiousionException(msg, e);
             throw ge;
-        } finally {
-            ConnectionManager.closeAll(conn, prepStmt, rs);
         }
         
         return idLoan;
@@ -56,7 +54,7 @@ public class LoanDB implements LoanDAO {
         PreparedStatement prepStmt = null;
 
         try {
-            conn = ConnectionManager.getConexao();
+        	conn = DataSourceConnection.getConexao();
             prepStmt = conn.prepareStatement(INSERT_LOAN_BOOK);
             prepStmt.setString(1, idLoan);
             prepStmt.setString(2, idBook);
@@ -68,8 +66,6 @@ public class LoanDB implements LoanDAO {
             String msg = "[ProdutosDB][save(Produto p)]: " + e.getMessage();
             EpiousionException ge = new EpiousionException(msg, e);
             throw ge;
-        } finally {
-            ConnectionManager.closeAll(conn, prepStmt, rs);
         }
     }
     
@@ -80,7 +76,7 @@ public class LoanDB implements LoanDAO {
     	List<Loan> loanList = new ArrayList<Loan>();
     	
     	try{
-    		conn = ConnectionManager.getConexao();
+    		conn = DataSourceConnection.getConexao();
     		stmt = conn.createStatement();
     		rs = stmt.executeQuery(GET_ALL_LOANS);
     		while(rs.next()){
@@ -95,9 +91,36 @@ public class LoanDB implements LoanDAO {
     	} catch (SQLException e) {
             e.printStackTrace();
             throw new EpiousionException("Erro ao buscar livros", e);
-        } finally {
-            ConnectionManager.closeAll(conn, stmt);
         }
+    	return loanList;
+    }
+    
+    public List<Loan> getUserLoans(int id) throws EpiousionException{
+    	Connection conn = null;
+    	PreparedStatement prepStmt = null;
+    	ResultSet rs = null;
+    	List<Loan> loanList = new ArrayList<Loan>();
+    	
+    	try{
+    		conn = DataSourceConnection.getConexao();
+    		prepStmt = conn.prepareStatement(GET_USER_LOANS);
+    		prepStmt.setInt(1, id);
+    		
+    		rs = prepStmt.executeQuery();
+    		while(rs.next()){
+    			
+    			int idLoan = rs.getInt("idLoan");
+    			Date loanDate = rs.getDate("loanDate");
+    			int quantity = rs.getInt("quantityBooks");
+    			
+    			Loan loan = new Loan(idLoan, loanDate, quantity);
+    			loanList.add(loan);
+    		}
+    	} catch (SQLException e) {
+            e.printStackTrace();
+            throw new EpiousionException("Erro ao buscar livros", e);
+        }
+    	System.out.println("Retornando livros...");
     	return loanList;
     }
 }

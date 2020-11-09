@@ -27,7 +27,7 @@ public class UserDB implements UserDAO {
         ResultSet rs = null;
         PreparedStatement prepStmt = null;
         try {
-            conn = ConnectionManager.getConexao();
+        	conn = DataSourceConnection.getConexao();
             prepStmt = conn.prepareStatement(INSERT_QUERY);
             prepStmt.setString(1, user.getName());
             prepStmt.setString(2, user.getUsername());
@@ -40,8 +40,6 @@ public class UserDB implements UserDAO {
             String msg = "[UserDB][save(User u)]: " + e.getMessage();
             EpiousionException ge = new EpiousionException(msg, e);
             throw ge;
-        } finally {
-            ConnectionManager.closeAll(conn, prepStmt, rs);
         }
     }
 
@@ -52,7 +50,7 @@ public class UserDB implements UserDAO {
         ResultSet rs = null;
         User user = null;
         try {
-            conn = ConnectionManager.getConexao();
+        	conn = DataSourceConnection.getConexao();
             prepStmt = conn.prepareStatement(SELECT_BY_LOGIN);
             prepStmt.setString(1, givenUsername);
             prepStmt.setString(2, givenPassword);
@@ -70,8 +68,6 @@ public class UserDB implements UserDAO {
             String msg = "[UserDB][getUserByLogin()]: " + e.getMessage();
             EpiousionException ge = new EpiousionException(msg, e);
             throw ge;
-        } finally {
-            ConnectionManager.closeAll(conn, prepStmt, rs);
         }
         return user;
     }
@@ -82,7 +78,7 @@ public class UserDB implements UserDAO {
         ResultSet rs = null;
         User user = null;
         try {
-            conn = ConnectionManager.getConexao();
+            conn = DataSourceConnection.getConexao();
             prepStmt = conn.prepareStatement(SELECT_BY_ID);
             prepStmt.setInt(1, id);
             
@@ -100,8 +96,6 @@ public class UserDB implements UserDAO {
             String msg = "[UserDB][getUserById()]: " + e.getMessage();
             EpiousionException ge = new EpiousionException(msg, e);
             throw ge;
-        } finally {
-            ConnectionManager.closeAll(conn, prepStmt, rs);
         }
         return user;
     }
@@ -113,7 +107,7 @@ public class UserDB implements UserDAO {
     	List<User> listaUsuarios = new ArrayList<User>();
     	
     	try{
-    		conn = ConnectionManager.getConexao();
+    		conn = DataSourceConnection.getConexao();
     		stmt = conn.createStatement();
     		rs = stmt.executeQuery(SELECT_ALL_USERS);
     		while(rs.next()){
@@ -134,8 +128,6 @@ public class UserDB implements UserDAO {
     	} catch (SQLException e) {
             e.printStackTrace();
             throw new EpiousionException("[UserDB][getAllUsers()]", e);
-        } finally {
-            ConnectionManager.closeAll(conn, stmt);
         }
     	return listaUsuarios;
     }
@@ -145,7 +137,7 @@ public class UserDB implements UserDAO {
     	PreparedStatement prepStmt = null;
     	
     	try{
-    		conn = ConnectionManager.getConexao();
+    		conn = DataSourceConnection.getConexao();
     		prepStmt = conn.prepareStatement(DES_ACTIVE_USER);
     		
     		if(status) prepStmt.setBoolean(1, !status);

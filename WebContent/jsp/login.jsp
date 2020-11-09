@@ -13,7 +13,7 @@
 </head>
 <body>
 	<div class="container"> 
-		<form action="${pageContext.request.contextPath}/validarLogin" method="post">
+		<form action="${pageContext.request.contextPath}/validaLogin" method="post">
 			<div class="center">
 			<c:if test="${mensagem != null}">
 				<div class="loginError">

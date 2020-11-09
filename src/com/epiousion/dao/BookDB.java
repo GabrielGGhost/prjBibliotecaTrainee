@@ -26,15 +26,13 @@ public class BookDB implements BookDAO {
         ResultSet rs = null;
         PreparedStatement prepStmt = null;
         try {
-            conn = ConnectionManager.getConexao();
+        	conn = DataSourceConnection.getConexao();
             prepStmt = conn.prepareStatement(INSERT_QUERY);
             prepStmt.execute();
         } catch (SQLException e) {
             String msg = "[ProdutosDB][save(Produto p)]: " + e.getMessage();
             EpiousionException ge = new EpiousionException(msg, e);
             throw ge;
-        } finally {
-            ConnectionManager.closeAll(conn, prepStmt, rs);
         }
     }
 
@@ -45,7 +43,7 @@ public class BookDB implements BookDAO {
         ResultSet rs = null;
         Book book = null;
         try {
-            conn = ConnectionManager.getConexao();
+        	conn = DataSourceConnection.getConexao();
             prepStmt = conn.prepareStatement(SELECT_BY_TOMBO);
             prepStmt.setInt(1, tombo);
             
@@ -62,8 +60,6 @@ public class BookDB implements BookDAO {
             String msg = "[ProdutosDB][getProdutoById()]: " + e.getMessage();
             EpiousionException ge = new EpiousionException(msg, e);
             throw ge;
-        } finally {
-            ConnectionManager.closeAll(conn, prepStmt, rs);
         }
         return book;
     }
@@ -75,7 +71,7 @@ public class BookDB implements BookDAO {
     	List<Book> bookList = new ArrayList<Book>();
     	
     	try{
-    		conn = ConnectionManager.getConexao();
+    		conn = DataSourceConnection.getConexao();
     		stmt = conn.createStatement();
     		rs = stmt.executeQuery(SELECT_ALL_BOOKS);
     		while(rs.next()){
@@ -93,8 +89,6 @@ public class BookDB implements BookDAO {
     	} catch (SQLException e) {
             e.printStackTrace();
             throw new EpiousionException("Erro ao buscar livros", e);
-        } finally {
-            ConnectionManager.closeAll(conn, stmt);
         }
     	return bookList;
     }
@@ -104,7 +98,7 @@ public class BookDB implements BookDAO {
     	PreparedStatement prepStmt = null;
     	
     	try{
-    		conn = ConnectionManager.getConexao();
+    		conn = DataSourceConnection.getConexao();
     		prepStmt = conn.prepareStatement(DES_ACTIVE_USER);
     		
     		if(status) prepStmt.setBoolean(1, !status);

@@ -13,4 +13,6 @@ public interface LoanDAO {
     public void saveBookLoan(String idLoan, String idBook) throws EpiousionException;
     
     public List<Loan> getAllLoans() throws EpiousionException;
+    
+    public List<Loan> getUserLoans(int id) throws EpiousionException;
 }

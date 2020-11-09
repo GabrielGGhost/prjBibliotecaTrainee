@@ -8,15 +8,25 @@
     <location>/login.jsp</location>
   </error-page>
   <filter>
-    <filter-name>ControleDeAcesso</filter-name>
-    <filter-class>com.epiousion.filters.ControleDeAcesso</filter-class>
+    <filter-name>AdminControllAccess</filter-name>
+    <filter-class>com.epiousion.filters.AdminControllAccess</filter-class>
+  </filter>
+  <filter>
+    <filter-name>UserControllAccess</filter-name>
+    <filter-class>com.epiousion.filters.UserControllAccess</filter-class>
   </filter>
   <filter-mapping>
-    <filter-name>ControleDeAcesso</filter-name>
+    <filter-name>AdminControllAccess</filter-name>
     <url-pattern>/jsp/admArea/*</url-pattern>
     <url-pattern>/admin/saveUser</url-pattern>
     <url-pattern>/buscaCliente</url-pattern>
     <url-pattern>/searchBook</url-pattern>
+    <dispatcher>FORWARD</dispatcher>
+    <dispatcher>REQUEST</dispatcher>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>UserControllAccess</filter-name>
+    <url-pattern>/jsp/userArea/*</url-pattern>
     <dispatcher>FORWARD</dispatcher>
     <dispatcher>REQUEST</dispatcher>
   </filter-mapping>
