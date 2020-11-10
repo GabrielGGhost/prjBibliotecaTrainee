@@ -242,6 +242,7 @@ header .title{
 	cursor: pointer;
 	background-color: rgba(250,0,0, 0.5);
 	float: left;
+	transition: 0.5s linear;
 }
 
 .btnActive{
@@ -252,7 +253,9 @@ header .title{
 	cursor: pointer;
 	background-color: rgba(0,200,0, 0.5);
 	float: left;
+	transition: 0.5s linear;
 }
+
 .btnEmprestimo{
 	cursor: pointer;
 	border: 1px solid black;

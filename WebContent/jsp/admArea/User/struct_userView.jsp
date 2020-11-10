@@ -13,6 +13,6 @@
 	</jsp:include>
 	<jsp:include page="/jsp/fragmentos/Admin/User/viewUser.jsp"/>
 	
-	<script type="text/javascript" src="${pageContext.request.contextPath}/js/admin_desActive.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/Admin/User/desActive.js"></script>
 </body>
 </html>

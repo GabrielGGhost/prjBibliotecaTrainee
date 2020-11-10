@@ -10,29 +10,28 @@ import javax.servlet.http.HttpServletResponse;
 import com.epiousion.dao.UserDAO;
 import com.epiousion.dao.UserDB;
 import com.epiousion.exception.EpiousionException;
-import com.epiousion.model.User;
 
-@WebServlet("/admin/viewUser")
-public class Admin_User_ViewUser extends HttpServlet {
+@WebServlet("/Admin_User_DesActive")
+public class Admin_User_DesActive extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public Admin_User_ViewUser() {}
+    public Admin_User_DesActive() {}
 
-
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		int id = Integer.parseInt(request.getParameter("id"));
+		boolean status = Boolean.parseBoolean(request.getParameter("status"));
 		
 		UserDAO userdb = new UserDB();
-		User user = null;
-		int id = Integer.parseInt(request.getParameter("id"));
 		
 		try {
-			user = userdb.getUserByID(id);
+			userdb.des_active(id, status);
 		} catch (EpiousionException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		request.getSession().setAttribute("viewUser", user);		
-		request.getRequestDispatcher("/jsp/admArea/User/struct_userView.jsp").forward(request, response);
+		response.sendRedirect(request.getContextPath() + "/admin/listaUsuarios");
 	}
 
 }

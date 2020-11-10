@@ -17,9 +17,10 @@ public class UserDB implements UserDAO {
 
     private final String INSERT_QUERY = "CALL sp_saveUser(?, ?, ?, ?, ?, ?)";
     private final String SELECT_BY_LOGIN = "select * from users where username = ? AND password = ?";
-    private final String SELECT_BY_ID = "select * from users where idUser = ? AND active = 1";
+    private final String SELECT_ACTIVE_USER_BY_ID = "select * from users where idUser = ? AND active = 1";
     private final String SELECT_ALL_USERS= "select * from users order by idUser desc";
-    private final String DES_ACTIVE_USER= "update user set active = ? where id = ?";
+    private final String DES_ACTIVE_USER= "update users set active = ? where idUser = ?";
+    private final String SELECT_USER_BY_ID = "select * from users where idUser = ?";
 
     @Override
     public void save(User user) throws EpiousionException {
@@ -76,6 +77,39 @@ public class UserDB implements UserDAO {
         return user;
     }
     
+    public User getActiveUserByID(int id) throws EpiousionException {
+        Connection conn = null;
+        PreparedStatement prepStmt = null;
+        ResultSet rs = null;
+        User user = null;
+        try {
+            conn = DataSourceConnection.getConexao();
+            prepStmt = conn.prepareStatement(SELECT_ACTIVE_USER_BY_ID);
+            prepStmt.setInt(1, id);
+            
+            rs = prepStmt.executeQuery();
+            if (rs.next()) {
+            	int idUser = rs.getInt("idUser");
+                String name = rs.getString("name");
+                String email = rs.getString("email");
+                String phone = rs.getString("phone");
+                String username = rs.getString("username");
+                Date registrationDate = rs.getDate("registrationDate");
+                boolean admin = rs.getBoolean("admin");
+                boolean active = rs.getBoolean("active");
+                
+                user = new User(idUser, name, username, admin, email, phone, active, registrationDate);
+            }
+        } catch (SQLException e) {
+            String msg = "[UserDB][getActiveUserById()]: " + e.getMessage();
+            EpiousionException ge = new EpiousionException(msg, e);
+            throw ge;
+        }finally{
+        	DataSourceConnection.closeAll(conn, prepStmt, rs);
+        }
+        return user;
+    }
+    
     public User getUserByID(int id) throws EpiousionException {
         Connection conn = null;
         PreparedStatement prepStmt = null;
@@ -83,7 +117,7 @@ public class UserDB implements UserDAO {
         User user = null;
         try {
             conn = DataSourceConnection.getConexao();
-            prepStmt = conn.prepareStatement(SELECT_BY_ID);
+            prepStmt = conn.prepareStatement(SELECT_USER_BY_ID);
             prepStmt.setInt(1, id);
             
             rs = prepStmt.executeQuery();
@@ -151,13 +185,14 @@ public class UserDB implements UserDAO {
     		conn = DataSourceConnection.getConexao();
     		prepStmt = conn.prepareStatement(DES_ACTIVE_USER);
     		
-    		if(status) prepStmt.setBoolean(1, !status);
-    		else prepStmt.setBoolean(1, status);
+    		prepStmt.setBoolean(1, !status);
     		
     		prepStmt.setInt(2, idUser);
     		prepStmt.execute();
+    		if(status) System.out.println("Usuário Ativado!");
+    		else System.out.println("Usuário Desativado!");
     	} catch(SQLException e){
-    	    String msg = "[UserDB][des(Produto p)]: " + e.getMessage();
+    	    String msg = "[UserDB][des_active u)]: " + e.getMessage();
     	    EpiousionException ge = new EpiousionException(msg, e);
     	    throw ge;
     	} finally{

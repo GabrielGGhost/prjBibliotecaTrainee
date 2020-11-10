@@ -43,7 +43,7 @@ public class Admin_Loan_Engine extends HttpServlet {
 		UserDAO userdb = new UserDB();
 		int id = Integer.parseInt(request.getParameter("id"));
 		
-		User user = userdb.getUserByID(id);
+		User user = userdb.getActiveUserByID(id);
 		PrintWriter out = response.getWriter();
 		out.write("<?xml version='1.0' encoding='UTF-8'?>");
 
