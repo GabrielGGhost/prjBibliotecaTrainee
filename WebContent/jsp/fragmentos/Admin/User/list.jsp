@@ -30,7 +30,7 @@
 
 			<td>
 				<a class="btnActive" href="${pageContext.request.contextPath}/admin/viewUser?id=${user.id}">Detalhes</a>
-				<a class="btnEmprestimo">Empréstimos</a>
+				<a class="btnEmprestimo" href="${pageContext.request.contextPath}/admin/viewLoans?id=${user.id}&select=1">Empréstimos</a>
 			</td>
 		</tr>
 	</c:forEach>

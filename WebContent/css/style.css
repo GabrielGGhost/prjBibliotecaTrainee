@@ -424,6 +424,13 @@ header .title{
 	cursor: pointer;
 }
 
+.userData{
+	display: grid;
+	margin-left: 30px;
+	margin-top: 15px; 
+	margin-bottom: -30px;
+}
+
 /* General css */
 
 .centerText{

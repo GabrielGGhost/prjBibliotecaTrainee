@@ -25,5 +25,3 @@
 		<jsp:include page="/jsp/fragmentos/Subfragmentos/User/loanBookList.jsp"/>
 	</c:otherwise>
 </c:choose>
-
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/user_changeLoanList.js"></script>
