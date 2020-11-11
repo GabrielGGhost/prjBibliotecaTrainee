@@ -24,7 +24,7 @@ public class Admin_User_ViewLoans extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		LoanDAO loandb = new LoanDB();		
+		LoanDAO loandb = new LoanDB();
 		UserDAO userdb = new UserDB();
 		User user = null;
 		

@@ -11,15 +11,8 @@
 	<jsp:include page="/jsp/fragmentos/header.jsp">
 		<jsp:param value="${user}" name="user"/>
 	</jsp:include>
-	<div class="userData">
-		<span><b>#</b> <a id="idUser">${selectedUser.id}</a></span>
-		<span><b>Usuário</b> ${selectedUser.name}</span>
-	</div>
-	<jsp:include page="/jsp/fragmentos/User/myLoans.jsp">
-		<jsp:param value="${select}" name="select"/>
-	</jsp:include>
-	
-	<script type="text/javascript" src="${pageContext.request.contextPath}/js/Admin/User/changeLoanList.js"></script>
 
+	<jsp:include page="/jsp/fragmentos/Subfragmentos/User/loanBookList.jsp"/>
+	
 </body>
 </html>

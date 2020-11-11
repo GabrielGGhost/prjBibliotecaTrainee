@@ -17,5 +17,10 @@ public interface LoanDAO {
     
     public List<Loan> getUserLoans(int id) throws EpiousionException;
     
+    //Lista todos os livros empréstados de um usuário
     public List<LoanBook> getUserLoanBooks(int id) throws EpiousionException;
+    
+    //Lista todos os livros de um empréstimo de um usuário
+    public List<LoanBook> getUserBooksLoan(int id) throws EpiousionException;
+
 }
