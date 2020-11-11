@@ -10,29 +10,28 @@ import javax.servlet.http.HttpServletResponse;
 import com.epiousion.dao.BookDAO;
 import com.epiousion.dao.BookDB;
 import com.epiousion.exception.EpiousionException;
-import com.epiousion.model.Book;
 
-@WebServlet("/admin/book/bookDetail")
-public class Admin_Book_BookDetail extends HttpServlet {
+@WebServlet("/admin/book/bookDesActive")
+public class Admin_Book_DesActive extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public Admin_Book_BookDetail() {}
+    public Admin_Book_DesActive() {}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		int id = Integer.parseInt(request.getParameter("id"));
+		boolean status = Boolean.parseBoolean(request.getParameter("status"));
+		
 		BookDAO bookdb = new BookDB();
-		Book book = null;
-		int tombo = Integer.parseInt(request.getParameter("id"));
 		
 		try {
-			book = bookdb.getBookByTombo(tombo);
+			bookdb.des_active(id, status);
 		} catch (EpiousionException e) {
-			
+
 			e.printStackTrace();
 		}
 		
-		request.getSession().setAttribute("book", book);
-		
-		request.getRequestDispatcher("/jsp/admArea/Book/struct_bookDetail.jsp").forward(request, response); 
+		response.sendRedirect(request.getContextPath() + "/admin/livros");
 	}
+
 }

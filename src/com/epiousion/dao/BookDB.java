@@ -18,7 +18,7 @@ public class BookDB implements BookDAO {
     private final String INSERT_QUERY = "insert into book (nome,preco,marca) values (?,?,?)";
     private final String SELECT_BY_TOMBO = "select * from books where tombo = ?";
     private final String SELECT_ALL_BOOKS= "select * from books order by tombo desc";
-    private final String DES_ACTIVE_USER= "update user set active = ? where id = ?";
+    private final String DES_ACTIVE_BOOK= "update books set active = ? where tombo = ?";
 
     @Override
     public void save(Book book) throws EpiousionException {
@@ -55,7 +55,10 @@ public class BookDB implements BookDAO {
                 String title = rs.getString("title");
                 int year = rs.getInt("year");
                 String author = rs.getString("author");
-                book = new Book(vTombo, title, year, author);
+                String picturepath = rs.getString("picturepath");
+                String description = rs.getString("description");
+                boolean active = rs.getBoolean("active");
+                book = new Book(title, year, description, picturepath,vTombo , author, active);
             }
         } catch (SQLException e) {
             String msg = "[ProdutosDB][getProdutoById()]: " + e.getMessage();
@@ -104,10 +107,10 @@ public class BookDB implements BookDAO {
     	
     	try{
     		conn = DataSourceConnection.getConexao();
-    		prepStmt = conn.prepareStatement(DES_ACTIVE_USER);
+    		prepStmt = conn.prepareStatement(DES_ACTIVE_BOOK);
     		
-    		if(status) prepStmt.setBoolean(1, !status);
-    		else prepStmt.setBoolean(1, status);
+    		prepStmt.setBoolean(1, !status);
+
     		
     		prepStmt.setInt(2, idUser);
     		prepStmt.execute();

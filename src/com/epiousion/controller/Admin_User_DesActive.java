@@ -11,7 +11,7 @@ import com.epiousion.dao.UserDAO;
 import com.epiousion.dao.UserDB;
 import com.epiousion.exception.EpiousionException;
 
-@WebServlet("/Admin_User_DesActive")
+@WebServlet("/admin/userDesActive")
 public class Admin_User_DesActive extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
