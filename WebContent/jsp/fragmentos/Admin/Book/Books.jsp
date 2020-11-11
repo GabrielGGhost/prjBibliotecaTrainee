@@ -11,7 +11,7 @@
 			<td>Título</td>
 			<td class="centerText">Ano</td>
 			<td>Autor</td>
-			<td class="centerText">Ações</td>
+			<td class="centerText" style="width: 80px;">Detalhes</td>
 		</tr>
 	</thead>
 	<tbody>
@@ -21,14 +21,7 @@
 				<td>${book.title}</td>
 				<td class="centerText">${book.year}</td>
 				<td>${book.author}</td>
-				<td>
-					<c:if test="${book.active}">
-						<a class="btnDesactive">Desativar</a>	
-					</c:if>
-					<c:if test="${!book.active}">
-						<a class="btnActive">Ativar</a>	
-					</c:if>
-				</td>
+				<td><a class="btnActive" href="book/bookDetail?id=${book.tombo}">Detalhes</a></td>
 			</tr>
 		</c:forEach>
 	</tbody>

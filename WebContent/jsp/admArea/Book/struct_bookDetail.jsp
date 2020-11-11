@@ -11,8 +11,6 @@
 	<jsp:include page="/jsp/fragmentos/header.jsp">
 		<jsp:param value="${user}" name="user"/>
 	</jsp:include>
-	<jsp:include page="/jsp/fragmentos/Admin/User/userDetail.jsp"/>
-	
-	<script type="text/javascript" src="${pageContext.request.contextPath}/js/Admin/User/desActive.js"></script>
+	<jsp:include page="/jsp/fragmentos/Admin/Book/bookDetail.jsp"/>
 </body>
 </html>
