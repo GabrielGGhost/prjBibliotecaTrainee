@@ -9,29 +9,29 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.epiousion.dao.BookDAO;
-import com.epiousion.dao.BookDB;
+import com.epiousion.dao.LoanDAO;
+import com.epiousion.dao.LoanDB;
 import com.epiousion.exception.EpiousionException;
-import com.epiousion.model.Book;
+import com.epiousion.model.LoanBook;
 
-@WebServlet("/admin/book/list")
-public class Admin_Book_BookList extends HttpServlet {
+@WebServlet("/admin/loan/list")
+public class Admin_Loan_Main extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public Admin_Book_BookList() {}
+    public Admin_Loan_Main() {}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		BookDAO bookDB = new BookDB();
-
+		
+		LoanDAO loandb = new LoanDB();
+		List<LoanBook> loanList = null;
 		try {
-			
-			List<Book> bookList = bookDB.getAllBooks();
-
-			request.getSession().setAttribute("bookList", bookList);
+			loanList = loandb.getLoansOfTheDay();
 		} catch (EpiousionException e) {
+			
 			e.printStackTrace();
 		}
-		request.getRequestDispatcher("/jsp/admArea/Book/struct_list.jsp").forward(request, response);
+		
+		request.getSession().setAttribute("loanList", loanList);
+		request.getRequestDispatcher("/jsp/admArea/Loan/struct_list.jsp").forward(request, response);
 	}
 }

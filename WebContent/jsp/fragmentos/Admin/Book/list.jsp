@@ -21,7 +21,7 @@
 				<td>${book.title}</td>
 				<td class="centerText">${book.year}</td>
 				<td>${book.author}</td>
-				<td><a class="btnActive" href="book/bookDetail?id=${book.tombo}">Detalhes</a></td>
+				<td><a class="btnActive" href="book/detail?id=${book.tombo}">Detalhes</a></td>
 			</tr>
 		</c:forEach>
 	</tbody>

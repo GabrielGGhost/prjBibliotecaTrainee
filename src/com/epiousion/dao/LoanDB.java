@@ -24,7 +24,10 @@ public class LoanDB implements LoanDAO {
     private final String GET_USER_LOANS = "CALL sp_getUserLoans(?)";
     private final String GET_USER_LOAN_BOOKS = "CALL sp_getUserLoanBooks(?)";
     private final String GET_USER_BOOKS_LOAN = "CALL sp_getUserBooksLoan(?)";
+    private final String GET_LOANS_OF_THE_DAY = "CALL sp_getLoansOfTheDay";
 
+    
+    
     @Override
     public String saveLoan(String idUser) throws EpiousionException {
         Connection conn = null;
@@ -176,6 +179,41 @@ public class LoanDB implements LoanDAO {
     		conn = DataSourceConnection.getConexao();
     		prepStmt = conn.prepareStatement(GET_USER_BOOKS_LOAN);
     		prepStmt.setInt(1, pIdLoan);
+    		
+    		rs = prepStmt.executeQuery();
+    		while(rs.next()){
+    			
+    			int idLoanBook = rs.getInt("idLoanBooks");
+    			int idLoan = rs.getInt("idLoan");
+    			int idBook = rs.getInt("idBook");
+    			Date devolutionDate = rs.getDate("devolutionDate");
+    			Date returnedDate = rs.getDate("returnedDate");
+    			Date loanDate = rs.getDate("loanDate");
+    			String title = rs.getString("title");
+    			
+    			LoanBook loanBook = new LoanBook(idLoanBook, idLoan, idBook, devolutionDate, returnedDate, loanDate, title);
+    			loanList.add(loanBook);
+    		}
+    		
+    	} catch (SQLException e) {
+            e.printStackTrace();
+            throw new EpiousionException("Erro ao buscar livros", e);
+        } finally {
+        	DataSourceConnection.closeAll(conn, prepStmt, rs);
+        }
+    	System.out.println("Retornando livros...");
+    	return loanList;
+    }
+    
+    public List<LoanBook> getLoansOfTheDay() throws EpiousionException{
+    	Connection conn = null;
+    	PreparedStatement prepStmt = null;
+    	ResultSet rs = null;
+    	List<LoanBook> loanList = new ArrayList<LoanBook>();
+    	
+    	try{
+    		conn = DataSourceConnection.getConexao();
+    		prepStmt = conn.prepareStatement(GET_LOANS_OF_THE_DAY);
     		
     		rs = prepStmt.executeQuery();
     		while(rs.next()){

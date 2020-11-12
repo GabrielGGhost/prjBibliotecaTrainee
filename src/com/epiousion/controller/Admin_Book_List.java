@@ -1,6 +1,8 @@
 package com.epiousion.controller;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,27 +14,24 @@ import com.epiousion.dao.BookDB;
 import com.epiousion.exception.EpiousionException;
 import com.epiousion.model.Book;
 
-@WebServlet("/admin/book/bookDetail")
-public class Admin_Book_BookDetail extends HttpServlet {
+@WebServlet("/admin/book/list")
+public class Admin_Book_List extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public Admin_Book_BookDetail() {}
+    public Admin_Book_List() {}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		BookDAO bookdb = new BookDB();
-		Book book = null;
-		int tombo = Integer.parseInt(request.getParameter("id"));
-		
+		BookDAO bookDB = new BookDB();
+
 		try {
-			book = bookdb.getBookByTombo(tombo);
-		} catch (EpiousionException e) {
 			
+			List<Book> bookList = bookDB.getAllBooks();
+
+			request.getSession().setAttribute("bookList", bookList);
+		} catch (EpiousionException e) {
 			e.printStackTrace();
 		}
-		
-		request.getSession().setAttribute("book", book);
-		
-		request.getRequestDispatcher("/jsp/admArea/Book/struct_bookDetail.jsp").forward(request, response); 
+		request.getRequestDispatcher("/jsp/admArea/Book/struct_list.jsp").forward(request, response);
 	}
 }
