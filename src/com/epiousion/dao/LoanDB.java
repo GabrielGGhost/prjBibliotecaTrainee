@@ -25,6 +25,7 @@ public class LoanDB implements LoanDAO {
     private final String GET_USER_LOAN_BOOKS = "CALL sp_getUserLoanBooks(?)";
     private final String GET_USER_BOOKS_LOAN = "CALL sp_getUserBooksLoan(?)";
     private final String GET_LOANS_OF_THE_DAY = "CALL sp_getLoansOfTheDay";
+    private final String GET_TODAY_DATE = "SELECT CAST(CURDATE() as DATE) as data;";
 
     
     
@@ -238,5 +239,30 @@ public class LoanDB implements LoanDAO {
         }
     	System.out.println("Retornando livros...");
     	return loanList;
+    }
+    
+    public Date getTodayDate() throws EpiousionException{
+    	Connection conn = null;
+    	PreparedStatement prepStmt = null;
+    	ResultSet rs = null;
+    	Date date = null;
+    	try{
+    		conn = DataSourceConnection.getConexao();
+    		prepStmt = conn.prepareStatement(GET_TODAY_DATE);
+  
+    		rs = prepStmt.executeQuery();
+    		while(rs.next()){
+    			
+    			date = rs.getDate("data");
+    		}
+    		
+    	} catch (SQLException e) {
+            e.printStackTrace();
+            throw new EpiousionException("Erro ao buscar livros", e);
+        } finally {
+        	DataSourceConnection.closeAll(conn, prepStmt, rs);
+        }
+    	System.out.println("Retornando livros...");
+    	return date;
     }
 }

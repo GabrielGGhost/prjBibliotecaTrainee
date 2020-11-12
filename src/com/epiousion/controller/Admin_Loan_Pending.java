@@ -7,11 +7,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/PendingLoans")
-public class Admin_Loan_PendingLoans extends HttpServlet {
+@WebServlet("/loan/pending")
+public class Admin_Loan_Pending extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public Admin_Loan_PendingLoans() {}
+    public Admin_Loan_Pending() {}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		

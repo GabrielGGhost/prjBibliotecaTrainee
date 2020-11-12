@@ -6,6 +6,7 @@
 	<a class="btnBook">Agendamentos</a>
 </div>
 
+
 <table class="loansTable">
 	<thead>
 		<tr>
@@ -19,7 +20,12 @@
 	</thead>
 	<tbody>
 		<c:forEach var="loan" items="${loanList}">
-			<tr>
+			<c:if test="${loan.devolutionDate < date}">
+				<tr style="background-color: rgba(220,0,0,.5);">			
+			</c:if>
+			<c:if test="${loan.devolutionDate >= date}">
+				<tr>			
+			</c:if>
 				<td class="centerText">${loan.idLoan}</td>
 				<td class="centerText">${loan.idLoanBook}</td>
 				<td>${loan.title}</td>

@@ -1,5 +1,6 @@
 package com.epiousion.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import com.epiousion.exception.EpiousionException;
@@ -25,4 +26,5 @@ public interface LoanDAO {
 
     public List<LoanBook> getLoansOfTheDay() throws EpiousionException;
     
+    public Date getTodayDate() throws EpiousionException;
 }
