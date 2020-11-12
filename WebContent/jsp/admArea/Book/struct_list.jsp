@@ -11,6 +11,6 @@
 	<jsp:include page="/jsp/fragmentos/header.jsp">
 		<jsp:param value="${user}" name="user"/>
 	</jsp:include>
-	<jsp:include page="/jsp/fragmentos/Admin/Book/Books.jsp"/>
+	<jsp:include page="/jsp/fragmentos/Admin/Book/list.jsp"/>
 </body>
 </html>

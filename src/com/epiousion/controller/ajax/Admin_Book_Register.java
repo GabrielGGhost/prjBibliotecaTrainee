@@ -7,24 +7,25 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.epiousion.dao.UserDAO;
-import com.epiousion.dao.UserDB;
+import com.epiousion.dao.BookDAO;
+import com.epiousion.dao.BookDB;
 import com.epiousion.exception.EpiousionException;
-import com.epiousion.model.User;
+import com.epiousion.model.Book;
+
 
 /**
  * Servlet implementation class AdminUser_registerUser
  */
-@WebServlet("/admin/saveUser")
-public class Admin_User_Register extends HttpServlet {
+@WebServlet("/admin/book/register/ajax")
+public class Admin_Book_Register extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public Admin_User_Register() {}
+    public Admin_Book_Register() {}
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
-			registerUser(request, response);
+			registerBook(request, response);
 		} catch (EpiousionException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -33,28 +34,26 @@ public class Admin_User_Register extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
-			registerUser(request, response);
+			registerBook(request, response);
 		} catch (EpiousionException e) {
-
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 	}
 
 
-	private void registerUser(HttpServletRequest request, HttpServletResponse response) throws EpiousionException {
+	private void registerBook(HttpServletRequest request, HttpServletResponse response) throws EpiousionException {
 		
-		String name = request.getParameter("name");
-		String username = request.getParameter("username");
-		String password = request.getParameter("password");
-		boolean admin = Boolean.parseBoolean((request.getParameter("admin")));
-		String email = request.getParameter("email");
-		String phone = request.getParameter("phone");
+		String title = request.getParameter("title");
+		int year = Integer.parseInt(request.getParameter("year"));
+		String author = request.getParameter("author");
+		String description = request.getParameter("description");
 		
-		User user = new User(name, username, password, admin, email, phone);
-		UserDAO userdb = new UserDB();
+		Book user = new Book(title, year, author, description);
+		BookDAO bookdb = new BookDB();
 		
-		userdb.save(user);
+		bookdb.register(user);
 		System.out.println("Usuário cadastrado");
 	}
 

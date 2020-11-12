@@ -1,6 +1,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="buttons emprestimosScreen">
-	<a class="btnBook" href="${pageContext.request.contextPath}/admin/registerUser">Cadastrar Usuário</a>
+	<a class="btnBook" href="${pageContext.request.contextPath}/admin/user/register">Cadastrar Usuário</a>
 </div>
 <table class="userTable">
 	<thead>

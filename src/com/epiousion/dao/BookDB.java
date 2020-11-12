@@ -15,22 +15,27 @@ import com.epiousion.model.Book;
 
 public class BookDB implements BookDAO {
 
-    private final String INSERT_QUERY = "insert into book (nome,preco,marca) values (?,?,?)";
+    private final String INSERT_QUERY = "CALL sp_registerBook(?, ?, ?, ?)";
     private final String SELECT_BY_TOMBO = "select * from books where tombo = ?";
     private final String SELECT_ALL_BOOKS= "select * from books order by tombo desc";
     private final String DES_ACTIVE_BOOK= "update books set active = ? where tombo = ?";
 
     @Override
-    public void save(Book book) throws EpiousionException {
+    public void register(Book book) throws EpiousionException {
         Connection conn = null;
         ResultSet rs = null;
         PreparedStatement prepStmt = null;
         try {
         	conn = DataSourceConnection.getConexao();
             prepStmt = conn.prepareStatement(INSERT_QUERY);
+            prepStmt.setString(1, book.getTitle());
+            prepStmt.setInt(2, book.getYear());
+            prepStmt.setString(3, book.getAuthor());
+            prepStmt.setString(4, book.getDescription());
+
             prepStmt.execute();
         } catch (SQLException e) {
-            String msg = "[ProdutosDB][save(Produto p)]: " + e.getMessage();
+            String msg = "[BookDB][register(Book b)]: " + e.getMessage();
             EpiousionException ge = new EpiousionException(msg, e);
             throw ge;
         } finally {

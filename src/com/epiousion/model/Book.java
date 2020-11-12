@@ -13,12 +13,9 @@ public class Book {
 	private boolean active;
 	
 	public Book(String title, int year, String description, String picturePath, int tombo, String author, boolean active) {
-		this.setTitle(title);
-		this.setYear(year);
-		this.setDescription(description);
+		this(title, year, author, description);
 		this.setPicturePath(picturePath);
 		this.setTombo(tombo);
-		this.setAuthor(author);
 		this.setActive(active);
 	}
 	
@@ -27,6 +24,13 @@ public class Book {
 		this.setTitle(title);
 		this.setYear(year);
 		this.setAuthor(author);
+	}
+	
+	public Book(String title, int year, String author, String description) {
+		this.setTitle(title);
+		this.setYear(year);
+		this.setAuthor(author);
+		this.setDescription(description);
 	}
 
 	public String getTitle() {

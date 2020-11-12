@@ -7,11 +7,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/admin/registerUser")
-public class Admin_User_RegisterUser extends HttpServlet {
+@WebServlet("/admin/user/register")
+public class Admin_User_Register extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    public Admin_User_RegisterUser() {}
+    public Admin_User_Register() {}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		

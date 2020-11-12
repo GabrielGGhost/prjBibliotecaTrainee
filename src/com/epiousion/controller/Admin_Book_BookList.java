@@ -14,7 +14,7 @@ import com.epiousion.dao.BookDB;
 import com.epiousion.exception.EpiousionException;
 import com.epiousion.model.Book;
 
-@WebServlet("/admin/livros")
+@WebServlet("/admin/book/list")
 public class Admin_Book_BookList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

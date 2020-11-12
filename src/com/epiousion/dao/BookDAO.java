@@ -9,7 +9,7 @@ import com.epiousion.model.Book;
 
 public interface BookDAO {
 
-    public void save(Book p) throws EpiousionException;
+    public void register(Book p) throws EpiousionException;
 
     public Book getBookByTombo(int tombo) throws EpiousionException ;
     
