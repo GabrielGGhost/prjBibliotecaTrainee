@@ -34,7 +34,7 @@
 
 		</div>
 		<div class="ViewUserFifthtRow">
-			<a><input type="button" class="btn" value="Renovar Livro"/></a>
+			<a href="${pageContext.request.contextPath}/admin/loan/renew?id=${loan.idLoanBook}"><input type="button" class="btn" value="Renovar Livro"/></a>
 			<a href="${pageContext.request.contextPath}/admin/loan/receive?id=${loan.idLoanBook}"><input type="button" class="btn" value="Receber Livro"/></a>
 		</div>
 	</div>

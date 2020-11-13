@@ -11,11 +11,11 @@ import com.epiousion.dao.LoanDAO;
 import com.epiousion.dao.LoanDB;
 import com.epiousion.exception.EpiousionException;
 
-@WebServlet("/admin/loan/receive")
-public class Admin_Loan_Receive extends HttpServlet {
+@WebServlet("/admin/loan/renew")
+public class Admin_Loan_Renew extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-    public Admin_Loan_Receive() {}
+       
+    public Admin_Loan_Renew() {}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -24,7 +24,7 @@ public class Admin_Loan_Receive extends HttpServlet {
 		LoanDAO loandb = new LoanDB();
 		
 		try {
-			loandb.receiveBook(id);
+			loandb.renewBook(id);
 		} catch (EpiousionException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -28,7 +28,7 @@ public class LoanDB implements LoanDAO {
     private final String GET_TODAY_DATE = "SELECT CAST(CURDATE() as DATE) as data;";
     private final String GET_SELECTED_LOAN = "CALL sp_getSelected(?)";
     private final String RECEIVE_BOOK = "CALL sp_receive_book(?)";
-    
+    private final String RENEW_BOOK = "CALL sp_renewBook(?)";
     @Override
     public String saveLoan(String idUser) throws EpiousionException {
         Connection conn = null;
@@ -322,5 +322,26 @@ public class LoanDB implements LoanDAO {
         	DataSourceConnection.closeAll(conn, prepStmt);
         }
     	System.out.println("Retornando livros...");
+    }
+    
+    public void renewBook(int pIdLoan) throws EpiousionException{
+    	Connection conn = null;
+    	PreparedStatement prepStmt = null;
+    	LoanBook loan = null;
+    	
+    	try{
+    		conn = DataSourceConnection.getConexao();
+    		prepStmt = conn.prepareStatement(RENEW_BOOK);
+    		prepStmt.setInt(1, pIdLoan);
+    		
+    		prepStmt.executeQuery();
+    		
+    	} catch (SQLException e) {
+            e.printStackTrace();
+            throw new EpiousionException("Erro ao buscar livros", e);
+        } finally {
+        	DataSourceConnection.closeAll(conn, prepStmt);
+        }
+    	System.out.println("Livro renovado...");
     }
 }
