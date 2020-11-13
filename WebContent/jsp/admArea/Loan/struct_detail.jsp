@@ -4,15 +4,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Insert title</title>
 <link href='${pageContext.request.contextPath}/css/style.css' rel='stylesheet' type='text/css'>
 </head>
 <body>
 	<jsp:include page="/jsp/fragmentos/header.jsp">
-		<jsp:param value="${user}" name="user"/>
-	</jsp:include>
-	<jsp:include page="/jsp/fragmentos/Admin/User/detail.jsp"/>
-	
-	<script type="text/javascript" src="${pageContext.request.contextPath}/js/Admin/User/desActive.js"></script>
+			<jsp:param value="${user}" name="user"/>
+		</jsp:include>
+		<jsp:include page="/jsp/fragmentos/Admin/Loan/detail.jsp"/>
 </body>
 </html>

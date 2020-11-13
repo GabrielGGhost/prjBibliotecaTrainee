@@ -26,8 +26,8 @@ public class LoanDB implements LoanDAO {
     private final String GET_USER_BOOKS_LOAN = "CALL sp_getUserBooksLoan(?)";
     private final String GET_LOANS_OF_THE_DAY = "CALL sp_getLoansOfTheDay";
     private final String GET_TODAY_DATE = "SELECT CAST(CURDATE() as DATE) as data;";
-
-    
+    private final String GET_SELECTED_LOAN = "CALL sp_getSelected(?)";
+    private final String RECEIVE_BOOK = "CALL sp_receive_book(?)";
     
     @Override
     public String saveLoan(String idUser) throws EpiousionException {
@@ -264,5 +264,63 @@ public class LoanDB implements LoanDAO {
         }
     	System.out.println("Retornando livros...");
     	return date;
+    }
+    
+    public LoanBook getSelectedLoan(int pIdLoan) throws EpiousionException{
+    	Connection conn = null;
+    	PreparedStatement prepStmt = null;
+    	ResultSet rs = null;
+    	LoanBook loan = null;
+    	
+    	try{
+    		conn = DataSourceConnection.getConexao();
+    		prepStmt = conn.prepareStatement(GET_SELECTED_LOAN);
+    		prepStmt.setInt(1, pIdLoan);
+    		
+    		rs = prepStmt.executeQuery();
+    		while(rs.next()){
+    			
+    			int idLoanBook = rs.getInt("idLoanBooks");
+    			int idLoan = rs.getInt("idLoan");
+    			int idBook = rs.getInt("idBook");
+    			Date devolutionDate = rs.getDate("devolutionDate");
+    			Date returnedDate = rs.getDate("returnedDate");
+    			Date loanDate = rs.getDate("loanDate");
+    			String title = rs.getString("title");
+    			String nameUser = rs.getString("name");
+    			int idUser = rs.getInt("idUser");
+    			
+    			loan = new LoanBook(idLoanBook, idLoan, idBook, devolutionDate, returnedDate, loanDate, title, idUser, nameUser);
+    		}
+    		
+    	} catch (SQLException e) {
+            e.printStackTrace();
+            throw new EpiousionException("Erro ao buscar livros", e);
+        } finally {
+        	DataSourceConnection.closeAll(conn, prepStmt, rs);
+        }
+    	System.out.println("Retornando livros...");
+    	return loan;
+    }
+  
+    public void receiveBook(int pIdLoan) throws EpiousionException{
+    	Connection conn = null;
+    	PreparedStatement prepStmt = null;
+    	LoanBook loan = null;
+    	
+    	try{
+    		conn = DataSourceConnection.getConexao();
+    		prepStmt = conn.prepareStatement(RECEIVE_BOOK);
+    		prepStmt.setInt(1, pIdLoan);
+    		
+    		prepStmt.executeQuery();
+    		
+    	} catch (SQLException e) {
+            e.printStackTrace();
+            throw new EpiousionException("Erro ao buscar livros", e);
+        } finally {
+        	DataSourceConnection.closeAll(conn, prepStmt);
+        }
+    	System.out.println("Retornando livros...");
     }
 }

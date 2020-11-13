@@ -12,6 +12,10 @@ public class LoanBook {
 	private Date loanDate;
 	private String title;
 	
+	private int idUser;
+	private String nameUser;
+
+
 	public LoanBook(int idLoanBook, int idBook, Date devolutionDate, Date returnedDate) {
 		super();
 		this.setIdLoanBook(idLoanBook);
@@ -21,13 +25,16 @@ public class LoanBook {
 	}
 	
 	public LoanBook(int idLoanBook, int idLoan, int idBook, Date devolutionDate, Date returnedDate, Date loanDate, String title) {
-		this.setIdLoanBook(idLoanBook);
-		this.setIdLoan(idLoan);
-		this.setIdBook(idBook);
-		this.setDevolutionDate(devolutionDate);
-		this.setReturnedDate(returnedDate);
+		this(idLoanBook, idBook, devolutionDate, returnedDate);
 		this.setLoanDate(loanDate);
 		this.setTitle(title);
+		this.setIdLoan(idLoan);
+	}
+	
+	public LoanBook(int idLoanBook, int idLoan, int idBook, Date devolutionDate, Date returnedDate, Date loanDate, String title, int idUser, String nameUser) {
+		this(idLoanBook, idLoan, idBook, devolutionDate, returnedDate, loanDate,  title);
+		this.setIdUser(idUser);
+		this.setNameUser(nameUser);
 	}
 
 	public int getIdLoanBook() {
@@ -71,5 +78,17 @@ public class LoanBook {
 	}
 	public void setTitle(String title) {
 		this.title = title;
+	}
+	public int getIdUser() {
+		return idUser;
+	}
+	public void setIdUser(int idUser) {
+		this.idUser = idUser;
+	}
+	public String getNameUser() {
+		return nameUser;
+	}
+	public void setNameUser(String nameUser) {
+		this.nameUser = nameUser;
 	}
 }

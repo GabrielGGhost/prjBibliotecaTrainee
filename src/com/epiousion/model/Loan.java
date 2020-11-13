@@ -8,7 +8,7 @@ public class Loan {
 	private String name;
 	private Date loanDate;
 	private int quantity;
-
+	
 	public Loan(int idLoan, String name, Date loanDate) {
 		this.setName(name);
 		this.setIdLoan(idLoan);

@@ -1,7 +1,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <div class="buttons emprestimosScreen">
-	<a class="btnBook" href="${pageContext.request.contextPath}/makeLoan">Realizar Empréstimo</a>
+	<a class="btnBook" href="${pageContext.request.contextPath}/loan/make">Realizar Empréstimo</a>
 	<a class="btnBook" href="${pageContext.request.contextPath}/pendingLoans">Empréstimos Pendentes</a>
 	<a class="btnBook">Agendamentos</a>
 </div>
@@ -16,6 +16,7 @@
 			<td class="centerText" style="width: 120px;">Data de Retirada</td>
 			<td class="centerText" style="width: 150px;">Data de Devolução</td>
 			<td class="centerText" style="width: 120px;">Devolvido em</td>
+			<td style="width: 70px;">Ações</td>
 		</tr>
 	</thead>
 	<tbody>
@@ -36,9 +37,15 @@
 						<td class="centerText">${loan.returnedDate}</td>
 					</c:when>
 					<c:otherwise>
-						<td class="centerText">Pendente</td>
+						<c:if test="${loan.devolutionDate < date}">
+							<td class="centerText">Atrasado</td>
+						</c:if>
+						<c:if test="${loan.devolutionDate >= date}">
+							<td class="centerText">Pendente</td>
+						</c:if>
 					</c:otherwise>
-				</c:choose>		
+				</c:choose>
+				<td><a class="btnActive" href="${pageContext.request.contextPath}/admin/loan/detail?id=${loan.idLoanBook}">Detalhes</a></td>	
 			</tr>
 		</c:forEach>
 	</tbody>

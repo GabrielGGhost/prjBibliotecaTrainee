@@ -27,4 +27,8 @@ public interface LoanDAO {
     public List<LoanBook> getLoansOfTheDay() throws EpiousionException;
     
     public Date getTodayDate() throws EpiousionException;
+    
+    public LoanBook getSelectedLoan(int id) throws EpiousionException;
+
+	public void receiveBook(int id) throws EpiousionException;
 }
