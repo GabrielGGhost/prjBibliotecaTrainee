@@ -15,22 +15,27 @@ import com.epiousion.dao.LoanDB;
 import com.epiousion.exception.EpiousionException;
 import com.epiousion.model.LoanBook;
 
-@WebServlet("/loan/pending")
-public class Admin_Loan_Pending extends HttpServlet {
+@WebServlet("/loan/all")
+public class Admin_Loan_All extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public Admin_Loan_Pending() {}
+    public Admin_Loan_All() {}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		LoanDAO loandb = new LoanDB();
 		List<LoanBook> loanList = null;
+		int select = 0;
 		try {
-			loanList = loandb.getAllBooksLoan();
+			select = Integer.parseInt(request.getParameter("select"));
+			if(select == 0) select = 1;
+			
+			loanList = loandb.getAllBooksLoan(select);
 		} catch (EpiousionException e) {
 			e.printStackTrace();
 		}
 		
+		request.getSession().setAttribute("select", select);
 		request.getSession().setAttribute("loanList", loanList);
 		
 		request.getRequestDispatcher("/jsp/admArea/Loan/struct_all.jsp").forward(request, response);

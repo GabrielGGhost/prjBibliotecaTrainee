@@ -1,7 +1,41 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <div class="buttons booksScreen">
-	<a class="btnBook">Cadastrar Novo Livro</a>
+	<select class="inputSelect" id="select">
+		<c:choose>
+			<c:when test="${select == 1}">
+				<option value="1" selected="selected">Empréstimos Pendentes</option>
+				<option value="2">Empréstimos Resolvidos</option>
+				<option value="3">Empréstimos Atrasados</option>
+				<option value="4">Todos os Empréstimos</option>
+			</c:when>
+			<c:when test="${select == 2}">
+				<option value="1">Empréstimos Pendentes</option>
+				<option value="2" selected="selected">Empréstimos Resolvidos</option>
+				<option value="3">Empréstimos Atrasados</option>
+				<option value="4">Todos os Empréstimos</option>
+			</c:when>
+			<c:when test="${select == 3}">
+				<option value="1">Empréstimos Pendentes</option>
+				<option value="2">Empréstimos Resolvidos</option>
+				<option value="3" selected="selected">Empréstimos Atrasados</option>
+				<option value="4">Todos os Empréstimos</option>
+			</c:when>
+			<c:otherwise>
+				<option value="1">Empréstimos Pendentes</option>
+				<option value="2">Empréstimos Resolvidos</option>
+				<option value="3">Empréstimos Atrasados</option>
+				<option value="4" selected="selected">Todos os Empréstimos</option>
+			</c:otherwise>
+		</c:choose>
+
+	</select>
+	<br>
+	<label>
+		Buscar empréstimo por código do usuário:
+		<input type="text" class="inputText"/>
+	</label>
+	<input type="button" value="Buscar" class="btn"/>
 </div>
 
 <table class="loansTable">

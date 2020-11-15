@@ -29,7 +29,7 @@ public class LoanDB implements LoanDAO {
     private final String GET_SELECTED_LOAN = "CALL sp_getSelected(?)";
     private final String RECEIVE_BOOK = "CALL sp_receive_book(?)";
     private final String RENEW_BOOK = "CALL sp_renewBook(?)";
-    private final String GET_ALL_BOOKS_LOAN = "CALL sp_getAllBooksLoan";
+    private final String GET_ALL_BOOKS_LOAN = "CALL sp_getAllBooksLoan(?)";
     
     
     @Override
@@ -353,7 +353,7 @@ public class LoanDB implements LoanDAO {
     	System.out.println("Livro renovado...");
     }
     
-    public List<LoanBook> getAllBooksLoan() throws EpiousionException{
+    public List<LoanBook> getAllBooksLoan(int select) throws EpiousionException{
     	Connection conn = null;
     	PreparedStatement stmt = null;
     	ResultSet rs = null;
@@ -362,6 +362,7 @@ public class LoanDB implements LoanDAO {
     	try{
     		conn = DataSourceConnection.getConexao();
     		stmt = conn.prepareStatement(GET_ALL_BOOKS_LOAN);
+    		stmt.setInt(1, select);
     		rs = stmt.executeQuery();
     		
     		while(rs.next()){
