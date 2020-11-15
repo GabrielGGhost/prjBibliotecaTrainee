@@ -7,31 +7,43 @@
 <table class="loansTable">
 	<thead>
 		<tr>
-			<td class="centerText">#</td>
-			<td>Leitor</td>
-			<td >Livro</td>
-			<td>Data de Retirada</td>
-			<td>Data de Devolução</td>
-			<td class="centerText">Ações</td>
+			<td class="centerText" style="width: 10px;">#Empréstimo</td>
+			<td class="centerText" style="width: 100px;">#Emp. Livro</td>
+			<td>Livro</td>
+			<td class="centerText" style="width: 120px;">Data de Retirada</td>
+			<td class="centerText" style="width: 150px;">Data de Devolução</td>
+			<td class="centerText" style="width: 120px;">Devolvido em</td>
+			<td style="width: 70px;">Ações</td>
 		</tr>
 	</thead>
 	<tbody>
-		<c:forEach var="book" items="${bookList}">
-			<tr>
-				<td class="centerText">${book.id}</td>
-				<td>${book.title}</td>
-				<td class="centerText">${book.year}</td>
-				<td>${book.author}</td>
-				<td class="centerText">${book.tombo}</td>
-				<td>
-					<c:if test="${book.active}">
-						<a class="btnDesactive">Desativar</a>	
-					</c:if>
-					<c:if test="${!book.active}">
-						<a class="btnActive">Ativar</a>	
-					</c:if>
-				</td>
+		<c:forEach var="loan" items="${loanList}">
+			<c:if test="${loan.devolutionDate < date}">
+				<tr style="background-color: rgba(220,0,0,.5);">			
+			</c:if>
+			<c:if test="${loan.devolutionDate >= date}">
+				<tr>			
+			</c:if>
+				<td class="centerText">${loan.idLoan}</td>
+				<td class="centerText">${loan.idLoanBook}</td>
+				<td>${loan.title}</td>
+				<td class="centerText">${loan.loanDate}</td>
+				<td class="centerText">${loan.devolutionDate}</td>
+				<c:choose>
+					<c:when test="${not empty loan.returnedDate}">
+						<td class="centerText">${loan.returnedDate}</td>
+					</c:when>
+					<c:otherwise>
+						<c:if test="${loan.devolutionDate < date}">
+							<td class="centerText">Atrasado</td>
+						</c:if>
+						<c:if test="${loan.devolutionDate >= date}">
+							<td class="centerText">Pendente</td>
+						</c:if>
+					</c:otherwise>
+				</c:choose>
+				<td><a class="btnActive" href="${pageContext.request.contextPath}/admin/loan/detail?id=${loan.idLoanBook}">Detalhes</a></td>	
 			</tr>
 		</c:forEach>
 	</tbody>
-</table> 
+</table>

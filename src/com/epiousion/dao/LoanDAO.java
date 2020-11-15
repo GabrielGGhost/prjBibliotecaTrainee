@@ -33,4 +33,7 @@ public interface LoanDAO {
 	public void receiveBook(int id) throws EpiousionException;
 
 	public void renewBook(int id) throws EpiousionException;
+
+	public List<LoanBook> getAllBooksLoan() throws EpiousionException;
+	
 }

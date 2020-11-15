@@ -13,6 +13,6 @@
 	</jsp:include>
 	<jsp:include page="/jsp/fragmentos/Admin/Loan/makeLoan.jsp"/>
 	
-	<script type="text/javascript" src="${pageContext.request.contextPath}/js/admin_Loan_Engine.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/Admin/Loan/Engine.js"></script>
 </body>
 </html>

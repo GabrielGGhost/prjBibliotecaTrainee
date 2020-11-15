@@ -8,6 +8,8 @@ public class Loan {
 	private String name;
 	private Date loanDate;
 	private int quantity;
+	private User user;
+	private LoanBook[] loanBooks;
 	
 	public Loan(int idLoan, String name, Date loanDate) {
 		this.setName(name);
@@ -41,17 +43,23 @@ public class Loan {
 	public void setLoanDate(Date loanDate) {
 		this.loanDate = loanDate;
 	}
-	//public LoanBook[] getLoanBooks() {
-	//	return loanBooks;
-	//}
-	//public void setLoanBooks(LoanBook[] loanBooks) {
-	//	this.loanBooks = loanBooks;
-	//}
-
 	public int getQuantity() {
 		return quantity;
 	}
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
+	public LoanBook[] getLoanBooks() {
+		return this.loanBooks;
+	}
+	public void setLoanBooks(LoanBook[] loanBooks) {
+		this.loanBooks = loanBooks;
+	}
+
 }

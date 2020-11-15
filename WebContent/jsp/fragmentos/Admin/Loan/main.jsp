@@ -2,7 +2,7 @@
 
 <div class="buttons emprestimosScreen">
 	<a class="btnBook" href="${pageContext.request.contextPath}/loan/make">Realizar Empréstimo</a>
-	<a class="btnBook" href="${pageContext.request.contextPath}/pendingLoans">Empréstimos Pendentes</a>
+	<a class="btnBook" href="${pageContext.request.contextPath}/loan/pending">Empréstimos Pendentes</a>
 	<a class="btnBook">Agendamentos</a>
 </div>
 

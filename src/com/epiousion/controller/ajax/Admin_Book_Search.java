@@ -17,14 +17,14 @@ import com.epiousion.model.Book;
 /**
  * Servlet implementation class SearchBook
  */
-@WebServlet("/searchBook")
-public class SearchBook extends HttpServlet {
+@WebServlet("/loan/searchBook")
+public class Admin_Book_Search extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SearchBook() {
+    public Admin_Book_Search() {
         super();
         // TODO Auto-generated constructor stub
     }

@@ -29,6 +29,7 @@ public class LoanDB implements LoanDAO {
     private final String GET_SELECTED_LOAN = "CALL sp_getSelected(?)";
     private final String RECEIVE_BOOK = "CALL sp_receive_book(?)";
     private final String RENEW_BOOK = "CALL sp_renewBook(?)";
+    
     @Override
     public String saveLoan(String idUser) throws EpiousionException {
         Connection conn = null;
@@ -343,5 +344,37 @@ public class LoanDB implements LoanDAO {
         	DataSourceConnection.closeAll(conn, prepStmt);
         }
     	System.out.println("Livro renovado...");
+    }
+    
+    public List<LoanBook> getAllBooksLoan() throws EpiousionException{
+    	Connection conn = null;
+    	Statement stmt = null;
+    	ResultSet rs = null;
+    	List<LoanBook> loanList = new ArrayList<LoanBook>();
+    	
+    	try{
+    		conn = DataSourceConnection.getConexao();
+    		stmt = conn.createStatement();
+    		rs = stmt.executeQuery(GET_ALL_LOANS);
+    		while(rs.next()){
+    			
+    			int idLoanBook = rs.getInt("idLoanBooks");
+    			int idLoan = rs.getInt("idLoan");
+    			int idBook = rs.getInt("idBook");
+    			Date devolutionDate = rs.getDate("devolutionDate");
+    			Date returnedDate = rs.getDate("returnedDate");
+    			Date loanDate = rs.getDate("loanDate");
+    			String title = rs.getString("title");
+    			
+    			LoanBook loanBook = new LoanBook(idLoanBook, idLoan, idBook, devolutionDate, returnedDate, loanDate, title);
+    			loanList.add(loanBook);
+    		}
+    	} catch (SQLException e) {
+            e.printStackTrace();
+            throw new EpiousionException("Erro ao buscar livros", e);
+        } finally {
+        	DataSourceConnection.closeAll(conn, stmt, rs);
+        }
+    	return loanList;
     }
 }
