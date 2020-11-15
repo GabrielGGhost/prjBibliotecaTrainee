@@ -11,7 +11,7 @@
 	<jsp:include page="/jsp/fragmentos/header.jsp">
 		<jsp:param value="${user}" name="user"/>
 	</jsp:include>
-	<jsp:include page="/jsp/fragmentos/Admin/Loan/makeLoan.jsp"/>
+	<jsp:include page="/jsp/fragmentos/Admin/Loan/make.jsp"/>
 	
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/Admin/Loan/Engine.js"></script>
 </body>

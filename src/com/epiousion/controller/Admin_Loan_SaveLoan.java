@@ -15,7 +15,7 @@ import com.epiousion.dao.LoanDAO;
 import com.epiousion.dao.LoanDB;
 import com.epiousion.exception.EpiousionException;
 
-@WebServlet("/saveLoan")
+@WebServlet("/loan/saveLoan")
 public class Admin_Loan_SaveLoan extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

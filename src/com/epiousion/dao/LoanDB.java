@@ -29,6 +29,8 @@ public class LoanDB implements LoanDAO {
     private final String GET_SELECTED_LOAN = "CALL sp_getSelected(?)";
     private final String RECEIVE_BOOK = "CALL sp_receive_book(?)";
     private final String RENEW_BOOK = "CALL sp_renewBook(?)";
+    private final String GET_ALL_BOOKS_LOAN = "CALL sp_getAllBooksLoan";
+    
     
     @Override
     public String saveLoan(String idUser) throws EpiousionException {
@@ -115,8 +117,10 @@ public class LoanDB implements LoanDAO {
     		conn = DataSourceConnection.getConexao();
     		prepStmt = conn.prepareStatement(GET_USER_LOANS);
     		prepStmt.setInt(1, id);
-    		
+    	
     		rs = prepStmt.executeQuery();
+    		
+    		
     		while(rs.next()){
     			
     			int idLoan = rs.getInt("idLoan");
@@ -130,7 +134,10 @@ public class LoanDB implements LoanDAO {
     	} catch (SQLException e) {
             e.printStackTrace();
             throw new EpiousionException("Erro ao buscar livros", e);
+        }  finally {
+        	DataSourceConnection.closeAll(conn, prepStmt, rs);
         }
+    	
     	System.out.println("Retornando livros...");
     	return loanList;
     }
@@ -348,14 +355,15 @@ public class LoanDB implements LoanDAO {
     
     public List<LoanBook> getAllBooksLoan() throws EpiousionException{
     	Connection conn = null;
-    	Statement stmt = null;
+    	PreparedStatement stmt = null;
     	ResultSet rs = null;
     	List<LoanBook> loanList = new ArrayList<LoanBook>();
     	
     	try{
     		conn = DataSourceConnection.getConexao();
-    		stmt = conn.createStatement();
-    		rs = stmt.executeQuery(GET_ALL_LOANS);
+    		stmt = conn.prepareStatement(GET_ALL_BOOKS_LOAN);
+    		rs = stmt.executeQuery();
+    		
     		while(rs.next()){
     			
     			int idLoanBook = rs.getInt("idLoanBooks");

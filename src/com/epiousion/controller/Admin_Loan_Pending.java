@@ -31,6 +31,8 @@ public class Admin_Loan_Pending extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		request.getRequestDispatcher("/jsp/admArea/Loan/struct_pendingLoans.jsp").forward(request, response);
+		request.getSession().setAttribute("loanList", loanList);
+		
+		request.getRequestDispatcher("/jsp/admArea/Loan/struct_all.jsp").forward(request, response);
 	}
 }
