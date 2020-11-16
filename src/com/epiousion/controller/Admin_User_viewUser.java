@@ -34,5 +34,4 @@ public class Admin_User_ViewUser extends HttpServlet {
 		request.getSession().setAttribute("viewUser", user);		
 		request.getRequestDispatcher("/jsp/admArea/User/struct_userView.jsp").forward(request, response);
 	}
-
 }

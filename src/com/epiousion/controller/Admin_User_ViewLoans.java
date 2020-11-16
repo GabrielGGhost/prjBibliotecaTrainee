@@ -27,32 +27,32 @@ public class Admin_User_ViewLoans extends HttpServlet {
 		LoanDAO loandb = new LoanDB();
 		UserDAO userdb = new UserDB();
 		User user = null;
-		
-		int id = Integer.parseInt(request.getParameter("id"));
+		String id = request.getParameter("id");
+		if(id.equals("") || id.equals(null)) id = "0";
 		String opc = request.getParameter("select");
-		if(opc.equals(null)) opc = "1";
+		if(opc == null) opc = "1";
 		
 		List loanList = null;
 		
 		try {
-			user = userdb.getUserByID(id);
+			user = userdb.getUserByID(Integer.parseInt(id));
 			if(opc.equals("1")){
-				loanList = loandb.getUserLoans(id);
+				loanList = loandb.getUserLoans(Integer.parseInt(id));
 			} else {
-				loanList = loandb.getUserLoanBooks(id);
+				loanList = loandb.getUserLoanBooks(Integer.parseInt(id));
 			}
 		} catch (EpiousionException e) {
 			e.printStackTrace();
 		}
 		
 		request.getSession().setAttribute("selectedUser", user);
-		request.getSession().setAttribute("userLoans", loanList);
+		request.getSession().setAttribute("loanList", loanList);
 		request.getSession().setAttribute("select", opc);
 		
 		request.getRequestDispatcher("/jsp/admArea/User/struct_Loans.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		doGet(request, response);
 	}
 }

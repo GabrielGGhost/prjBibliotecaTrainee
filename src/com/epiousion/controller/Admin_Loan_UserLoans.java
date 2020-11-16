@@ -9,36 +9,39 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.epiousion.dao.BookDAO;
-import com.epiousion.dao.BookDB;
+import com.epiousion.dao.LoanDAO;
+import com.epiousion.dao.LoanDB;
 import com.epiousion.exception.EpiousionException;
-import com.epiousion.model.Book;
+import com.epiousion.model.LoanBook;
 
-@WebServlet("/listaLivros")
-public class User_BookList extends HttpServlet {
+@WebServlet("/admin/loan/userLoans")
+public class Admin_Loan_UserLoans extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    public User_BookList() {
-        super();
-    }
+	
+    public Admin_Loan_UserLoans() {}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		BookDAO bookdb = new BookDB();
-		List<Book> books = null;
+		String id = request.getParameter("id");
+		LoanDAO loandb = new LoanDB();
+		List<LoanBook> loanList = null;
+		
+		if(id == null || id.equals("")) id = "0";
 		
 		try {
-			books = bookdb.getAllBooks();
-		} catch (EpiousionException e) {
+			loanList = loandb.getUserLoanBooks(Integer.parseInt(id));
+		} catch (NumberFormatException | EpiousionException e) {
 			e.printStackTrace();
 		}
 		
-		request.getSession().setAttribute("bookList", books);
-		request.getRequestDispatcher("/jsp/struct_bookList.jsp").forward(request, response);
+		request.getSession().setAttribute("loanList", loanList);
+		request.getRequestDispatcher("/jsp/admArea/Loan/struct_UserLoans.jsp").forward(request, response);
 	}
-
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		doGet(request, response);
 	}
+
 
 }

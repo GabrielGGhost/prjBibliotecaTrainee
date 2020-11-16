@@ -31,14 +31,11 @@
 
 	</select>
 	<br>
-	<form method="post" action="${pageContext.request.contextPath}/admin/loan/userLoans">
-		<label>
-			Buscar empréstimo por código do usuário:
-			<input type="text" class="inputText" name="id"/>
-		</label>
-		<input type="submit" value="Buscar" class="btn"/>
-	</form>
-	
+	<label>
+		Buscar empréstimo por código do usuário:
+		<input type="text" class="inputText"/>
+	</label>
+	<input type="button" value="Buscar" class="btn"/>
 </div>
 
 <table class="loansTable">

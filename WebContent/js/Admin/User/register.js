@@ -59,6 +59,17 @@ function checkData(data){
 		
 		return false;
 	}
+	
+	if(data[2] != data[3]) {
+		msg = "Senhas incompatíveis!";
+		
+		errorMessage.textContent = msg;
+		
+		checkErroMessage();
+		
+		return false;
+	}
+	
 	if(data[5] == "" || data[5] == null) {
 		msg = "Informe o email!!";
 		
