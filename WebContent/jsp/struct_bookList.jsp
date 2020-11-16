@@ -12,5 +12,8 @@
 		<jsp:param value="${user}" name="user"/>
 	</jsp:include>
 	<jsp:include page="/jsp/fragmentos/User/bookList.jsp"/>
+	
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/User/Book/Engine.js"></script>
+	
 </body>
 </html>

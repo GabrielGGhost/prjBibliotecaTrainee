@@ -14,69 +14,58 @@ import com.epiousion.dao.BookDB;
 import com.epiousion.exception.EpiousionException;
 import com.epiousion.model.Book;
 
-/**
- * Servlet implementation class SearchBook
- */
-@WebServlet("/loan/searchBook")
-public class Admin_Book_Search extends HttpServlet {
+@WebServlet("/viewBook")
+public class User_Book_ViewBook extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public Admin_Book_Search() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+    public User_Book_ViewBook() {}
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
-			searchBook(request, response);
-		} catch (EpiousionException e) {
+			viewBook(request, response);
+		} catch (NumberFormatException | EpiousionException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
-			searchBook(request, response);
-		} catch (EpiousionException e) {
+			viewBook(request, response);
+		} catch (NumberFormatException | EpiousionException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	
-	protected void searchBook(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, EpiousionException {
+	
+	protected void viewBook(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, NumberFormatException, EpiousionException {
 		
-		BookDAO bookdb = new BookDB();
-		int id = Integer.parseInt(request.getParameter("tombo"));
+		String tombo = request.getParameter("tombo");
 		
-		Book book = bookdb.getBookByTombo(id);
+		if(tombo.equals("") || tombo == null) tombo = "1";
+		BookDAO boodb = new BookDB();
+		Book book = null;
+		
+		book = boodb.getBookByTomboAjax(Integer.parseInt(tombo));
+	
 		PrintWriter out = response.getWriter();
 		out.write("<?xml version='1.0' encoding='UTF-8'?>");
+	
 
-		if(book != null) {
 			
 			response.setContentType("text/xml");
 			out.write("<book>");
+			if(book != null) {
 				out.write("<tombo>" + book.getTombo() + "</tombo>");
 				out.write("<title>" + book.getTitle() + "</title>");
 				out.write("<year>" + book.getYear() + "</year>");
 				out.write("<author>" + book.getAuthor() + "</author>");
-	
+				out.write("<description>" + book.getDescription() + "</description>");
+			}
 			out.write("</book>");
-		} else {
-			out.write("<book>");
-						
-			out.write("</book>");
-		}
-		System.out.println("[AJAX] Finalizando busca por livro!");
+		
+		System.out.println("Finalizando busca por cliente!");
 	}
 }

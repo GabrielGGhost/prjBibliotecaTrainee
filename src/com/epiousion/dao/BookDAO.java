@@ -12,7 +12,9 @@ public interface BookDAO {
     public void register(Book p) throws EpiousionException;
 
     public Book getBookByTombo(int tombo) throws EpiousionException ;
-    
+
+    public Book getBookByTomboAjax(int tombo) throws EpiousionException ;
+
     public List<Book> getAllBooks() throws EpiousionException ;
     
     public void des_active(int idBook, boolean status) throws EpiousionException;

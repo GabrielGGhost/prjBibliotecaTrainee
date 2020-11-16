@@ -2,35 +2,32 @@
 
 <div class="bookContainer">
 	<section class="asideDetails">
-		<img src="${pageContext.request.contextPath}/img/chavepreta.png" class="viewBook"/>
 		<div class="viewContainer">
+			<h2 class="centerText">Livro</h2>
+			<h5 class="centerText">Selecione um livro para ver seus detalhes</h5>
 			<div class="topViewRow">
-				<span><b>Título:</b> A chave preta.</span>
-				<span><b>Ano:</b> 2015</span>
-				<span><b>Autor:</b> HP Lovecraft</span>
+				<span><b>Título: </b><a id="bookTitle"></a></span>
+				<span><b>Ano: </b><a id="bookYear"></a></span>
+				<span><b>Autor: </b><a id="bookAuthor"></a></span>
 			</div>
 			<div class="bottomViewRow">
-				<b>Descrição:</b> Essa é a descrição do livro, ela pode ser longa ou curta, mas tem um limtie de caracteres de 200 por exemplo
-			</div>
-			<div class="buttons viewButtons">
-				<a class="btnBook">Agendar</a>
+				<b>Descrição:</b> <a id="bookDescription"></a>
 			</div>
 		</div>
 	</section>
 	<section class="bookList">
 		<c:forEach var="book" items="${bookList}">
 			<div class="book">
-				<img src="${pageContext.request.contextPath}/img/chavepreta.png"/>
 					<div class="topDetails">
 						<div class="bookDetails">
+							<a class="displayNone">${book.tombo}</a>
 							<span><b>Títulos:</b>${book.title}.</span>
 				 			<span><b>Ano:</b> ${book.year}</span>
 				 			<span><b>Autor:</b> ${book.author}</span>
 			 		</div>
 			 		<b>Gêneros:</b> Terror, Ficção, Suspense, Drama, Gen, Gen, Gen, Gen, Gen, Gen
 					<div class="buttons">
-						<a class="btnBook">Agendar</a>
-						<a class="btnBook">Vizualizar</a>
+						<a class="btnBook btnViewBook">Vizualizar</a>
 					</div>
 				</div>
 			 </div>
