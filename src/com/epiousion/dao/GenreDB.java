@@ -9,15 +9,15 @@ import java.util.List;
 import java.util.ArrayList;
 
 import com.epiousion.exception.EpiousionException;
-import com.epiousion.model.Gender;
+import com.epiousion.model.Genre;
 
-public class GenderDB implements GenderDAO {
+public class GenreDB implements GenreDAO {
 
     private final String INSERT_QUERY = "INSERT INTO GENDERS(name) VALUES(?)";
     private final String GET_ALL_GENDERS = "SELECT * FROM GENDERS order by idGender desc";
 
     @Override
-    public void register(Gender gender) throws EpiousionException {
+    public void register(Genre gender) throws EpiousionException {
         Connection conn = null;
         ResultSet rs = null;
         PreparedStatement prepStmt = null;
@@ -36,11 +36,11 @@ public class GenderDB implements GenderDAO {
         }
     }
     
-    public List<Gender> getAllGenders() throws EpiousionException{
+    public List<Genre> getAllGenders() throws EpiousionException{
     	Connection conn = null;
     	Statement stmt = null;
     	ResultSet rs = null;
-    	List<Gender> genderList = new ArrayList<Gender>();
+    	List<Genre> genderList = new ArrayList<Genre>();
     	
     	try{
     		conn = DataSourceConnection.getConexao();
@@ -52,7 +52,7 @@ public class GenderDB implements GenderDAO {
     			String name = rs.getString("name");
 
     			
-    			Gender b = new Gender(id,name);
+    			Genre b = new Genre(id,name);
     			genderList.add(b);
     		}
     	} catch (SQLException e) {

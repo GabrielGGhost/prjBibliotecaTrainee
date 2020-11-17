@@ -1,17 +1,17 @@
 package com.epiousion.model;
 
-public class Gender {
+public class Genre {
 	
 	private int id;
 
 	private String name;
 	
-	public Gender(int id, String name) {
+	public Genre(int id, String name) {
 		this.setId(id);
 		this.setName(name);
 	}
 	
-	public Gender(String name) {
+	public Genre(String name) {
 		this.setName(name);
 	}
 

@@ -7,16 +7,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/admin/gender/manage")
-public class Admin_Book_ManageGender extends HttpServlet {
+@WebServlet("/admin/genre/register")
+public class Admin_Genre_Register extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    public Admin_Book_ManageGender() {}
+    public Admin_Genre_Register() {}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		request.getRequestDispatcher("/jsp/admArea/Gender/struct_manage.jsp").forward(request, response);
+
+		request.getRequestDispatcher("/jsp/admArea/Genre/struct_register.jsp").forward(request, response);
 	}
-
-
 }

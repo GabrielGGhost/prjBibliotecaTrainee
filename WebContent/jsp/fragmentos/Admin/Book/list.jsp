@@ -24,7 +24,7 @@
 				<td>
 					<div class="booksScreen  ">
 						<a class="btnActive" href="detail?id=${book.tombo}" style="margin-right: 15px; margin-left: -8px;">Detalhes</a>
-						<a class="btnActive" href="${pageContext.request.contextPath}/admin/gender/manage?id=${book.tombo}">Gêneros</a>
+						<a class="btnActive" href="${pageContext.request.contextPath}/admin/genre/manage?id=${book.tombo}">Gêneros</a>
 					</div>
 					
 				</td>
