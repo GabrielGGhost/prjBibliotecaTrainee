@@ -12,11 +12,11 @@ import com.epiousion.dao.UserDB;
 import com.epiousion.exception.EpiousionException;
 import com.epiousion.model.User;
 
-@WebServlet("/admin/viewUser")
-public class Admin_User_ViewUser extends HttpServlet {
+@WebServlet("/admin/user/view")
+public class Admin_User_View extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public Admin_User_ViewUser() {}
+    public Admin_User_View() {}
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -32,6 +32,6 @@ public class Admin_User_ViewUser extends HttpServlet {
 		}
 		
 		request.getSession().setAttribute("viewUser", user);		
-		request.getRequestDispatcher("/jsp/admArea/User/struct_userView.jsp").forward(request, response);
+		request.getRequestDispatcher("/jsp/admArea/User/struct_view.jsp").forward(request, response);
 	}
 }

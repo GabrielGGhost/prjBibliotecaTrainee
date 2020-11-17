@@ -12,7 +12,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<c:forEach var="loan" items="${userLoans}">
+		<c:forEach var="loan" items="${loanList}">
 			<tr>
 				<td class="centerText">${loan.idLoan}</td>
 				<td class="centerText">${loan.idLoanBook}</td>

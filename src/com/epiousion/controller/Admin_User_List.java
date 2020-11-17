@@ -14,11 +14,11 @@ import com.epiousion.dao.UserDB;
 import com.epiousion.exception.EpiousionException;
 import com.epiousion.model.User;
 
-@WebServlet("/admin/listaUsuarios")
-public class Admin_User_UserList extends HttpServlet {
+@WebServlet("/admin/user/list")
+public class Admin_User_List extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public Admin_User_UserList() { }
+    public Admin_User_List() { }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -31,6 +31,6 @@ public class Admin_User_UserList extends HttpServlet {
 		}
 		
     	request.getSession().setAttribute("userList", userList);
-		request.getRequestDispatcher("/jsp/admArea/User/struct_UsersList.jsp").forward(request, response);
+		request.getRequestDispatcher("/jsp/admArea/User/struct_list.jsp").forward(request, response);
 	}
 }

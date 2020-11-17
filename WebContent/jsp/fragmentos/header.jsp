@@ -6,7 +6,7 @@
 
 		<ul class="menu">
 			<c:if test="${user.admin}">
-				<li><a href="${pageContext.request.contextPath}/admin/listaUsuarios">Usuários</a></li>
+				<li><a href="${pageContext.request.contextPath}/admin/user/list">Usuários</a></li>
 				|
 				<li><a href="${pageContext.request.contextPath}/admin/book/list">Livros</a></li>
 				|

@@ -26,7 +26,7 @@
 			<c:if test="${!viewUser.admin}">
 				<span><b>Admin: </b>Não</span>
 			</c:if>
-			<form action="${pageContext.request.contextPath}/admin/userDesActive?id=${viewUser.id}&status=${viewUser.active}" method="post">
+			<form action="${pageContext.request.contextPath}/admin/user/desActive?id=${viewUser.id}&status=${viewUser.active}" method="post">
 				<c:choose>
 					<c:when test="${viewUser.active}">
 						<span><input type="submit" value="Desativar Usuário" class="btnDesactive centerText" style="width:150px;"/></span>

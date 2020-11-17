@@ -10,7 +10,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<c:forEach var="loan" items="${userLoans}">
+		<c:forEach var="loan" items="${loanList}">
 			<c:if test="${loan.quantity > 0}">
 				<tr>
 					<td class="centerText">${loan.idLoan}</td>

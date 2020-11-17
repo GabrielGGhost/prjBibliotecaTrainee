@@ -106,7 +106,7 @@ function checkDuplicatedData(){
 
 function sendRequest(){
 	
-	url = "saveUser?name=" + data[0]
+	url = "save?name=" + data[0]
 			+ "&username=" + data[1]
 			+ "&password=" + data[2]
 			+ "&admin=" + data[4]
@@ -124,5 +124,5 @@ function sendRequest(){
 
 function saveUser(){
 	
-	location.href="listaUsuarios";
+	location.href="list";
 }

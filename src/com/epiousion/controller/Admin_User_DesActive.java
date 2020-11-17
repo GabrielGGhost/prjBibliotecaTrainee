@@ -11,7 +11,7 @@ import com.epiousion.dao.UserDAO;
 import com.epiousion.dao.UserDB;
 import com.epiousion.exception.EpiousionException;
 
-@WebServlet("/admin/userDesActive")
+@WebServlet("/admin/user/desActive")
 public class Admin_User_DesActive extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -31,7 +31,7 @@ public class Admin_User_DesActive extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		response.sendRedirect(request.getContextPath() + "/admin/listaUsuarios");
+		response.sendRedirect(request.getContextPath() + "/admin/user/list");
 	}
 
 }

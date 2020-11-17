@@ -12,10 +12,7 @@ import com.epiousion.dao.UserDB;
 import com.epiousion.exception.EpiousionException;
 import com.epiousion.model.User;
 
-/**
- * Servlet implementation class AdminUser_registerUser
- */
-@WebServlet("/admin/saveUser")
+@WebServlet("/admin/user/save")
 public class Admin_User_Register extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -26,7 +23,7 @@ public class Admin_User_Register extends HttpServlet {
 		try {
 			registerUser(request, response);
 		} catch (EpiousionException e) {
-			// TODO Auto-generated catch block
+	
 			e.printStackTrace();
 		}
 	}
@@ -38,9 +35,7 @@ public class Admin_User_Register extends HttpServlet {
 
 			e.printStackTrace();
 		}
-
 	}
-
 
 	private void registerUser(HttpServletRequest request, HttpServletResponse response) throws EpiousionException {
 		

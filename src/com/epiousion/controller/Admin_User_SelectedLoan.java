@@ -34,7 +34,7 @@ public class Admin_User_SelectedLoan extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		request.getSession().setAttribute("userLoans", userLoans);
+		request.getSession().setAttribute("loanList", userLoans);
 		
 		request.getRequestDispatcher("/jsp/admArea/User/struct_selectedLoan.jsp").forward(request, response);
 	}
