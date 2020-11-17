@@ -12,13 +12,13 @@
 				|
 				<li><a href="${pageContext.request.contextPath}/admin/loan/list">Empréstimos</a></li>
 				| 
-				<li>Agendamentos</li>
+				<li><a href="${pageContext.request.contextPath}/admin/gender/list">Gêneros</a></li>
 				|
 			</c:if>
 			<c:if test="${!user.admin}">
 				<li>Lista de livros</li>
 				|
-				<li><a href="${pageContext.request.contextPath}/myLoans">Reservas/Empréstimos</a></li>
+				<li><a href="${pageContext.request.contextPath}/myLoans">Empréstimos</a></li>
 				|
 			</c:if>
 			<c:choose>

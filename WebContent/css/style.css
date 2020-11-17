@@ -430,6 +430,61 @@ header .title{
 	margin-bottom: -30px;
 }
 
+.genderContainer{
+	width: 100%;
+
+}
+
+.unregistredGenders{
+	width: 80%;
+	margin: 20px 80px;
+	border: 1px solid black;
+	border-radius: 10px;
+}
+
+.registredGenders{
+	width: 80%;
+	margin: 20px 80px;
+	border: 1px solid black;
+	border-radius: 10px;
+}
+
+.genderText{
+	border-bottom: 1px solid black;
+	padding-bottom: 5px;
+}
+
+.unregisteredGender{
+	list-style-type: none;
+	padding: 10px;
+
+}
+
+.gender{
+	height: 25px;
+}
+
+.btnAddGender{
+	border-radius: 10px;
+	cursor: pointer;
+	transition: 0.5s linear;
+	width: 100px;
+
+}
+
+.btnAddGender:HOVER{
+	background-color: rgba(0,200,0, .5);
+}
+
+.genderBoxes{
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	
+}
+
+
+
+
 
 /* General css */
 

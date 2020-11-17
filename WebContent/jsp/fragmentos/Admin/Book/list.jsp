@@ -1,6 +1,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<div class="buttons booksScreen">
+<div class="buttons ">
 	<a class="btnBook" href="${pageContext.request.contextPath}/admin/book/register">Cadastrar Novo Livro</a>
 </div>
 
@@ -11,7 +11,7 @@
 			<td>Título</td>
 			<td class="centerText">Ano</td>
 			<td>Autor</td>
-			<td class="centerText" style="width: 80px;">Detalhes</td>
+			<td class="centerText" style="width: 200px;">Detalhes</td>
 		</tr>
 	</thead>
 	<tbody>
@@ -21,7 +21,13 @@
 				<td>${book.title}</td>
 				<td class="centerText">${book.year}</td>
 				<td>${book.author}</td>
-				<td><a class="btnActive" href="book/detail?id=${book.tombo}">Detalhes</a></td>
+				<td>
+					<div class="booksScreen  ">
+						<a class="btnActive" href="detail?id=${book.tombo}" style="margin-right: 15px; margin-left: -8px;">Detalhes</a>
+						<a class="btnActive" href="${pageContext.request.contextPath}/admin/gender/manage?id=${book.tombo}">Gêneros</a>
+					</div>
+					
+				</td>
 			</tr>
 		</c:forEach>
 	</tbody>

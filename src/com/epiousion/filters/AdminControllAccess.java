@@ -30,9 +30,15 @@ public class AdminControllAccess implements Filter {
 		User user = (User) hRequest.getSession().getAttribute("user");
 		
 		if(user != null){
-			chain.doFilter(hRequest, hResponse);
+			
+			if(user.isAdmin()){
+				chain.doFilter(hRequest, hResponse);
+			} else {
+				hResponse.sendRedirect(hRequest.getContextPath() + "/listaLivros");
+			}
+			
 		} else {
-			hRequest.getRequestDispatcher("/jsp/login.jsp").forward(hRequest, hResponse); 
+			hResponse.sendRedirect(hRequest.getContextPath() + "/login");
 		}
 	}
 

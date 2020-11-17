@@ -16,9 +16,8 @@ function loadRemoves(){
 function removeBook(){
 	
 	document.getElementById("preparingBooks").removeChild(this.parentNode.parentNode);
-		
-}
 
+}
 
 function sendRequest(opc){
 	var cod;
