@@ -27,14 +27,13 @@
 					<Label for="password">Senha:</Label>
 					<input type="password" id="password" name="password" class="inputText"/>
 				</div>
-				<input type="submit" class="btn"/>
+				<input type="submit" value="Entrar" class="btn"/>
 				<label>
 					<input type="checkbox" style="margin-bottom: 15px; ">
 					Lembrar minha senha
 				</label>
 				<div class="rodape">
-					<a class="tagLogin tagLoginLeft" >Novo Usuário</a>
-					<a class="tagLogin tagLoginRight">Esqueci minha senha</a>
+					<a class="tagLogin tagLoginLeft" href="${pageContext.request.contextPath}/">Entrar como convidado</a>
 				</div>
 			</div>
 		</form>

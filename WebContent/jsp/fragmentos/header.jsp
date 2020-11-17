@@ -2,7 +2,7 @@
 
 <header>
 	<nav>
-		<h1 class="title">Biblioteca Epiousion</h1>
+		<h1 class="title" ><a href="${pageContext.request.contextPath}/">Biblioteca Epiousion</a></h1>
 
 		<ul class="menu">
 			<c:if test="${user.admin}">
