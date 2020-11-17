@@ -1,6 +1,7 @@
 package com.epiousion.model;
 
 import java.util.Date;
+import java.util.List;
 
 public class Book {
 	
@@ -11,12 +12,19 @@ public class Book {
 	private int tombo;
 	private String author;
 	private boolean active;
-	
+	List<Genre> genres;
+
 	public Book(String title, int year, String description, String picturePath, int tombo, String author, boolean active) {
 		this(title, year, author, description);
 		this.setPicturePath(picturePath);
 		this.setTombo(tombo);
 		this.setActive(active);
+		this.setGenres(genres);
+	}
+	
+	public Book(String title, int year, String description, String picturePath, int tombo, String author, boolean active, List<Genre> genres) {
+		this(title, year, description, picturePath, tombo, author, active);
+		this.setGenres(genres);
 	}
 	
 	public Book(int vTombo, String title, int year, String author) {
@@ -74,5 +82,11 @@ public class Book {
 	}
 	public void setActive(boolean active) {
 		this.active = active;
+	}
+	public List<Genre> getGenres() {
+		return genres;
+	}
+	public void setGenres(List<Genre> genres) {
+		this.genres = genres;
 	}
 }

@@ -21,6 +21,7 @@
     <url-pattern>/admin/saveUser</url-pattern>
     <url-pattern>/buscaCliente</url-pattern>
     <url-pattern>/searchBook</url-pattern>
+    <url-pattern>/admin/genre/link</url-pattern>
     <dispatcher>FORWARD</dispatcher>
     <dispatcher>REQUEST</dispatcher>
   </filter-mapping>
@@ -31,9 +32,6 @@
     <dispatcher>FORWARD</dispatcher>
     <dispatcher>REQUEST</dispatcher>
   </filter-mapping>
-  
-
-  
   <session-config>
     <session-timeout>30</session-timeout>
   </session-config>

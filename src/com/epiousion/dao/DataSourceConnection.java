@@ -60,6 +60,24 @@ public class DataSourceConnection {
             e.printStackTrace();
         }
     }
+    
+    public static void closeAll(Connection conn, Statement stmt, ResultSet rs, ResultSet rs2) {
+        try {
+            if (conn != null || stmt != null) {
+                closeAll(conn, stmt);
+            }
+            if (rs != null) {
+                rs.close();
+            }
+            
+            if (rs2 != null) {
+                rs2.close();
+            }
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     public static void closeAll(Connection conn, Statement stmt) {
         try {

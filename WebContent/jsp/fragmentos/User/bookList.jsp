@@ -25,7 +25,11 @@
 				 			<span><b>Ano:</b> ${book.year}</span>
 				 			<span><b>Autor:</b> ${book.author}</span>
 			 		</div>
-			 		<b>Gêneros:</b> Terror, Ficção, Suspense, Drama, Gen, Gen, Gen, Gen, Gen, Gen
+			 		<b>Gêneros:</b> 
+			 		
+			 		<c:forEach var="genre" items="${book.genres}">
+				 		 - ${genre.name}
+			 		</c:forEach>
 					<div class="buttons">
 						<a class="btnBook btnViewBook">Vizualizar</a>
 					</div>

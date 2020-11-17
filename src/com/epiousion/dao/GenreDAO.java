@@ -17,4 +17,8 @@ public interface GenreDAO {
 
     public List<Genre> getRegisteredGenres(String id) throws EpiousionException;
 
+    public void linkGender(String tombo, String idGenre) throws EpiousionException;
+    
+    public void unlinkGender(String tombo, String idGenre) throws EpiousionException;
+
 }

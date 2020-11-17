@@ -454,14 +454,15 @@ header .title{
 	padding-bottom: 5px;
 }
 
-.unregisteredGender{
+.unregisteredGenderList, .registeredGenderList{
 	list-style-type: none;
 	padding: 10px;
-
 }
 
 .gender{
 	height: 25px;
+	margin-bottom: 5px;
+	
 }
 
 .btnAddGender, .btnRmvGender{
@@ -469,7 +470,8 @@ header .title{
 	cursor: pointer;
 	transition: 0.5s linear;
 	width: 100px;
-
+	border: 1px solid black;
+	padding: 2px 3px;
 }
 
 .btnRmvGender:HOVER{

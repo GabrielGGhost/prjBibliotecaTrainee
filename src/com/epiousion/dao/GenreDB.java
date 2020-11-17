@@ -18,6 +18,8 @@ public class GenreDB implements GenreDAO {
     private final String GET_ALL_GENDERS = "SELECT * FROM GENDERS order by idGender desc";
     private final String GET_UNREGISTERED_GENDERS = "CALL sp_getUnregisteredGenres(?)";
     private final String GET_REGISTERED_GENDERS = "CALL sp_getRegisteredGenres(?)";
+    private final String LINK_GENDER = "CALL sp_linkGender(?,?)";
+    private final String UNLINK_GENDER = "CALL sp_unlinkGender(?,?)";
 
     @Override
     public void register(Genre gender) throws EpiousionException {
@@ -127,7 +129,49 @@ public class GenreDB implements GenreDAO {
         } finally {
         	DataSourceConnection.closeAll(conn, prepStmt, rs);
         }
-        System.out.println("Retornando gêneros não cadastrados");
+        System.out.println("Retornando gêneros cadastrados");
         return genderList;
+    }
+    
+    public void linkGender(String tombo, String idGenre) throws EpiousionException{
+    	Connection conn = null;
+        PreparedStatement prepStmt = null;
+        try {
+        	conn = DataSourceConnection.getConexao();
+            prepStmt = conn.prepareStatement(LINK_GENDER);
+            prepStmt.setString(1, tombo);
+            prepStmt.setString(2, idGenre);
+
+            prepStmt.executeQuery();
+        } 
+        catch (SQLException e) {
+            String msg = "[ProdutosDB][getProdutoById()]: " + e.getMessage();
+            EpiousionException ge = new EpiousionException(msg, e);
+            throw ge;
+        } finally {
+        	DataSourceConnection.closeAll(conn, prepStmt);
+        }
+        System.out.println("Gênero cadastrado");
+    }
+    
+    public void unlinkGender(String tombo, String idGenre) throws EpiousionException{
+    	Connection conn = null;
+        PreparedStatement prepStmt = null;
+        try {
+        	conn = DataSourceConnection.getConexao();
+            prepStmt = conn.prepareStatement(UNLINK_GENDER);
+            prepStmt.setString(1, tombo);
+            prepStmt.setString(2, idGenre);
+
+            prepStmt.executeQuery();
+        } 
+        catch (SQLException e) {
+            String msg = "[ProdutosDB][getProdutoById()]: " + e.getMessage();
+            EpiousionException ge = new EpiousionException(msg, e);
+            throw ge;
+        } finally {
+        	DataSourceConnection.closeAll(conn, prepStmt);
+        }
+        System.out.println("Gênero removido");
     }
 }

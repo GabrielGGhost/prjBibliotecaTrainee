@@ -12,6 +12,7 @@ import java.util.Date;
 import com.epiousion.exception.EpiousionException;
 import com.epiousion.exception.LoginFailedException;
 import com.epiousion.model.Book;
+import com.epiousion.model.Genre;
 
 public class BookDB implements BookDAO {
 
@@ -21,6 +22,7 @@ public class BookDB implements BookDAO {
     private final String SELECT_BY_TOMBO_AJAX = "SELECT * FROM books WHERE tombo = ?";
     private final String SELECT_ALL_BOOKS= "select * from books order by tombo desc";
     private final String DES_ACTIVE_BOOK= "update books set active = ? where tombo = ?";
+    private final String GET_BOOK_GENDERS = "call sp_getBookGenders(?)";
 
     @Override
     public void register(Book book) throws EpiousionException {
@@ -110,31 +112,45 @@ public class BookDB implements BookDAO {
     
     public List<Book> getAllBooks() throws EpiousionException{
     	Connection conn = null;
-    	Statement stmt = null;
-    	ResultSet rs = null;
+    	PreparedStatement stmt = null;
+    	ResultSet rsBooks = null;
+    	ResultSet rsGenders = null;
     	List<Book> bookList = new ArrayList<Book>();
-    	
+    	List<Genre> genreList = new ArrayList<Genre>();
     	try{
     		conn = DataSourceConnection.getConexao();
-    		stmt = conn.createStatement();
-    		rs = stmt.executeQuery(SELECT_ALL_BOOKS);
-    		while(rs.next()){
-    			int tombo = rs.getInt("tombo");
-    			String title = rs.getString("title");
-    			int year = rs.getInt("year");
-    			String description = rs.getString("description");
-    			String picturepath = rs.getString("picturepath");
-    			String author = rs.getString("author");
-    			boolean active = rs.getBoolean("active");
+    		stmt = conn.prepareStatement(SELECT_ALL_BOOKS);
+    		rsBooks = stmt.executeQuery();
+    		while(rsBooks.next()){
+    			int tombo = rsBooks.getInt("tombo");
+    			String title = rsBooks.getString("title");
+    			int year = rsBooks.getInt("year");
+    			String description = rsBooks.getString("description");
+    			String picturepath = rsBooks.getString("picturepath");
+    			String author = rsBooks.getString("author");
+    			boolean active = rsBooks.getBoolean("active");
     			
-    			Book b = new Book(title, year, description, picturepath, tombo, author, active);
+    			genreList.clear();
+    			stmt = conn.prepareStatement(GET_BOOK_GENDERS);
+    			stmt.setInt(1, tombo);
+    			rsGenders = stmt.executeQuery();
+    			while(rsGenders.next()){
+    				
+    				int id = rsGenders.getInt("idGender");
+    				String name = rsGenders.getString("name");
+    				
+    				Genre g = new Genre(id, name);
+    				genreList.add(g);
+    			}
+    			
+    			Book b = new Book(title, year, description, picturepath, tombo, author, active, new ArrayList(genreList));
     			bookList.add(b);
     		}
     	} catch (SQLException e) {
             e.printStackTrace();
             throw new EpiousionException("Erro ao buscar livros", e);
         } finally {
-        	DataSourceConnection.closeAll(conn, stmt, rs);
+        	DataSourceConnection.closeAll(conn, stmt, rsBooks, rsGenders);
         }
     	return bookList;
     }

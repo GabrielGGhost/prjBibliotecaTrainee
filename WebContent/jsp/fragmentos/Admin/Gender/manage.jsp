@@ -6,21 +6,21 @@
 	</div>
 	<div class="genderBoxes">
 		<div class="unregistredGenders">
-		<h5 class="centerText genderText">Categorias a adicionar</h5>
-		<ul class="unregisteredGender">
-			<c:forEach var="genre" items="${unregisteredGenres}">
-				<li class="gender"><input type="button" value="Adicionar" class="btnAddGender"/> ${genre.name}</li>
-			</c:forEach>
-		</ul>
-	</div>
-	<div class="registredGenders">
-		<h5 class="centerText genderText">Categorias adicionadas</h5>
-		<ul class="unregisteredGender">
-			<c:forEach var="genre" items="${registeredGenres}">
-				<li class="gender"><input type="button" value="Remover" class="btnRmvGender"/> ${genre.name}</li>
-			</c:forEach>
-		</ul>
-	</div>
+			<h5 class="centerText genderText">Categorias a adicionar</h5>
+			<ul class="unregisteredGenderList">
+				<c:forEach var="genre" items="${unregisteredGenres}">
+					<li class="gender"><a class="btnAddGender" href="${pageContext.request.contextPath}/admin/genre/link?idGenre=${genre.id}&tombo=${param.id}">Adicionar</a><span>- ${genre.name}</span></li>
+				</c:forEach>
+			</ul>
+		</div>
+		<div class="registredGenders">
+			<h5 class="centerText genderText">Categorias adicionadas</h5>
+			<ul class="registeredGenderList">
+				<c:forEach var="genre" items="${registeredGenres}">
+					<li class="gender"> <a class="btnRmvGender" href="${pageContext.request.contextPath}/admin/genre/unlink?idGenre=${genre.id}&tombo=${param.id}">Remover</a> <span>${genre.name}</span></li>
+				</c:forEach>
+			</ul>
+		</div>
 	</div>
 	
 </div>
