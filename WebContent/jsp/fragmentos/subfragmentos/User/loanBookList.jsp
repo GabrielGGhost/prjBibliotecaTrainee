@@ -13,7 +13,12 @@
 	</thead>
 	<tbody>
 		<c:forEach var="loan" items="${loanList}">
-			<tr>
+			<c:if test="${loan.devolutionDate < date}">
+				<tr style="background-color: rgba(220,0,0,.5);">			
+			</c:if>
+			<c:if test="${loan.devolutionDate >= date}">
+				<tr>			
+			</c:if>
 				<td class="centerText">${loan.idLoan}</td>
 				<td class="centerText">${loan.idLoanBook}</td>
 				<td>${loan.title}</td>
@@ -24,9 +29,14 @@
 						<td class="centerText">${loan.returnedDate}</td>
 					</c:when>
 					<c:otherwise>
-						<td class="centerText">Pendente</td>
+						<c:if test="${loan.devolutionDate < date}">
+							<td class="centerText">Atrasado</td>
+						</c:if>
+						<c:if test="${loan.devolutionDate >= date}">
+							<td class="centerText">Pendente</td>
+						</c:if>
 					</c:otherwise>
-				</c:choose>		
+				</c:choose>
 			</tr>
 		</c:forEach>
 	</tbody>

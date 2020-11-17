@@ -19,8 +19,8 @@
     <filter-name>AdminControllAccess</filter-name>
     <url-pattern>/jsp/admArea/*</url-pattern>
     <url-pattern>/admin/saveUser</url-pattern>
-    <url-pattern>/buscaCliente</url-pattern>
-    <url-pattern>/searchBook</url-pattern>
+    <url-pattern>/loan/searchUser</url-pattern>
+    <url-pattern>/loan/searchBook</url-pattern>
     <url-pattern>/admin/genre/link</url-pattern>
     <dispatcher>FORWARD</dispatcher>
     <dispatcher>REQUEST</dispatcher>

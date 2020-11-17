@@ -436,15 +436,15 @@ header .title{
 }
 
 .unregistredGenders{
-	width: 80%;
-	margin: 20px 80px;
+	width: 50%;
+	margin: 20px auto;
 	border: 1px solid black;
 	border-radius: 10px;
 }
 
 .registredGenders{
-	width: 80%;
-	margin: 20px 80px;
+	width: 50%;
+	margin: 20px auto;
 	border: 1px solid black;
 	border-radius: 10px;
 }

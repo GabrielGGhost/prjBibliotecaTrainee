@@ -33,9 +33,14 @@
 		</label>
 
 		</div>
-		<div class="ViewUserFifthtRow">
-			<a href="${pageContext.request.contextPath}/admin/loan/renew?id=${loan.idLoanBook}"><input type="button" class="btn" value="Renovar Livro"/></a>
-			<a href="${pageContext.request.contextPath}/admin/loan/receive?id=${loan.idLoanBook}"><input type="button" class="btn" value="Receber Livro"/></a>
-		</div>
+		<c:choose>
+			<c:when test="${empty loan.returnedDate}">
+				<div class="ViewUserFifthtRow">
+					<a href="${pageContext.request.contextPath}/admin/loan/renew?id=${loan.idLoanBook}"><input type="button" class="btn" value="Renovar Livro"/></a>
+					<a href="${pageContext.request.contextPath}/admin/loan/receive?id=${loan.idLoanBook}"><input type="button" class="btn" value="Receber Livro"/></a>
+				</div>
+			</c:when>
+		</c:choose>
+		
 	</div>
 </div>

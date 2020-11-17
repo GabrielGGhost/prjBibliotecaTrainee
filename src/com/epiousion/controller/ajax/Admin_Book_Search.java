@@ -14,41 +14,23 @@ import com.epiousion.dao.BookDB;
 import com.epiousion.exception.EpiousionException;
 import com.epiousion.model.Book;
 
-/**
- * Servlet implementation class SearchBook
- */
 @WebServlet("/loan/searchBook")
 public class Admin_Book_Search extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public Admin_Book_Search() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+    public Admin_Book_Search() {}
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			searchBook(request, response);
 		} catch (EpiousionException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			searchBook(request, response);
 		} catch (EpiousionException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -61,22 +43,19 @@ public class Admin_Book_Search extends HttpServlet {
 		Book book = bookdb.getBookByTombo(id);
 		PrintWriter out = response.getWriter();
 		out.write("<?xml version='1.0' encoding='UTF-8'?>");
+		response.setContentType("text/xml");
+	
+		out.write("<book>");
 
 		if(book != null) {
-			
-			response.setContentType("text/xml");
-			out.write("<book>");
-				out.write("<tombo>" + book.getTombo() + "</tombo>");
-				out.write("<title>" + book.getTitle() + "</title>");
-				out.write("<year>" + book.getYear() + "</year>");
-				out.write("<author>" + book.getAuthor() + "</author>");
-	
-			out.write("</book>");
-		} else {
-			out.write("<book>");
-						
-			out.write("</book>");
+				
+			out.write("<tombo>" + book.getTombo() + "</tombo>");
+			out.write("<title>" + book.getTitle() + "</title>");
+			out.write("<year>" + book.getYear() + "</year>");
+			out.write("<author>" + book.getAuthor() + "</author>");
 		}
+			out.write("</book>");
+		
 		System.out.println("[AJAX] Finalizando busca por livro!");
 	}
 }

@@ -20,7 +20,7 @@
 			</Label>
 			<input type="button" value="Adicionar livro" class="btn" onclick="sendRequest(2)"/>
 			<input type="button" id="makeLoan" class="btn left" value="Realizar Empréstimo"/>
-			<span><b>Data de devolução: </b></span>
+			<span><b>Data de devolução: </b>${date}</span>
 		</div>
 		<div id="preparingBooks">
 			<div id="book2Loan" class="displayNone book2Loan">

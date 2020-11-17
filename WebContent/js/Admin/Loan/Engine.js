@@ -69,7 +69,10 @@ function searchUser(){
 		document.getElementById('idUser').textContent = user[0][0].children[0].textContent;
 		document.getElementById('nameUser').innerHTML = user[0][0].children[1].textContent;
 		document.getElementById('emailUser').innerHTML = user[0][0].children[2].textContent;
-		document.getElementById('phoneUser').innerHTML = user[0][0].children[3].textContent;
+		if(user[0][0].children[3].textContent != "null")
+			document.getElementById('phoneUser').innerHTML = user[0][0].children[3].textContent;
+		else 
+			document.getElementById('phoneUser').innerHTML = "Não registrado";
 	} else {
 		document.getElementById('idUser').innerHTML = "";
 		document.getElementById('nameUser').innerHTML = "";

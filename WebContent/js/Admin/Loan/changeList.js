@@ -1,6 +1,6 @@
 
 var element = document.getElementById("select");
-var btnSearchUser = document.getElementById("").
+//var btnSearchUser = document.getElementById("").
 
 element.addEventListener('change', changeList);
 

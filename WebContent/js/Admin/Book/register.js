@@ -69,7 +69,7 @@ function sendRequest(){
 	url = "register/ajax?title=" + data[0]
 			+ "&year=" + data[1]
 			+ "&author=" + data[2]
-			+ "&description=" + data[4];
+			+ "&description=" + data[3];
 	
 	request = new XMLHttpRequest();
 	

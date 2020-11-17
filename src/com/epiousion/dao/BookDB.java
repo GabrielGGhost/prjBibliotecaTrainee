@@ -17,7 +17,7 @@ import com.epiousion.model.Genre;
 public class BookDB implements BookDAO {
 
     private final String INSERT_QUERY = "CALL sp_registerBook(?, ?, ?, ?)";
-    private final String SELECT_BY_TOMBO = "SELECT * FROM books WHERE tombo NOT IN(SELECT idBook FROM loan_books) AND tombo = ?";
+    private final String SELECT_BY_TOMBO = "SELECT * FROM books WHERE tombo NOT IN(SELECT idBook FROM loan_books) AND tombo = ? AND active = 1;";
     private final String GET_BY_TOMBO = "SELECT * FROM books WHERE tombo = ?";
     private final String SELECT_BY_TOMBO_AJAX = "SELECT * FROM books WHERE tombo = ?";
     private final String SELECT_ALL_BOOKS= "select * from books order by tombo desc";
