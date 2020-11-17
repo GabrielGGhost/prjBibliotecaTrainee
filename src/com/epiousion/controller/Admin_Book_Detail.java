@@ -25,7 +25,7 @@ public class Admin_Book_Detail extends HttpServlet {
 		int tombo = Integer.parseInt(request.getParameter("id"));
 		
 		try {
-			book = bookdb.getBookByTombo(tombo);
+			book = bookdb.getAllBookByTombo(tombo);
 		} catch (EpiousionException e) {
 			
 			e.printStackTrace();
@@ -33,6 +33,6 @@ public class Admin_Book_Detail extends HttpServlet {
 		
 		request.getSession().setAttribute("book", book);
 		
-		request.getRequestDispatcher("/jsp/admArea/Book/struct_bookDetail.jsp").forward(request, response); 
+		request.getRequestDispatcher("/jsp/admArea/Book/struct_detail.jsp").forward(request, response); 
 	}
 }

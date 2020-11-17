@@ -11,7 +11,7 @@ import com.epiousion.dao.BookDAO;
 import com.epiousion.dao.BookDB;
 import com.epiousion.exception.EpiousionException;
 
-@WebServlet("/admin/book/bookDesActive")
+@WebServlet("/admin/book/desActive")
 public class Admin_Book_DesActive extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -31,7 +31,7 @@ public class Admin_Book_DesActive extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		response.sendRedirect(request.getContextPath() + "/admin/livros");
+		response.sendRedirect(request.getContextPath() + "/admin/book/list");
 	}
 
 }

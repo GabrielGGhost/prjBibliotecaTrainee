@@ -17,6 +17,7 @@ public class BookDB implements BookDAO {
 
     private final String INSERT_QUERY = "CALL sp_registerBook(?, ?, ?, ?)";
     private final String SELECT_BY_TOMBO = "SELECT * FROM books WHERE tombo NOT IN(SELECT idBook FROM loan_books) AND tombo = ?";
+    private final String GET_BY_TOMBO = "SELECT * FROM books WHERE tombo = ?";
     private final String SELECT_BY_TOMBO_AJAX = "SELECT * FROM books WHERE tombo = ?";
     private final String SELECT_ALL_BOOKS= "select * from books order by tombo desc";
     private final String DES_ACTIVE_BOOK= "update books set active = ? where tombo = ?";
@@ -53,6 +54,37 @@ public class BookDB implements BookDAO {
         try {
         	conn = DataSourceConnection.getConexao();
             prepStmt = conn.prepareStatement(SELECT_BY_TOMBO);
+            prepStmt.setInt(1, tombo);
+            
+            rs = prepStmt.executeQuery();
+            if (rs.next()) {
+            	int vTombo = rs.getInt("tombo");
+                String title = rs.getString("title");
+                int year = rs.getInt("year");
+                String author = rs.getString("author");
+                String picturepath = rs.getString("picturepath");
+                String description = rs.getString("description");
+                boolean active = rs.getBoolean("active");
+                book = new Book(title, year, description, picturepath,vTombo , author, active);
+            }
+        } catch (SQLException e) {
+            String msg = "[ProdutosDB][getProdutoById()]: " + e.getMessage();
+            EpiousionException ge = new EpiousionException(msg, e);
+            throw ge;
+        } finally {
+        	DataSourceConnection.closeAll(conn, prepStmt, rs);
+        }
+        return book;
+    }
+    
+    public Book getAllBookByTombo(int tombo) throws EpiousionException {
+        Connection conn = null;
+        PreparedStatement prepStmt = null;
+        ResultSet rs = null;
+        Book book = null;
+        try {
+        	conn = DataSourceConnection.getConexao();
+            prepStmt = conn.prepareStatement(GET_BY_TOMBO);
             prepStmt.setInt(1, tombo);
             
             rs = prepStmt.executeQuery();

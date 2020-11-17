@@ -13,6 +13,8 @@ public interface BookDAO {
 
     public Book getBookByTombo(int tombo) throws EpiousionException ;
 
+    public Book getAllBookByTombo(int tombo) throws EpiousionException ;
+
     public Book getBookByTomboAjax(int tombo) throws EpiousionException ;
 
     public List<Book> getAllBooks() throws EpiousionException ;

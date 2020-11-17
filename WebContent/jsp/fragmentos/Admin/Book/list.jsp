@@ -1,6 +1,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<div class="buttons ">
+<div class="buttons booksScreen">
 	<a class="btnBook" href="${pageContext.request.contextPath}/admin/book/register">Cadastrar Novo Livro</a>
 </div>
 

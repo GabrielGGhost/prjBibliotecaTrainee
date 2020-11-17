@@ -12,7 +12,7 @@
 		</div>
 		<div class="ViewUserThirdRow">
 			<span><b>Autor: </b> ${book.author}</span>
-			<form action="${pageContext.request.contextPath}/admin/book/bookDesActive?id=${book.tombo}&status=${book.active}" method="post">
+			<form action="${pageContext.request.contextPath}/admin/book/desActive?id=${book.tombo}&status=${book.active}" method="post">
 				<c:choose>
 					<c:when test="${book.active}">
 						<span><input type="submit" value="Desativar Livro" class="btnDesactive centerText" style="width:150px;"/></span>
