@@ -464,12 +464,16 @@ header .title{
 	height: 25px;
 }
 
-.btnAddGender{
+.btnAddGender, .btnRmvGender{
 	border-radius: 10px;
 	cursor: pointer;
 	transition: 0.5s linear;
 	width: 100px;
 
+}
+
+.btnRmvGender:HOVER{
+	background-color: rgba(200,0,0, .5);
 }
 
 .btnAddGender:HOVER{

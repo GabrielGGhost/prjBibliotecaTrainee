@@ -13,4 +13,8 @@ public interface GenreDAO {
     
     public List<Genre> getAllGenders() throws EpiousionException;
 
+    public List<Genre> getUnregisteredGenres(String id) throws EpiousionException;
+
+    public List<Genre> getRegisteredGenres(String id) throws EpiousionException;
+
 }

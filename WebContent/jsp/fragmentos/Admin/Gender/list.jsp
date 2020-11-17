@@ -14,10 +14,10 @@
 		</tr>
 	</thead>
 	<tbody>
-		<c:forEach var="gender" items="${genderList}">
+		<c:forEach var="genre" items="${genreList}">
 			<tr>
-				<td class="centerText">${gender.id}</td>
-				<td>${gender.name}</td>
+				<td class="centerText">${genre.id}</td>
+				<td>${genre.name}</td>
 			</tr>
 		</c:forEach>
 	</tbody>

@@ -9,12 +9,15 @@ import java.util.List;
 import java.util.ArrayList;
 
 import com.epiousion.exception.EpiousionException;
+import com.epiousion.model.Book;
 import com.epiousion.model.Genre;
 
 public class GenreDB implements GenreDAO {
 
     private final String INSERT_QUERY = "INSERT INTO GENDERS(name) VALUES(?)";
     private final String GET_ALL_GENDERS = "SELECT * FROM GENDERS order by idGender desc";
+    private final String GET_UNREGISTERED_GENDERS = "CALL sp_getUnregisteredGenres(?)";
+    private final String GET_REGISTERED_GENDERS = "CALL sp_getRegisteredGenres(?)";
 
     @Override
     public void register(Genre gender) throws EpiousionException {
@@ -62,5 +65,69 @@ public class GenreDB implements GenreDAO {
         	DataSourceConnection.closeAll(conn, stmt, rs);
         }
     	return genderList;
+    }
+    
+    @Override
+    public List<Genre> getUnregisteredGenres(String pId) throws EpiousionException{
+    	Connection conn = null;
+        PreparedStatement prepStmt = null;
+        ResultSet rs = null;
+        List<Genre> genderList = new ArrayList<Genre>();
+        try {
+        	conn = DataSourceConnection.getConexao();
+            prepStmt = conn.prepareStatement(GET_UNREGISTERED_GENDERS);
+            prepStmt.setString(1, pId);
+            
+            rs = prepStmt.executeQuery();
+            while (rs.next()) {
+            	
+            	int id = rs.getInt("idGender");
+    			String name = rs.getString("name");
+
+    			Genre b = new Genre(id,name);
+    			genderList.add(b);
+            }
+        } 
+        catch (SQLException e) {
+            String msg = "[ProdutosDB][getProdutoById()]: " + e.getMessage();
+            EpiousionException ge = new EpiousionException(msg, e);
+            throw ge;
+        } finally {
+        	DataSourceConnection.closeAll(conn, prepStmt, rs);
+        }
+        System.out.println("Retornando gêneros não cadastrados");
+        return genderList;
+    }
+    
+    @Override
+    public List<Genre> getRegisteredGenres(String pId) throws EpiousionException{
+    	Connection conn = null;
+        PreparedStatement prepStmt = null;
+        ResultSet rs = null;
+        List<Genre> genderList = new ArrayList<Genre>();
+        try {
+        	conn = DataSourceConnection.getConexao();
+            prepStmt = conn.prepareStatement(GET_REGISTERED_GENDERS);
+            prepStmt.setString(1, pId);
+            
+            rs = prepStmt.executeQuery();
+            while (rs.next()) {
+            	
+            	int id = rs.getInt("idGender");
+    			String name = rs.getString("name");
+
+    			Genre b = new Genre(id,name);
+    			genderList.add(b);
+            }
+        } 
+        catch (SQLException e) {
+            String msg = "[ProdutosDB][getProdutoById()]: " + e.getMessage();
+            EpiousionException ge = new EpiousionException(msg, e);
+            throw ge;
+        } finally {
+        	DataSourceConnection.closeAll(conn, prepStmt, rs);
+        }
+        System.out.println("Retornando gêneros não cadastrados");
+        return genderList;
     }
 }
