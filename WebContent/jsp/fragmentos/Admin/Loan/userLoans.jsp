@@ -36,14 +36,7 @@
 				<option value="4" selected="selected">Todos os Empréstimos</option>
 			</c:otherwise>
 		</c:choose>
-
 	</select>
-	<br>
-	<label>
-		Buscar empréstimo por código do usuário:
-		<input type="text" class="inputText"/>
-	</label>
-	<input type="button" value="Buscar" class="btn"/>
 </div>
 
 <table class="loansTable">

@@ -1,6 +1,7 @@
 package com.epiousion.controller;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -24,18 +25,22 @@ public class Slv_Admin_User_SelectedLoan extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		LoanDAO loandb = new LoanDB();
-		LoanBook loanbook = null;
-		List userLoans = null;
-		int idLoan = Integer.parseInt(request.getParameter("idLoan"));
+		Date date = null;
+
+		List<LoanBook> userLoans = null;
+		int idLoan = Integer.parseInt(request.getParameter("id"));
 		
 		try {
-			userLoans = loandb.getUserBooksLoan(idLoan);
+			userLoans = loandb.getUserLoanBooks(idLoan);
+			date = loandb.getTodayDate();
+
 		} catch (EpiousionException e) {
 			e.printStackTrace();
 		}
 		
 		request.getSession().setAttribute("loanList", userLoans);
-		
+		request.getSession().setAttribute("date", date);
+
 		request.getRequestDispatcher("/jsp/admArea/User/struct_selectedLoan.jsp").forward(request, response);
 	}
 }

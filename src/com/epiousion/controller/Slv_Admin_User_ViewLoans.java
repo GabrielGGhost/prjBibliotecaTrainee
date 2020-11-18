@@ -16,7 +16,7 @@ import com.epiousion.dao.UserDB;
 import com.epiousion.exception.EpiousionException;
 import com.epiousion.model.User;
 
-@WebServlet("/admin/viewLoans")
+@WebServlet("/admin/user/viewLoans")
 public class Slv_Admin_User_ViewLoans extends HttpServlet {
 	private static final long serialVersionUID = 1L;
    

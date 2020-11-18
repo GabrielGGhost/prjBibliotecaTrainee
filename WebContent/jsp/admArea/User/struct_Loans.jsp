@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -11,15 +14,32 @@
 	<jsp:include page="/jsp/fragmentos/header.jsp">
 		<jsp:param value="${user}" name="user"/>
 	</jsp:include>
-	<div class="userData">
-		<span><b>#</b> <a id="idUser">${selectedUser.id}</a></span>
-		<span><b>Usuário</b> ${selectedUser.name}</span>
-	</div>
-	<jsp:include page="/jsp/fragmentos/User/myLoans.jsp">
-		<jsp:param value="${select}" name="select"/>
-	</jsp:include>
 	
-	<script type="text/javascript" src="${pageContext.request.contextPath}/js/Admin/User/changeLoanList.js"></script>
+	<div class="buttons emprestimosScreen">
+		<select id="selectOption" class="inputSelect">
+			<c:choose>
+				<c:when test="${select == 1}">
+					<option value="1" selected="selected">Empréstimos</option>
+					<option value="2">Livros</option>
+				</c:when>
+				<c:otherwise>
+					<option value="1">Empréstimos</option>
+					<option value="2" selected="selected">Livros</option>
+				</c:otherwise>
+			</c:choose>
+	
+		</select>
+	</div>
+	
+
+	<c:choose>
+		<c:when test="${select == 1}">
+			<jsp:include page="/jsp/fragmentos/Subfragmentos/Admin/UserloanBookList.jsp"/>
+		</c:when>
+		<c:otherwise>
+			<jsp:include page="/jsp/fragmentos/Subfragmentos/Admin/UserloanList.jsp"/>
+		</c:otherwise>
+	</c:choose>
 
 </body>
 </html>
