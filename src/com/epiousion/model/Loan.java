@@ -1,6 +1,7 @@
 package com.epiousion.model;
 
 import java.util.Date;
+import java.util.List;
 
 public class Loan {
 	
@@ -8,13 +9,20 @@ public class Loan {
 	private String name;
 	private Date loanDate;
 	private int quantity;
-	private User user;
-	private LoanBook[] loanBooks;
 	
-	public Loan(int idLoan, String name, Date loanDate) {
-		this.setName(name);
-		this.setIdLoan(idLoan);
-		this.setLoanDate(loanDate);
+	private User user;
+	private List<LoanBook> loanBooks;
+	
+	//public Loan(int idLoan, String name, Date loanDate) {
+	//	this.setName(name);
+	//	this.setIdLoan(idLoan);
+	//	this.setLoanDate(loanDate);
+	//}
+	
+	public Loan(int idLoan, Date loanDate, int quantity, User user, List<LoanBook> loanList) {
+		this(idLoan, loanDate, quantity);
+		this.setUser(user);
+		this.setLoanBooks(loanList);
 	}
 	
 	public Loan(int idLoan, Date loanDate, int quantity) {
@@ -22,8 +30,16 @@ public class Loan {
 		this.setIdLoan(idLoan);
 		this.setLoanDate(loanDate);
 		this.setQuantity(quantity);
+
 	}
 	
+	
+	public Loan(int idLoan, Date loanDate, User user) {
+		this.setIdLoan(idLoan);
+		this.setLoanDate(loanDate);
+		this.setUser(user);
+	}
+
 	public int getIdLoan() {
 		return this.idLoan;
 	}
@@ -55,10 +71,10 @@ public class Loan {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	public LoanBook[] getLoanBooks() {
-		return this.loanBooks;
+	public List<LoanBook> getLoanBooks() {
+		return loanBooks;
 	}
-	public void setLoanBooks(LoanBook[] loanBooks) {
+	public void setLoanBooks(List<LoanBook> loanBooks) {
 		this.loanBooks = loanBooks;
 	}
 

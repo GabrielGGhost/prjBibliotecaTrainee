@@ -142,7 +142,7 @@ function redirect(){
 		return;
 	} else {
 		
-		url = "saveLoan?idUser=" + idUser;
+		url = "save?idUser=" + idUser;
 		
 		for (var i = 0; i < qttBooks.length - 1; i++) {
 			url += "&idBook_" + i + "=" + qttBooks[i].innerText;

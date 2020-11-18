@@ -1,6 +1,7 @@
 package com.epiousion.controller;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -29,18 +30,22 @@ public class User_myLoans extends HttpServlet {
 		if(select == null) select = "1";
 		int id = user.getId();
 		List userLoans = null;
+		Date date = null;
 		try {
 			if(select.contentEquals("1")){
 				userLoans = loandb.getUserLoans(id);				
 			} else {
 				userLoans = loandb.getUserLoanBooks(id);				
 			}
+			
+			date = loandb.getTodayDate();
 		} catch (EpiousionException e) {
 			e.printStackTrace();
 		}
 		
-		request.getSession().setAttribute("userLoans", userLoans);
+		request.getSession().setAttribute("loanList", userLoans);
 		request.getSession().setAttribute("select", select);
+		request.getSession().setAttribute("date", date);
 
 		request.getRequestDispatcher("/jsp/userArea/strcut_myLoans.jsp").forward(request, response);
 	}

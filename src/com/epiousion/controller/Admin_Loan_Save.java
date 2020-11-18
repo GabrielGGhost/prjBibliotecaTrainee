@@ -15,12 +15,12 @@ import com.epiousion.dao.LoanDAO;
 import com.epiousion.dao.LoanDB;
 import com.epiousion.exception.EpiousionException;
 
-@WebServlet("/loan/saveLoan")
-public class Admin_Loan_SaveLoan extends HttpServlet {
+@WebServlet("/loan/save")
+public class Admin_Loan_Save extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 
-    public Admin_Loan_SaveLoan() {}
+    public Admin_Loan_Save() {}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -47,7 +47,7 @@ public class Admin_Loan_SaveLoan extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		response.sendRedirect(request.getContextPath() + "/admin/emprestimos");
+		response.sendRedirect(request.getContextPath() + "/admin/loan/list");
 	}
 
 }

@@ -84,6 +84,7 @@ public class LoanDB implements LoanDAO {
     	Statement stmt = null;
     	ResultSet rs = null;
     	List<Loan> loanList = new ArrayList<Loan>();
+    	UserDAO userdb = new UserDB();
     	
     	try{
     		conn = DataSourceConnection.getConexao();
@@ -92,10 +93,12 @@ public class LoanDB implements LoanDAO {
     		while(rs.next()){
     			
     			int idLoan = rs.getInt("idLoan");
-    			String name = rs.getString("name");
+    			int id = rs.getInt("idUser");
     			Date loanDate = rs.getDate("loanDate");
     			
-    			Loan loan = new Loan(idLoan, name, loanDate);
+    			User user = userdb.getUserByID(id);
+    			
+    			Loan loan = new Loan(idLoan, loanDate, user);
     			loanList.add(loan);
     		}
     	} catch (SQLException e) {
