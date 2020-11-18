@@ -4,7 +4,7 @@
 <html>
 <head>
  <meta charset="utf-8">
-<title>Insert title here</title>
+<title>Realizar Empréstimos</title>
 <link href='${pageContext.request.contextPath}/css/style.css' rel='stylesheet' type='text/css'>
 </head>
 <body>

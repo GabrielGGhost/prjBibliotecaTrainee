@@ -18,12 +18,12 @@
 	<section class="bookList">
 		<c:forEach var="book" items="${bookList}">
 			<div class="book">
-					<div class="topDetails">
-						<div class="bookDetails">
-							<a class="displayNone">${book.tombo}</a>
-							<span><b>Títulos:</b>${book.title}.</span>
-				 			<span><b>Ano:</b> ${book.year}</span>
-				 			<span><b>Autor:</b> ${book.author}</span>
+				<div class="topDetails">
+					<div class="bookDetails">
+						<a class="displayNone">${book.tombo}</a>
+						<span><b>Título: </b>${book.title}.</span>
+						<span><b>Ano: </b>${book.year}</span>
+						<span><b>Autor: </b>${book.author}</span>
 			 		</div>
 			 		<b>Gêneros:</b> 
 			 		
@@ -35,7 +35,6 @@
 					</div>
 				</div>
 			 </div>
-		</c:forEach>
-			
-		</section>
-	</div>
+		</c:forEach>	
+	</section>
+</div>

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Registro de Gênero</title>
+<title>Cadastro de Gênero</title>
 <link href='${pageContext.request.contextPath}/css/style.css' rel='stylesheet' type='text/css'>
 
 </head>

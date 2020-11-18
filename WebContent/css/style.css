@@ -147,6 +147,10 @@ header .title{
 	
 }
 
+.topDetails{
+	width: 100%;
+}
+
 .bookList{
 	width: 75%;
 	margin-left: 25%;
@@ -196,7 +200,7 @@ header .title{
 	width: 60%;
 	display: block;
     margin-left: auto;
-    margin-right: auto
+    margin-right: auto;
 }
 
 .topViewRow{

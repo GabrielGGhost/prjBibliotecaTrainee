@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link href='${pageContext.request.contextPath}/css/style.css' rel='stylesheet' type='text/css'>
 
-<title>Insert title here</title>
+<title>Lista de Usuários</title>
 </head>
 <body>
 	<jsp:include page="/jsp/fragmentos/header.jsp">

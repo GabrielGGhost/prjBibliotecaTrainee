@@ -16,7 +16,7 @@
 				|
 			</c:if>
 			<c:if test="${!user.admin}">
-				<li>Lista de livros</li>
+				<li><a href="${pageContext.request.contextPath}/">Lista de livros</a></li>
 				|
 				<li><a href="${pageContext.request.contextPath}/myLoans">Empréstimos</a></li>
 				|
