@@ -18,7 +18,7 @@ public class UserDB implements UserDAO {
     private final String INSERT_QUERY = "CALL sp_saveUser(?, ?, ?, ?, ?, ?)";
     private final String SELECT_BY_LOGIN = "select * from users where username = ? AND password = ?";
     private final String SELECT_ACTIVE_USER_BY_ID = "select * from users where idUser = ? AND active = 1";
-    private final String SELECT_ALL_USERS= "select * from users order by idUser desc";
+    private final String SELECT_ALL_USERS= "CALL sp_getAllUsers(?)";
     private final String DES_ACTIVE_USER= "update users set active = ? where idUser = ?";
     private final String SELECT_USER_BY_ID = "select * from users where idUser = ?";
 
@@ -143,17 +143,19 @@ public class UserDB implements UserDAO {
         return user;
     }
     
-    public List<User> getAllUsers() throws EpiousionException{
+    public List<User> getAllUsers(String filter) throws EpiousionException{
     	Connection conn = null;
-    	Statement stmt = null;
+    	PreparedStatement prepStmt = null;
     	ResultSet rs = null;
     	List<User> listaUsuarios = new ArrayList<User>();
     	
     	try{
-    		conn = DataSourceConnection.getConexao();
-    		stmt = conn.createStatement();
-    		rs = stmt.executeQuery(SELECT_ALL_USERS);
-    		while(rs.next()){
+    		 conn = DataSourceConnection.getConexao();
+             prepStmt = conn.prepareStatement(SELECT_ALL_USERS);
+             prepStmt.setString(1, filter);
+             
+             rs = prepStmt.executeQuery();
+             while(rs.next()){
     			int id = rs.getInt("idUser");
     			String name = rs.getString("name");
     			String username = rs.getString("username");
@@ -172,7 +174,7 @@ public class UserDB implements UserDAO {
             e.printStackTrace();
             throw new EpiousionException("[UserDB][getAllUsers()]", e);
         } finally{
-        	DataSourceConnection.closeAll(conn, stmt, rs);
+        	DataSourceConnection.closeAll(conn, prepStmt, rs);
         }
     	return listaUsuarios;
     }

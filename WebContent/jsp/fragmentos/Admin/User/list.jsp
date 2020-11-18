@@ -6,7 +6,12 @@
 </nav>
 
 <div class="buttons emprestimosScreen">
-	<a class="btnBook" href="${pageContext.request.contextPath}/admin/user/register">Cadastrar Usuário</a>
+	<a class="btnBook space" href="${pageContext.request.contextPath}/admin/user/register">Cadastrar Usuário</a>
+	<label>
+		Filtro por nome:
+		<input type="text" class="inputText" id="txtFilter"/>
+	</label>
+	<input type="button" value="Pesquisar" class="btn" id="btnFilter"/>
 </div>
 <table class="userTable">
 	<thead>

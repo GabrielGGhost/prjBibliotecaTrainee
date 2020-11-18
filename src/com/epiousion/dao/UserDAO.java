@@ -17,7 +17,7 @@ public interface UserDAO {
 
     public User getUserByID(int id) throws EpiousionException;
 
-    public List<User> getAllUsers() throws EpiousionException;
+    public List<User> getAllUsers(String filter) throws EpiousionException;
         
     public void des_active(int idUser, boolean status) throws EpiousionException;
 }

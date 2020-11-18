@@ -123,8 +123,6 @@ public class LoanDB implements LoanDAO {
     		prepStmt.setInt(1, id);
     	
     		rs = prepStmt.executeQuery();
-    		
-    		
     		while(rs.next()){
     			
     			int idLoan = rs.getInt("idLoan");

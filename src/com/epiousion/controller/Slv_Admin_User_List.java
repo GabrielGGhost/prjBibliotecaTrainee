@@ -24,8 +24,9 @@ public class Slv_Admin_User_List extends HttpServlet {
 		
 		UserDAO userdb = new UserDB();
 		List<User> userList = null;
+		String filter = request.getParameter("filter");
     	try {
-			userList = userdb.getAllUsers();
+			userList = userdb.getAllUsers(filter);
 		} catch (EpiousionException e) {
 			e.printStackTrace();
 		}
