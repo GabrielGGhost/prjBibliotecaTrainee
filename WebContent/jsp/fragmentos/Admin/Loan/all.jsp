@@ -1,5 +1,26 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<nav class="navigation">
+	<ul class="navigationUl">
+		<li><a class="space pointer" href="${pageContext.request.contextPath}/admin/loan/list">Empréstimos</a></li>
+		<spawn class="space">></spawn>
+		<c:choose>
+			<c:when test="${select == 1}">
+				<li><a class="spaceSecond pointer"><a>Pendentes</a></li>
+			</c:when>
+			<c:when test="${select == 2}">
+				<li><a class="spaceSecond pointer">Resolvidos</a></li>
+			</c:when>
+			<c:when test="${select == 3}">
+				<li><a class="spaceSecond pointer">Atrasados</a></li>
+			</c:when>
+			<c:otherwise>
+				<li><a class="spaceSecond pointer">Todos</a></li>
+			</c:otherwise>
+		</c:choose>
+	</ul>
+</nav>
+
 <div class="buttons booksScreen">
 	<select class="inputSelect" id="select">
 		<c:choose>

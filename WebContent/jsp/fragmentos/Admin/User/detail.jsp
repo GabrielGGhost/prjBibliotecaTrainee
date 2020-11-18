@@ -1,5 +1,13 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<nav class="navigation">
+	<ul class="navigationUl">
+		<li><a class="space pointer" href="${pageContext.request.contextPath}/admin/user/list">Usuários </a></li>
+		<spawn class="space">></spawn>
+		<li><a class="spaceSecond pointer"> Detalhes</a></li>
+	</ul>
+</nav>
+
 <div class="containerViewUser">
 	<div class="centerViewUser">
 		<h1 class="centerText">Perfil do Usuário</h1>

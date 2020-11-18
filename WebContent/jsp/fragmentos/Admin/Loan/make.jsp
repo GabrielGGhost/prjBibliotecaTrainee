@@ -1,5 +1,12 @@
 <div class="makeLoanContainer">
 	<section class="user2Loan">
+	<nav class="navigation">
+	<ul class="navigationUl">
+		<li><a class="space pointer" href="${pageContext.request.contextPath}/admin/loan/list">Empréstimos </a></li>
+		<span class="space">></span>
+		<li><a class="spaceSecond pointer">Realizar</a></li>
+	</ul>
+</nav>
 		<div class="searchDiv">
 			Escolher leitor por código:
 			<input type="number" id="codUser" name="codUser" class="inputText searchUser"/>

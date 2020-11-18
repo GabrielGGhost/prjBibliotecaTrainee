@@ -1,5 +1,13 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<nav class="navigation">
+	<ul class="navigationUl">
+		<li><a class="space pointer" href="${pageContext.request.contextPath}/admin/user/list">Empréstimos </a></li>
+		<spawn class="space">></spawn>
+		<li><a class="spaceSecond pointer"> Empréstimos do Usuário</a></li>
+	</ul>
+</nav>
+
 <div class="buttons booksScreen">
 	<select class="inputSelect" id="select">
 		<c:choose>

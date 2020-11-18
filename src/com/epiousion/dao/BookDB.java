@@ -143,7 +143,7 @@ public class BookDB implements BookDAO {
     				genreList.add(g);
     			}
     			
-    			Book b = new Book(title, year, description, picturepath, tombo, author, active, new ArrayList(genreList));
+    			Book b = new Book(title, year, description, picturepath, tombo, author, active, new ArrayList<Genre>(genreList));
     			bookList.add(b);
     		}
     	} catch (SQLException e) {

@@ -6,7 +6,7 @@
 			<td class="centerText">#</td>
 			<td class="centerText">Data de retirada</td>
 			<td class="centerText">Quantidade de livros</td>
-			<td style="width:110px;" class="centerText actionTd">Ações</td> 
+			<td style="width:80px;" class="centerText actionTd">Ações</td> 
 		</tr>
 	</thead>
 	<tbody>

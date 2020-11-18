@@ -1,9 +1,14 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<nav class="navigation">
+	<ul class="navigationUl">
+		<li><a class="pointer">Empréstimos </a></li>
+	</ul>
+</nav>
+
 <div class="buttons emprestimosScreen">
-	<a class="btnBook" href="${pageContext.request.contextPath}/loan/make">Realizar Empréstimo</a>
-	<a class="btnBook" href="${pageContext.request.contextPath}/loan/all?select=1">Todos os Empréstimos</a>
-	<a class="btnBook">Agendamentos</a>
+	<a class="btnBook" href="${pageContext.request.contextPath}/admin/loan/make">Realizar Empréstimo</a>
+	<a class="btnBook" href="${pageContext.request.contextPath}/admin/loan/all?select=1">Todos os Empréstimos</a>
 </div>
 
 

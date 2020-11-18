@@ -1,5 +1,13 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<nav class="navigation">
+	<ul class="navigationUl">
+		<li><a class="space pointer" href="${pageContext.request.contextPath}/myLoans">Meus Empréstimos </a></li>
+		<spawn class="space">></spawn>
+		<li><a class="spaceSecond pointer">Livros</a></li>
+	</ul>
+</nav>
+
 <table class="loansTable">
 	<thead>
 		<tr>

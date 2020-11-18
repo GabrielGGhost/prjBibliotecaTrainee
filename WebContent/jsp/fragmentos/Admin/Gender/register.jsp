@@ -1,4 +1,11 @@
 
+<nav class="navigation">
+	<ul class="navigationUl">
+		<li><a class="space pointer" href="${pageContext.request.contextPath}/admin/genre/list">Gêneros</a></li>
+		<span class="space">></span>
+		<li><a class="spaceSecond pointer">Cadastro</a></li>
+	</ul>
+</nav>
 
 <div class="registerUser">
 	<h1>Cadastro de Gêneros</h1>

@@ -1,7 +1,9 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-<h3 class="centerText">Lista de Gêneros</h3>
-
+<nav class="navigation">
+	<ul class="navigationUl">
+		<li><a class="pointer">Gêneros</a></li>
+	</ul>
+</nav>
 <div class="buttons booksScreen">
 	<a class="btnBook" href="register">Cadastrar novo gênero</a>
 </div>

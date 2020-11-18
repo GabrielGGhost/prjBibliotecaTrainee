@@ -1,4 +1,10 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<nav class="navigation">
+	<ul class="navigationUl">
+		<li><a class="pointer" href="${pageContext.request.contextPath}/admin/user/list">Usuários</a></li>
+	</ul>
+</nav>
+
 <div class="buttons emprestimosScreen">
 	<a class="btnBook" href="${pageContext.request.contextPath}/admin/user/register">Cadastrar Usuário</a>
 </div>

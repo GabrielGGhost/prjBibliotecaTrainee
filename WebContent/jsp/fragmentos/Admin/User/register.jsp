@@ -1,3 +1,10 @@
+<nav class="navigation">
+	<ul class="navigationUl">
+		<li><a class="space pointer" href="${pageContext.request.contextPath}/admin/user/list">Usuários</a></li>
+		<spawn class="space">></spawn>
+		<li><a class="spaceSecond pointer"> Cadastro</a></li>
+	</ul>
+</nav>
 <div class="registerUser">
 	<h1>Cadastro de Usuários</h1>
 	<div class="registerError displayNone" id="erroMessage">
