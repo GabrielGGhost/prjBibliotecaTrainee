@@ -36,4 +36,6 @@ public interface LoanDAO {
 
 	public List<LoanBook> getAllBooksLoan(int select) throws EpiousionException;
 	
+	public List<LoanBook> getUserSelectedLoanBooks(String id) throws EpiousionException;
+
 }
