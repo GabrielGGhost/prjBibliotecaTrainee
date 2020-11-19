@@ -36,6 +36,7 @@ function checkData(data){
 		
 		return false;
 	}
+	
 	if(data[2] == "" || data[2] == null) {
 		msg = "Informe o autor do livro!"; 
 		

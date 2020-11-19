@@ -12,10 +12,6 @@ import com.epiousion.dao.BookDB;
 import com.epiousion.exception.EpiousionException;
 import com.epiousion.model.Book;
 
-
-/**
- * Servlet implementation class AdminUser_registerUser
- */
 @WebServlet("/admin/book/register/ajax")
 public class Admin_Book_Register extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -46,13 +42,25 @@ public class Admin_Book_Register extends HttpServlet {
 	private void registerBook(HttpServletRequest request, HttpServletResponse response) throws EpiousionException {
 		
 		String title = request.getParameter("title");
-		int year = Integer.parseInt(request.getParameter("year"));
+		String year = request.getParameter("year");
 		String author = request.getParameter("author");
 		String description = request.getParameter("description");
 		
-		Book user = new Book(title, year, author, description);
-		BookDAO bookdb = new BookDB();
+		if(year.equals("") || year == null){
+			year = "0";
+		}
 		
+
+		if(title.equals("") || title == null ||
+		    year == "0" ||
+		    author.equals("") || author == null ||
+		    description.equals("") || description == null){
+			
+			return;
+		} 
+		
+		Book user = new Book(title, Integer.parseInt(year), author, description);
+		BookDAO bookdb = new BookDB();
 		bookdb.register(user);
 		System.out.println("Usuário cadastrado");
 	}

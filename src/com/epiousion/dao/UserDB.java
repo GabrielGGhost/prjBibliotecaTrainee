@@ -21,6 +21,7 @@ public class UserDB implements UserDAO {
     private final String SELECT_ALL_USERS= "CALL sp_getAllUsers(?)";
     private final String DES_ACTIVE_USER= "update users set active = ? where idUser = ?";
     private final String SELECT_USER_BY_ID = "select * from users where idUser = ?";
+    private final String GET_QUANTITY_PAGES = "SELECT CEILING(COUNT(*)/7) AS qtty FROM USERS ";
 
     @Override
     public void save(User user) throws EpiousionException {
@@ -143,17 +144,19 @@ public class UserDB implements UserDAO {
         return user;
     }
     
-    public List<User> getAllUsers(String filter) throws EpiousionException{
+    public List<User> getAllUsers(String filter, String page) throws EpiousionException{
     	Connection conn = null;
     	PreparedStatement prepStmt = null;
     	ResultSet rs = null;
     	List<User> listaUsuarios = new ArrayList<User>();
     	
+    	if(page == null || page.equals("")) page = "0";
+    	
     	try{
     		 conn = DataSourceConnection.getConexao();
              prepStmt = conn.prepareStatement(SELECT_ALL_USERS);
              prepStmt.setString(1, filter);
-             
+             //prepStmt.setInt(2, Integer.parseInt(page) * 5);
              rs = prepStmt.executeQuery();
              while(rs.next()){
     			int id = rs.getInt("idUser");
@@ -200,6 +203,28 @@ public class UserDB implements UserDAO {
     	} finally{
         	DataSourceConnection.closeAll(conn, prepStmt);
         }
-    	
     }
+    
+	@Override
+	public int getQuantityPages() throws EpiousionException {
+		 Connection conn = null;
+	        PreparedStatement prepStmt = null;
+	        ResultSet rs = null;
+	        int quantity = 0;
+	        try {
+	        	conn = DataSourceConnection.getConexao();
+	            prepStmt = conn.prepareStatement(GET_QUANTITY_PAGES);	            
+	            rs = prepStmt.executeQuery();
+	            if (rs.next()) {
+	            	quantity = rs.getInt("qtty");
+	            }
+	        } catch (SQLException e) {
+	            String msg = "[ProdutosDB][getProdutoById()]: " + e.getMessage();
+	            EpiousionException ge = new EpiousionException(msg, e);
+	            throw ge;
+	        } finally {
+	        	DataSourceConnection.closeAll(conn, prepStmt, rs);
+	        }
+	        return quantity;
+	}
 }

@@ -42,15 +42,32 @@ public class Admin_User_Register extends HttpServlet {
 		String name = request.getParameter("name");
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
-		boolean admin = Boolean.parseBoolean((request.getParameter("admin")));
+		String admin = request.getParameter("admin");
 		String email = request.getParameter("email");
 		String phone = request.getParameter("phone");
 		
-		User user = new User(name, username, password, admin, email, phone);
+		if(!admin.equals("true") || !admin.equals("false") || admin == null){
+			admin = "false";
+		}
+		
+
+		if(name.equals("") || name == null ||
+			username.equals("") || username == null ||
+			password.equals("") || password == null ||
+			email.equals("") || email == null ||
+			name.equals("") || name == null
+			){
+			return;
+		} 
+		
+		User user = new User(name, username, password, Boolean.parseBoolean(admin), email, phone);
 		UserDAO userdb = new UserDB();
 		
 		userdb.save(user);
 		System.out.println("Usuário cadastrado");
+
+		
+
 	}
 
 }

@@ -511,6 +511,22 @@ header .title{
 	padding-right: 10px;
 }
 
+.pagination{
+	float: right;
+	margin-right: 150px;
+}
+
+.paginationList{
+	display: flex;
+	list-style-type: none;
+	bord
+}
+
+
+
+.paginationItem:HOVER{
+	color: purple;
+}
 
 /* General css */
 

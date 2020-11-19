@@ -46,3 +46,12 @@
 		</tr>
 	</c:forEach>
 </table>
+<div class="pagination">
+	<ul class="paginationList">
+		<c:forEach begin="1" end="${pages}" varStatus="loop">
+			<li class="space pointer paginationItem"><a href="${pageContext.request.contextPath}/admin/user/list?page=${loop.index - 1}">${loop.index}</a></li>
+		</c:forEach>
+
+	</ul>
+</div>
+

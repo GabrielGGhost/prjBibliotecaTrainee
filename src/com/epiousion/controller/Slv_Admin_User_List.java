@@ -24,14 +24,19 @@ public class Slv_Admin_User_List extends HttpServlet {
 		
 		UserDAO userdb = new UserDB();
 		List<User> userList = null;
+		int quantity = 0;
 		String filter = request.getParameter("filter");
+		String page = request.getParameter("page");
     	try {
-			userList = userdb.getAllUsers(filter);
+			userList = userdb.getAllUsers(filter, page);
+			//quantity = userdb.getQuantityPages();
 		} catch (EpiousionException e) {
 			e.printStackTrace();
 		}
 		
     	request.getSession().setAttribute("userList", userList);
+    	request.getSession().setAttribute("pages", quantity);
+
 		request.getRequestDispatcher("/jsp/admArea/User/struct_list.jsp").forward(request, response);
 	}
 }
