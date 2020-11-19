@@ -25,10 +25,13 @@ public class Slv_Admin_Loan_Save extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String idUser = request.getParameter("idUser");
+		if(idUser.equals("") || idUser == null) return;
+		
 		LoanDAO loandb = new LoanDB();
 		
 		Map params = request.getParameterMap();
 		
+		if(params.size() < 2) return;
 		@SuppressWarnings("rawtypes")
 		Iterator i = params.keySet().iterator();
 		
